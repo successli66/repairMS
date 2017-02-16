@@ -1,0 +1,135 @@
+create database repairms default charset=utf8;
+
+create table rm_company(
+id smallint(3) unsigned zerofill not null auto_increment comment 'ID',
+company_name varchar(30) not null comment '公司名称',
+business varchar(50) comment '主营业务',
+address varchar(35) comment '公司地址',
+phone varchar(20) comment '电话',
+descr text comment '公司描述',
+primary key (id),
+key company_name(company_name)
+)engine=InnoDB comment '公司';
+
+create table rm_department(
+id tinyint(2) unsigned zerofill not null auto_increment comment 'ID',
+department_name varchar(20) not null comment '部门名称',
+header smallint unsigned comment '部门负责人',
+business varchar(50) comment '业务范围',
+phone varchar(20) comment '电话',
+primary key (id),
+key department_name(department_name)
+)engine=InnoDB comment '部门';
+
+create table rm_user(
+id smallint unsigned not null auto_increment comment 'ID',
+username varchar(20) not null unique comment '用户名',
+pw varchar(32) not null comment '密码',
+real_name varchar(10) comment '姓名',
+work_number varchar(10) comment '工号',
+telephone varchar(11) comment '手机号',
+portrait varchar(60) comment '头像',
+department_id tinyint unsigned not null comment '所属部门ID',
+post varchar(10) comment '职务',
+primary key (id),
+key real_name(real_name),
+key department_id(department_id)
+)engine=InnoDB comment '用户';
+
+create table rm_project(
+id smallint(3) unsigned zerofill not null auto_increment comment 'ID',
+project_name varchar(20) not null comment '项目名称',
+department_id tinyint unsigned not null comment '所属部门ID',
+team varchar(50) not null comment '项目团队,职员ID逗号隔开',
+descr text comment '项目描述',
+primary key (id),
+key department_id(department_id),
+key team(team)
+)engine=InnoDB comment '维修项目';
+
+create table rm_equipment(
+id mediumint unsigned not null auto_increment comment 'ID',
+equipment_name varchar(20) not null comment '设备名称',
+model varchar(30) not null comment '设备型号',
+serial_number varchar(30) not null comment '设备编号',
+project_id smallint unsigned not null comment '所属项目ID',
+install_date date comment '安装时间',
+address varchar(30) comment '安放地点',
+primary key (id),
+key equipment_name(equipment_name),
+key model(model),
+key serial_number(serial_number),
+key install_date(install_date),
+key project_id(project_id)
+)engine=InnoDB comment '设备表';
+
+create table rm_part(
+id int unsigned not null auto_increment comment 'ID',
+part_name varchar(20) not null comment '配件名称',
+model varchar(30) not null comment '设备型号',
+in_price decimal(10,2) comment '进价',
+out_price decimal(10,2) comment '出价',
+project_id smallint unsigned not null comment '所属项目ID',
+descr text comment '配件描述',
+image varchar(150) comment '图片路径',
+primary key (id),
+key part_name(part_name),
+key model(model),
+key project_id(project_id)
+)engine=InnoDB comment '配件表';
+
+create table rm_repair(
+id int unsigned not null auto_increment comment 'ID',
+title varchar(20) not null comment '标题',
+project_id smallint unsigned not null comment '所属项目ID',
+descr text comment '问题描述',
+image varchar(150) comment '图片路径',
+equipment_id mediumint unsigned comment '设备表ID',
+report_person varchar(20) comment '报修人',
+report_time datetime not null comment '报修时间',
+address varchar(30) comment '维修地点',
+contact varchar(20) not null comment '联系人',
+phone varchar(20) not null comment '电话',
+repair_status tinyint unsigned not null comment '维修状态',
+repair_order varchar(30) not null comment '维修单号',
+primary key (id),
+key title(title),
+key project_id(project_id),
+key report_person(report_person),
+key equipment_id(equipment_id),
+key repair_status(repair_status),
+key report_time(report_time),
+key repair_order(repair_order)
+)engine=InnoDB comment '报修表';
+
+create table rm_event(
+id int unsigned not null auto_increment comment 'ID',
+repair_id int unsigned not null comment '报修表ID',
+event_datetime datetime not null comment '事件时间',
+descr text comment '事件描述',
+operator smallint unsigned not null comment '操作人',
+engineer smallint unsigned comment '维修人',
+primary key (id),
+key repair_id(repair_id)
+)engine=InnoDB comment '维修事件表';
+
+create table rm_fee(
+id int unsigned not null auto_increment comment 'ID',
+repair_id int unsigned not null comment '报修表ID',
+fee_item varchar(20) not null comment '收费项',
+fee smallint unsigned not null comment '实际费用',
+primary key (id),
+key repair_id(repair_id)
+)engine=InnoDB comment '费用表';
+
+create table rm_use_part(
+id int unsigned not null auto_increment comment 'ID',
+repair_id int unsigned not null comment '报修表ID',
+part_id int unsigned not null comment '配件表ID',
+use_number smallint unsigned not null comment '使用数量',
+fee_id smallint unsigned not null comment '费用表ID',
+primary key (id),
+key repair_id(repair_id),
+key part_id(part_id),
+key fee_id(fee_id)
+)engine=InnoDB comment '配件用量表';
