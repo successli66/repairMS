@@ -7,8 +7,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            添加公司
-            <small>Add Company</small>
+            公司修改
+            <small>Edit Company</small>
         </h1>
     </section>
     <section class="content">
@@ -17,24 +17,23 @@
                 <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-6">
-
+                            <input type="hidden" name="id" class="form-control" value="<?php echo $data['id'];?>">
                             <div class="form-group">
                                 <label> 公司名称</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-bank"></i>
                                     </div>
-                                    <input type="text" name="company_name" class="form-control" placeholder="请输入公司名称">
+                                    <input type="text" name="company_name" class="form-control" value="<?php echo $data['company_name'];?>">
                                 </div> 
                             </div>
-
                             <div class="form-group">
                                 <label>主营业务</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-bookmark"></i>
                                     </div>
-                                    <input type="text" name="business" class="form-control" placeholder="请输入主营业务">
+                                    <input type="text" name="business" class="form-control" value="<?php echo $data['business'];?>">
                                 </div> 
                             </div>    
                         </div>
@@ -45,7 +44,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-map"></i>
                                     </div>
-                                    <input type="text" name="address" class="form-control" placeholder="请输入公司地址">
+                                    <input type="text" name="address" class="form-control" value="<?php echo $data['address'];?>">
                                 </div> 
                             </div>
                             <!--电话-->
@@ -55,7 +54,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
+                                    <input type="text" name="phone" class="form-control" value="<?php echo $data['phone'];?>">
                                 </div> 
                             </div>
                         </div>
@@ -63,7 +62,7 @@
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
                         </div>
                     </div>
                 </div>
@@ -71,6 +70,7 @@
         </form>           
     </section>
 </div>
+
 
 
 <include file='common/bottom' />

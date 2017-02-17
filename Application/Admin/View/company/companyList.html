@@ -53,17 +53,19 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <h3 class="box-title">公司列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Company/add');?>"><i class="fa fa-plus-square"></i> 添 加</a>
+                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Company/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
                     </div>
                     <div class="col-md-5">
-                        <div class="box-body">
-                            <div class="input-group margin">
-                                <input type="text" class="form-control" placeholder="输入公司名称搜索...">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                </span>
-                            </div>        
-                        </div>
+                        <form action="__CONTROLLER__/search" method="GET">
+                            <div class="box-body">
+                                <div class="input-group margin">
+                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入公司名称搜索...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
+                                    </span>
+                                </div>        
+                            </div>
+                        </form>
                     </div>
 
                     <!-- /.box-header -->
@@ -88,8 +90,8 @@
                                     <td><?php echo $v['business'];?></td>
                                     <td><?php echo $v['phone'];?></td>
                                     <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="#">修改</a>
-                                        <a class="btn btn-danger btn-sm" href="#">删除</a> 
+                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
+                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
                                     </td>
                                 </tr>
                                 <?php endforeach;?>

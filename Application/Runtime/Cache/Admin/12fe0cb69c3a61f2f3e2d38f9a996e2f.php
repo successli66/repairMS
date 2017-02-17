@@ -48,10 +48,6 @@
 
             
 
-
-<!-- page -->
-<link rel="stylesheet" href="/Public/plugins/jQueryPager/page.css">
-
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -544,107 +540,73 @@
 
 
 
-<style>
-    .pages a,.pages span {
-        display:inline-block;
-        padding:2px 5px;
-        margin:0 1px;
-        border:1px solid #f0f0f0;
-        -webkit-border-radius:3px;
-        -moz-border-radius:3px;
-        border-radius:3px;
-    }
-    .pages a,.pages li {
-        display:inline-block;
-        list-style: none;
-        text-decoration:none; color:#58A0D3;
-    }
-    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
-        margin:0;
-    }
-    .pages a:hover{
-        border-color:#50A8E6;
-    }
-    .pages span.current{
-        background:#50A8E6;
-        color:#FFF;
-        font-weight:700;
-        border-color:#50A8E6;
-    }
-</style>
-
-
-
-
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            公司划分
-            <small>Company List</small>
+            公司修改
+            <small>Edit Company</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header">
-                        <h3 class="box-title">公司列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Company/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
-                    </div>
-                    <div class="col-md-5">
-                        <form action="/index.php/Admin/Company/search" method="GET">
-                            <div class="box-body">
-                                <div class="input-group margin">
-                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入公司名称搜索...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                    </span>
-                                </div>        
+        <form class="form" action="/index.php/Company/edit/id/011/p/6.html" method="POST">
+            <div class="box box-info">
+                <div class="box-body bg-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo $data['id'];?>">
+                            <div class="form-group">
+                                <label> 公司名称</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bank"></i>
+                                    </div>
+                                    <input type="text" name="company_name" class="form-control" value="<?php echo $data['company_name'];?>">
+                                </div> 
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <label>主营业务</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bookmark"></i>
+                                    </div>
+                                    <input type="text" name="business" class="form-control" value="<?php echo $data['business'];?>">
+                                </div> 
+                            </div>    
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="form-group">
+                                <label>公司地址</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-map"></i>
+                                    </div>
+                                    <input type="text" name="address" class="form-control" value="<?php echo $data['address'];?>">
+                                </div> 
+                            </div>
+                            <!--电话-->
+                            <div class="form-group">
+                                <label>联系电话</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input type="text" name="phone" class="form-control" value="<?php echo $data['phone'];?>">
+                                </div> 
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="center">编 号</th>
-                                    <th class="center">公 司 名 称</th>
-                                    <th class="center">公 司 地 址</th>
-                                    <th class="center">主 营 业 务</th>
-                                    <th class="center">联 系 电 话</th>
-                                    <th class="center">操 作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['id'];?></td>
-                                    <td><?php echo $v['company_name'];?></td>
-                                    <td><?php echo $v['address'];?></td>
-                                    <td><?php echo $v['business'];?></td>
-                                    <td><?php echo $v['phone'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?></div>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                        </div>
                     </div>
                 </div>
-            </div>    
-        </div>
+            </div>
+        </form>           
     </section>
 </div>
+
 
 
 <div class="wrapper"></div>
@@ -776,9 +738,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
-
-
 
 
         </div>

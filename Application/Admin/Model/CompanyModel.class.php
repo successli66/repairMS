@@ -13,18 +13,17 @@ class CompanyModel extends Model {
         array('address', 'require', '公司地址不能为空！', 1, 'regex', 3),
     );
 
-    public function search($pageSize = 5) {
+    public function search($pageSize = 1) {
         /*         * ************************************** 搜索 *************************************** */
         $where = array();
-        if ($company_name = I('get.company_name'))
-            $where['company_name'] = array('like', "%$company_name%");
+        if ($search_name = I('get.search_name'))
+            $where['company_name'] = array('like', "%$search_name%");
         /*         * *********************************** 翻页 *************************************** */
         $count = $this->where($where)->count();
         $page = getpage($count, $pageSize);
         $data['page'] = $page->show();
         /*         * ************************************ 取数据 ***************************************** */
         $data['data'] = $this ->where($where)->limit($page->firstRow . ',' . $page->listRows)->select();
-        $data['page_count'] = ceil($count/$pageSize);
         return $data;
     }
 
