@@ -1,5 +1,35 @@
 <layout name="common/layout" />
-<div class="content-wrapper">
-   
-    
-</div>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                系统信息
+                <small>System Info</small>
+            </h1>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+
+                        <!-- /.box-header -->
+                        <div class="box-body bg-info">
+                            <?php foreach ($info as $k=>$v): ?>
+                            <div>
+                                <h4><i class="icon fa fa-info"></i>  <?php echo $k; ?></h4>
+                                <ul class="list-group">
+                                    <?php foreach ($v as $k1=>$v1): ?>
+                                    <li class="list-group-item "><?php echo $k1."： ".$v1?></li>
+                                    <?php endforeach;?>
+                                </ul>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+        </section>
+    </div>

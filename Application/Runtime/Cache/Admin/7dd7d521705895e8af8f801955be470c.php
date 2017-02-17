@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="/Public/dist/css/skins/_all-skins.min.css">
         <!-- iCheck(表单美化) -->
         <link rel="stylesheet" href="/Public/plugins/iCheck/flat/blue.css">
+        <!-- iCheck for checkboxes and radio inputs -->
+        <link rel="stylesheet" href="/Public/plugins/iCheck/all.css">
         <!-- Morris chart（莫里斯图表） -->
         <link rel="stylesheet" href="/Public/plugins/morris/morris.css"> 
         <!-- Date Picker（日期选择器）-->
@@ -27,6 +29,10 @@
         <link rel="stylesheet" href="/Public/plugins/daterangepicker/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor（文本编辑器） -->
         <link rel="stylesheet" href="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <!-- Bootstrap time Picker -->
+        <link rel="stylesheet" href="/Public/plugins/timepicker/bootstrap-timepicker.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="/Public/plugins/select2/select2.min.css">
         <!--引入joliAdmin时钟样式-->
         <link rel="stylesheet" type="text/css" id="theme" href="/Public/other/JoliAdmin/theme-default2.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -330,7 +336,7 @@
                         <li class="header"><h6 class="text-center"><big>主菜单</big></h6></li>
                         <!--左侧栏首页-->
                         <li class="active treeview">
-                            <a href="index.html">
+                            <a href="<?php echo U('Admin/Index/index'); ?>">
                                 <i class="fa fa-th-large"></i> <span>首页</span>
                             </a>
                         </li>
@@ -348,6 +354,11 @@
                                 <li>
                                     <a href="overview.html">
                                         <i class="fa fa-info-circle"></i>维修总览
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo U('admin/repair/report'); ?>">
+                                        <i class="fa fa-info-circle"></i>报修
                                     </a>
                                 </li>
                                 <li>
@@ -504,8 +515,8 @@
                                         <i class="fa fa-toggle-on"></i>权限管理
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="pages/layout/collapsed-sidebar.html">
+                                <li class="">
+                                    <a href="<?php echo U('Admin/Admin/sysInfo'); ?>" target="a">
                                         <i class="fa fa-desktop"></i>系统信息
                                     </a>
                                 </li>
@@ -516,16 +527,47 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
+
+
             
-            
-            
-<div class="content-wrapper">
-   
-    
-</div>
-            
-           
-            
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                系统信息
+                <small>System Info</small>
+            </h1>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+
+                        <!-- /.box-header -->
+                        <div class="box-body bg-info">
+                            <?php foreach ($info as $k=>$v): ?>
+                            <div>
+                                <h4><i class="icon fa fa-info"></i>  <?php echo $k; ?></h4>
+                                <ul class="list-group">
+                                    <?php foreach ($v as $k1=>$v1): ?>
+                                    <li class="list-group-item "><?php echo $k1."： ".$v1?></li>
+                                    <?php endforeach;?>
+                                </ul>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+        </section>
+    </div>
+
+
+
+
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 0.0.1
@@ -693,7 +735,57 @@
         <script src="/Public/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="/Public/dist/js/demo.js"></script>
+        <!-- Select2 -->
+        <script src="/Public/plugins/select2/select2.full.min.js"></script>
+        <!-- InputMask -->
+        <script src="/Public/plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="/Public/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="/Public/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+        <!-- bootstrap time picker -->
+        <script src="/Public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <!-- iCheck 1.0.1 -->
+        <script src="/Public/plugins/iCheck/icheck.min.js"></script>
         <!--joliAdmin时钟js-->
         <script src="/Public/other/JoliAdmin/time.js"></script>
+        <script>
+            $(function () {
+                //Initialize Select2 Elements
+                $(".select2").select2();
+                //Datemask dd/mm/yyyy
+                $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+                //Datemask2 mm/dd/yyyy
+                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+                //Date range picker
+                $('#reservation').daterangepicker();
+                //Date range picker with time picker
+                $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+                //Date range as a button
+                $('#daterange-btn').daterangepicker(
+                        {
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            },
+                            startDate: moment().subtract(29, 'days'),
+                            endDate: moment()
+                        },
+                        function (start, end) {
+                            $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                        }
+                );
+                //Date picker
+                $('#datepicker').datepicker({
+                    autoclose: true
+                });
+                //Timepicker
+                $(".timepicker").timepicker({
+                    showInputs: false
+                });
+            });
+        </script> 
     </body>
 </html>

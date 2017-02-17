@@ -1,0 +1,114 @@
+[ 2017-02-17T16:04:13+08:00 ] 127.0.0.1 /index.php/admin/admin/sysInfo.html
+ERR: Think\Controller:_model方法不存在！
+
+[ 2017-02-17T17:22:01+08:00 ] 127.0.0.1 /index.php/admin/admin/index.html
+ERR: 非法操作:index
+
+[ 2017-02-17T17:22:56+08:00 ] 127.0.0.1 /index.php/admin/admin/index.html
+ERR: 非法操作:index
+
+[ 2017-02-17T17:23:37+08:00 ] 127.0.0.1 /index.php/admin/admin/admin/index/index.html
+ERR: 非法操作:admin
+
+[ 2017-02-17T17:23:57+08:00 ] 127.0.0.1 /index.php/admin/admin/index/index.html
+ERR: 非法操作:index
+
+[ 2017-02-17T17:24:40+08:00 ] 127.0.0.1 /index.php/admin/admin/index/index.html
+ERR: 非法操作:index
+
+[ 2017-02-17T17:25:03+08:00 ] 127.0.0.1 /index.php/index/pages/layout/collapsed-sidebar.html
+ERR: 非法操作:pages
+
+[ 2017-02-17T17:26:03+08:00 ] 127.0.0.1 /index.php/admin/sysInfo.html
+ERR: 无法加载控制器:SysInfo
+
+[ 2017-02-17T17:26:49+08:00 ] 127.0.0.1 /index.php/admin/sysInfo.html
+ERR: 无法加载控制器:SysInfo
+
+[ 2017-02-17T17:28:43+08:00 ] 127.0.0.1 /index.php/Admin/sysInfo.html
+ERR: 无法加载控制器:SysInfo
+
+[ 2017-02-17T17:29:33+08:00 ] 127.0.0.1 /index.php/index/index.html.html
+ERR: 非法操作:index.html
+
+[ 2017-02-17T17:29:55+08:00 ] 127.0.0.1 /index.php/index/index.html.html
+ERR: 非法操作:index.html
+
+[ 2017-02-17T17:30:07+08:00 ] 127.0.0.1 /index.php/Admin/sysInfo.html
+ERR: 无法加载控制器:SysInfo
+
+[ 2017-02-17T18:32:54+08:00 ] 127.0.0.1 /index.php/Admin/Admin/index.html
+ERR: 非法操作:index
+
+[ 2017-02-17T18:33:39+08:00 ] 127.0.0.1 /index.php/Admin/Admin/overview.html
+ERR: 非法操作:overview
+
+[ 2017-02-17T18:34:36+08:00 ] 127.0.0.1 /index.php/Admin/Admin/Admin/admin/sysInfo.html
+ERR: 非法操作:Admin
+
+[ 2017-02-17T18:35:04+08:00 ] 127.0.0.1 /index.php/Admin/Admin/admin/sysInfo.html
+ERR: 非法操作:admin
+
+[ 2017-02-17T18:41:37+08:00 ] 127.0.0.1 /index.php/Admin/Index/sysInfo.html
+ERR: 非法操作:sysInfo
+
+[ 2017-02-17T18:41:56+08:00 ] 127.0.0.1 /index.php/Admin/Index/pages/layout/fixed.html
+ERR: 非法操作:pages
+
+[ 2017-02-17T18:42:48+08:00 ] 127.0.0.1 /index.php/Admin/Index/overview.html
+ERR: 非法操作:overview
+
+[ 2017-02-17T18:42:52+08:00 ] 127.0.0.1 /index.php/Admin/Index/pages/layout/collapsed-sidebar.html
+ERR: 非法操作:pages
+
+[ 2017-02-17T18:48:28+08:00 ] 127.0.0.1 /index.php/Admin/Index/Admin/sysInfo.html
+ERR: 非法操作:Admin
+
+[ 2017-02-17T18:49:05+08:00 ] 127.0.0.1 /index.php/Admin/sysInfo.html
+ERR: 无法加载控制器:SysInfo
+
+[ 2017-02-17T19:05:21+08:00 ] 127.0.0.1 /index.php/Admin/Index/pages/layout/fixed.html
+ERR: 非法操作:pages
+
+[ 2017-02-17T20:59:38+08:00 ] 127.0.0.1 /index.php/Admin/Admin/overview.html
+ERR: 非法操作:overview
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/input-mask/jquery.inputmask.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/select2/select2.full.min.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/input-mask/jquery.inputmask.date.extensions.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/input-mask/jquery.inputmask.extensions.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/timepicker/bootstrap-timepicker.min.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/iCheck/icheck.min.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/input-mask/jquery.inputmask.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/input-mask/jquery.inputmask.date.extensions.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/input-mask/jquery.inputmask.extensions.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/timepicker/bootstrap-timepicker.min.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:36:05+08:00 ] 127.0.0.1 /index.php/plugins/iCheck/icheck.min.js
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T22:52:49+08:00 ] 127.0.0.1 /index.php/plugins/iCheck/all.css
+ERR: 无法加载控制器:Plugins
+
+[ 2017-02-17T23:37:35+08:00 ] 127.0.0.1 /index.php/Admin/Admin/index.html
+ERR: 非法操作:index
+

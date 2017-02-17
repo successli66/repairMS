@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -7,34 +7,34 @@
         <!--屏幕自适应-->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
-        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/Public/bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/Public/plugins/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/ionicons/css/ionicons.min.css">
+        <link rel="stylesheet" href="/Public/plugins/ionicons/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="__PUBLIC__/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="/Public/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="__PUBLIC__/dist/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="/Public/dist/css/skins/_all-skins.min.css">
         <!-- iCheck(表单美化) -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/iCheck/flat/blue.css">
+        <link rel="stylesheet" href="/Public/plugins/iCheck/flat/blue.css">
         <!-- iCheck for checkboxes and radio inputs -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/iCheck/all.css">
+        <link rel="stylesheet" href="/Public/plugins/iCheck/all.css">
         <!-- Morris chart（莫里斯图表） -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/morris/morris.css"> 
+        <link rel="stylesheet" href="/Public/plugins/morris/morris.css"> 
         <!-- Date Picker（日期选择器）-->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/datepicker/datepicker3.css">
+        <link rel="stylesheet" href="/Public/plugins/datepicker/datepicker3.css">
         <!-- Daterange picker（时间区间选择器） -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/daterangepicker/daterangepicker.css">
+        <link rel="stylesheet" href="/Public/plugins/daterangepicker/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor（文本编辑器） -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <link rel="stylesheet" href="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
         <!-- Bootstrap time Picker -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/timepicker/bootstrap-timepicker.min.css">
+        <link rel="stylesheet" href="/Public/plugins/timepicker/bootstrap-timepicker.min.css">
         <!-- Select2 -->
-        <link rel="stylesheet" href="__PUBLIC__/plugins/select2/select2.min.css">
+        <link rel="stylesheet" href="/Public/plugins/select2/select2.min.css">
         <!--引入joliAdmin时钟样式-->
-        <link rel="stylesheet" type="text/css" id="theme" href="__PUBLIC__/other/JoliAdmin/theme-default2.css">
+        <link rel="stylesheet" type="text/css" id="theme" href="/Public/other/JoliAdmin/theme-default2.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -51,7 +51,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><span class="glyphicon glyphicon-home"></span></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><img src="__PUBLIC__/image/logo.png" class="img-rounded"><b> 维修管理平台</b></span>
+                    <span class="logo-lg"><img src="/Public/image/logo.png" class="img-rounded"><b> 维修管理平台</b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -76,7 +76,7 @@
                                             <li><!-- start message -->
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="__PUBLIC__/image/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                        <img src="/Public/image/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                                                         Support Team
@@ -89,7 +89,7 @@
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="__PUBLIC__/image/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                        <img src="/Public/image/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                                                         AdminLTE Design Team
@@ -101,7 +101,7 @@
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="__PUBLIC__/image/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                        <img src="/Public/image/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                                                         Developers
@@ -113,7 +113,7 @@
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="__PUBLIC__/image/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                        <img src="/Public/image/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                                                         Sales Department
@@ -125,7 +125,7 @@
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="__PUBLIC__/image/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                        <img src="/Public/image/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                                                         Reviewers
@@ -258,13 +258,13 @@
                             <!-- User Account（用户信息）: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="__PUBLIC__/image/logo.png" class="user-image" alt="User Image">
+                                    <img src="/Public/image/logo.png" class="user-image" alt="User Image">
                                     <span class="hidden-xs">李绅</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image（头像） -->
                                     <li class="user-header">
-                                        <img src="__PUBLIC__/image/logo.png" class="img-circle" alt="User Image">
+                                        <img src="/Public/image/logo.png" class="img-circle" alt="User Image">
 
                                         <p>
                                             李绅 - Developer
@@ -313,7 +313,7 @@
                     <!-- Sidebar user panel（左侧用户信息） -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="__PUBLIC__/image/logo.png" class="img-rounded" alt="User Image">
+                            <img src="/Public/image/logo.png" class="img-rounded" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p class="text-center">李绅</p>
@@ -529,7 +529,126 @@
             </aside>
 
 
-            {__CONTENT__}
+            
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            故障报修
+            <small>Report Fault</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <form class="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">报修信息</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+
+                        <div class="box-body">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>维修标题</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="请输入标题或关键字...">
+                                </div> 
+                            </div>
+                            <!--选择所属项目-->
+                            <div class="form-group">
+                                <label>问题属性</label> 
+                                <select class="form-control" style="width: 100%;">
+                                    <option selected="selected">请选择...</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>故障描述</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                    <textarea type="text" class="form-control" rows="3" placeholder="请输入描述信息..."></textarea>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>维修地址</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-map"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="请输入地址">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>联系人</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="联系人">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>电话</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="请输入联系方式">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>报修人</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">报修信息</h3>
+                        </div>
+                        <div class="box-body">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" id="exampleInputFile">
+
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Check me out
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form> 
+    </section>
+
+</div>
+
 
 
 
@@ -664,54 +783,54 @@
         <!-- ./wrapper -->
 
         <!-- jQuery 2.2.3 -->
-        <script src="__PUBLIC__/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="/Public/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
-        <script src="__PUBLIC__/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <script src="/Public/plugins/jQueryUI/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.6 -->
-        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/Public/bootstrap/js/bootstrap.min.js"></script>
         <!-- Morris.js charts -->
-        <script src="__PUBLIC__/plugins/raphael/raphael.min.js"></script>
-        <script src="__PUBLIC__/plugins/morris/morris.min.js"></script>
+        <script src="/Public/plugins/raphael/raphael.min.js"></script>
+        <script src="/Public/plugins/morris/morris.min.js"></script>
         <!-- Sparkline -->
-        <script src="__PUBLIC__/plugins/sparkline/jquery.sparkline.min.js"></script>
+        <script src="/Public/plugins/sparkline/jquery.sparkline.min.js"></script>
         <!-- jvectormap -->
-        <script src="__PUBLIC__/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="__PUBLIC__/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="/Public/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="/Public/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
         <!-- jQuery Knob Chart -->
-        <script src="__PUBLIC__/plugins/knob/jquery.knob.js"></script>
+        <script src="/Public/plugins/knob/jquery.knob.js"></script>
         <!-- daterangepicker -->
-        <script src="__PUBLIC__/plugins/moment/moment.js"></script>
-        <script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js"></script>
+        <script src="/Public/plugins/moment/moment.js"></script>
+        <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
-        <script src="__PUBLIC__/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
-        <script src="__PUBLIC__/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+        <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
-        <script src="__PUBLIC__/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <script src="/Public/plugins/slimScroll/jquery.slimscroll.min.js"></script>
         <!-- FastClick -->
-        <script src="__PUBLIC__/plugins/fastclick/fastclick.js"></script>
+        <script src="/Public/plugins/fastclick/fastclick.js"></script>
         <!-- AdminLTE App -->
-        <script src="__PUBLIC__/dist/js/app.min.js"></script>
+        <script src="/Public/dist/js/app.min.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="__PUBLIC__/dist/js/pages/dashboard.js"></script>
+        <script src="/Public/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="__PUBLIC__/dist/js/demo.js"></script>
+        <script src="/Public/dist/js/demo.js"></script>
         <!-- Select2 -->
-        <script src="__PUBLIC__/plugins/select2/select2.full.min.js"></script>
+        <script src="/Public/plugins/select2/select2.full.min.js"></script>
         <!-- InputMask -->
-        <script src="__PUBLIC__/plugins/input-mask/jquery.inputmask.js"></script>
-        <script src="__PUBLIC__/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-        <script src="__PUBLIC__/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+        <script src="/Public/plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="/Public/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="/Public/plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <!-- bootstrap time picker -->
-        <script src="__PUBLIC__/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/Public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
         <!-- iCheck 1.0.1 -->
-        <script src="__PUBLIC__/plugins/iCheck/icheck.min.js"></script>
+        <script src="/Public/plugins/iCheck/icheck.min.js"></script>
         <!--joliAdmin时钟js-->
-        <script src="__PUBLIC__/other/JoliAdmin/time.js"></script>
+        <script src="/Public/other/JoliAdmin/time.js"></script>
         <script>
             $(function () {
                 //Initialize Select2 Elements
