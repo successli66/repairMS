@@ -17,8 +17,10 @@ department_name varchar(20) not null comment '部门名称',
 header smallint unsigned comment '部门负责人',
 business varchar(50) comment '业务范围',
 phone varchar(20) comment '电话',
+company_id smallint unsigned not null comment '公司ID',
 primary key (id),
 key department_name(department_name)
+key company_id(company_id) 
 )engine=InnoDB comment '部门';
 
 create table rm_user(
