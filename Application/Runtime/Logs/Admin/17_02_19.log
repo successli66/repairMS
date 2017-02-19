@@ -1,0 +1,17 @@
+[ 2017-02-19T08:07:24+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000524s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000911s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: pw D:\www\repairMS\Application\Admin\Model\UserModel.class.php 第 33 行.
+
+[ 2017-02-19T08:08:42+08:00 ] 127.0.0.1 /index.php/admin/repair/index.html
+ERR: 非法操作:index
+
+[ 2017-02-19T10:31:23+08:00 ] 127.0.0.1 /index.php/Admin/Company/overview.html
+ERR: 非法操作:overview
+
+[ 2017-02-19T22:13:39+08:00 ] 127.0.0.1 /index.php/Admin/Admin/index.html
+ERR: 非法操作:index
+

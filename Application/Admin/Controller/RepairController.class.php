@@ -2,9 +2,7 @@
 
 namespace Admin\Controller;
 
-use Think\Controller;
-
-class RepairController extends Controller{
+class RepairController extends BaseController{
     public function report(){
         $this->display();
     }

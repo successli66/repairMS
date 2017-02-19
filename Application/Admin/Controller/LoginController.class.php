@@ -45,10 +45,10 @@ class LoginController extends Controller {
             $this->error("提交方式错误！", true); //AJAX方式提交错误信息
             exit;
         } else {
-            $model = D('Admin');
+            $model = D('User');
             if ($model->validate($model->_login_validate)->create()) {
                 if ($model->login()) {
-                    $this->redirect(U('Index/index'));
+                    $this->success('登录成功！');
                     exit;
                 }
             }

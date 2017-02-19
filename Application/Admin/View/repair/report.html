@@ -1,5 +1,8 @@
 <layout name='common/layout' />
 
+<include file='common/header' />
+<include file='common/nav' />
+
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -10,24 +13,18 @@
 
     <section class="content">
         <form class="form">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">报修信息</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
-
-                        <div class="box-body">
-                            <!-- text input -->
+            <div class="box box-info">
+                <div class="box-body bg-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--标题-->
                             <div class="form-group">
-                                <label>维修标题</label>
+                                <label>报修标题</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="请输入标题或关键字...">
+                                    <input type="text" class="form-control" placeholder="请输入标题">
                                 </div> 
                             </div>
                             <!--选择所属项目-->
@@ -43,15 +40,19 @@
                                     <option>Washington</option>
                                 </select>
                             </div>
+                            <!--报修人-->
                             <div class="form-group">
-                                <label>故障描述</label>
+                                <label>报修人</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-pencil"></i>
+                                        <i class="fa fa-envelope"></i>
                                     </div>
-                                    <textarea type="text" class="form-control" rows="3" placeholder="请输入描述信息..."></textarea>
+                                    <input type="text" class="form-control" placeholder="报修人" disabled>
                                 </div> 
-                            </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-6">
+                            <!--维修地址-->
                             <div class="form-group">
                                 <label>维修地址</label>
                                 <div class="input-group">
@@ -61,6 +62,7 @@
                                     <input type="text" class="form-control" placeholder="请输入地址">
                                 </div> 
                             </div>
+                            <!--联系人-->
                             <div class="form-group">
                                 <label>联系人</label>
                                 <div class="input-group">
@@ -70,50 +72,48 @@
                                     <input type="text" class="form-control" placeholder="联系人">
                                 </div> 
                             </div>
+                            <!--电话-->
                             <div class="form-group">
                                 <label>电话</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="请输入联系方式">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>报修人</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="联系方式">
                                 </div> 
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">报修信息</h3>
-                        </div>
+                    <!--故障描述-->
+                    <div class="row">
+                        <div class="col-md-2"></div>
                         <div class="box-body">
-                            <!-- text input -->
                             <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <input type="file" id="exampleInputFile">
-
-                                <p class="help-block">Example block-level help text here.</p>
+                                <label>故障描述</label>
+                                <textarea id="fault_describe" name="fault_describe"></textarea>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Check me out
-                                </label>
-                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <!--报修确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <a class="btn btn-default"><i class="fa fa-send"></i>  确认报修</a>
                         </div>
                     </div>
                 </div>
             </div>
         </form> 
     </section>
-
 </div>
+
+<include file='common/bottom' />
+
+<!-- 配置文件 -->
+<script type="text/javascript" src="__PUBLIC__/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="__PUBLIC__/plugins/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('fault_describe', {initialFrameWidth: "100%", initialFrameHeight: 400});
+</script>

@@ -1,35 +1,40 @@
 <layout name="common/layout" />
 
-    <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                系统信息
-                <small>System Info</small>
-            </h1>
-        </section>
+<include file='common/header' />
+<include file='common/nav' />
 
-        <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-info">
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            系统信息
+            <small>System Info</small>
+        </h1>
+    </section>
 
-                        <!-- /.box-header -->
-                        <div class="box-body bg-info">
-                            <?php foreach ($info as $k=>$v): ?>
-                            <div>
-                                <h4><i class="icon fa fa-info"></i>  <?php echo $k; ?></h4>
-                                <ul class="list-group">
-                                    <?php foreach ($v as $k1=>$v1): ?>
-                                    <li class="list-group-item "><?php echo $k1."： ".$v1?></li>
-                                    <?php endforeach;?>
-                                </ul>
-                            </div>
-                            <?php endforeach; ?>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+
+                    <!-- /.box-header -->
+                    <div class="box-body bg-info">
+                        <?php foreach ($info as $k=>$v): ?>
+                        <div>
+                            <h4><i class="icon fa fa-info"></i>  <?php echo $k; ?></h4>
+                            <ul class="list-group">
+                                <?php foreach ($v as $k1=>$v1): ?>
+                                <li class="list-group-item "><?php echo $k1."： ".$v1?></li>
+                                <?php endforeach;?>
+                            </ul>
                         </div>
-                        <!-- /.box-body -->
+                        <?php endforeach; ?>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.col -->
-        </section>
-    </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+    </section>
+</div>
+
+<include file='common/bottom' />

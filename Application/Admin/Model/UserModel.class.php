@@ -4,14 +4,14 @@ namespace Admin\Model;
 
 use Think\Model;
 
-class AdminModel extends Model {
+class UserModel extends Model {
 
-    protected $insertFields = array('username', 'pwd','verify');
+    protected $insertFields = array('username','pw','verify');
     protected $updateFields = array('id', 'username', 'password','password','repassword');
     //为登录表单定义一个验证规则
     public $_login_validate = array(
         array('username', 'require', '用户名不能为空！', 1),
-        array('pwd', 'require', '密码不能为空！', 1),
+        array('pw', 'require', '密码不能为空！', 1),
         array('verify', 'require', '验证码不能为空！', 1),
         array('verify', 'check_vercode', '验证码错误！', 1, 'callback'),
     );
@@ -25,15 +25,19 @@ class AdminModel extends Model {
     //用户登录
     public function login() {
         $username = $this->username;
-        $pwd = $this->pwd;
+        $pwd = $this->pw;
         $user = $this->where(array(
             'username'=>$username,
         ))->find();
         if($user){
-            if(md5($pwd) == $user['pwd']){
+            if(md5($pw) == $user['pw']){
                 //登录成功，保存session
-                session('id',$user['id']);
+                session('user_id',$user['id']);
                 session('username',$user['username']);
+                session('real_name',$user['real_name']);
+                session('work_number',$user['work_number']);
+                session('post',$user['post']);
+                session('portrait',$user['portrait']);
                 return true;
             }else{
                 $this->error = '用户名或密码错误！';

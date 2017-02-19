@@ -2,9 +2,7 @@
 
 namespace Admin\Controller;
 
-use Think\Controller;
-
-class AdminController extends Controller {
+class AdminController extends BaseController {
 
     public function sysInfo() {
         $info = array(

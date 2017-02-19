@@ -1,0 +1,226 @@
+<!-- Left side column（左侧导航栏）. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel（左侧用户信息） -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="__PUBLIC__/image/logo.png" class="img-rounded" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p class="text-center"><?php echo session('real_name');?></p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form（搜索） -->
+<!--        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="搜索...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>-->
+        <!-- /.search form -->
+        <!-- sidebar menu（左侧主菜单）: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header"><h6 class="text-center"><big>主菜单</big></h6></li>
+            <!--左侧栏首页-->
+            <li class="active treeview">
+                <a href="<?php echo U('Admin/Index/index'); ?>">
+                    <i class="fa fa-th-large"></i> <span>首页</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-wrench"></i>
+                    <span>维护维修</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <small class="label pull-right bg-yellow">12</small>
+                        <small class="label pull-right bg-red">5</small>      
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="overview.html">
+                            <i class="fa fa-info-circle"></i>维修总览
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo U('admin/repair/report'); ?>">
+                            <i class="fa fa-info-circle"></i>报修
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/layout/boxed.html">
+                            <i class="fa fa-envelope"></i>新报修
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-red">5</small>      
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/layout/fixed.html">
+                            <i class="fa fa-spinner"></i>维修中
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-yellow">5</small>      
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/layout/collapsed-sidebar.html">
+                            <i class="fa fa-check"></i>已维修
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="index.html">
+                    <i class="fa fa-pencil-square-o"></i> 
+                    <span>工作计划</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-green">1</small>      
+                    </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="index.html">
+                    <i class="fa fa-history"></i> 
+                    <span>工作绩效</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="overview.html">
+                            <i class="fa fa-male"></i>个人绩效
+                        </a>
+                    </li>
+                    <li>
+                        <a href="overview.html">
+                            <i class="fa fa-line-chart"></i>部门绩效
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="index.html">
+                    <i class="fa fa-pie-chart"></i> 
+                    <span>报表分析</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="overview.html">
+                            <i class="fa fa-area-chart"></i>总体分析
+                        </a>
+                    </li>
+                    <li>
+                        <a href="overview.html">
+                            <i class="fa fa-bar-chart-o"></i>单项分析
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="index.html">
+                    <i class="fa fa-address-book-o"></i> 
+                    <span>通讯录</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="index.html">
+                    <i class="fa fa-drivers-license-o"></i> 
+                    <span>个人信息</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th-list"></i>
+                    <span>组织管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?php echo U('Admin/Company/companyList'); ?>">
+                            <i class="fa fa-flag"></i>公司划分
+                        </a>
+                    </li>
+                    <li>
+                        <a href="overview.html">
+                            <i class="fa fa-sitemap"></i>部门划分
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/layout/boxed.html">
+                            <i class="fa fa-graduation-cap"></i>职务划分
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/layout/fixed.html">
+                            <i class="fa fa-puzzle-piece"></i>工作划分
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-comments-o"></i> 
+                    <span>微信管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-tablet"></i> 
+                    <span>APP管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-unlock-alt"></i>
+                    <span>Admin</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="overview.html">
+                            <i class="fa fa-user-circle-o"></i>用户管理
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/layout/boxed.html">
+                            <i class="fa fa-users"></i>组管理
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/layout/fixed.html">
+                            <i class="fa fa-toggle-on"></i>权限管理
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="<?php echo U('Admin/Admin/sysInfo'); ?>">
+                            <i class="fa fa-desktop"></i>系统信息
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </section>
+    <!-- /.sidebar -->
+</aside>

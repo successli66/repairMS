@@ -36,15 +36,14 @@
                     <div class="col-sm-10 col-sm-offset-1">
                         <div class="login-container">
                             <div class="center">
+                                <div><h1><span class='red'>Repair MS</span></h1></div>
                                 <h1>
-                                    <i class="ace-icon fa fa-leaf green"></i>
-                                    <span class="red">repairMS</span>
-                                    <span  class="blue" style="font-family:microsoft yahei" id="id-text2">维修管理平台</span>
+                                    <i class="ace-icon fa fa-desktop green"></i>
+
+                                    <span class="blue" style="font-family:microsoft yahei" id="id-text2"> 维修管理平台</span>
                                 </h1>
                             </div>
-
                             <div class="space-6"></div>
-
                             <div class="position-relative">
                                 <div id="login-box" class="login-box visible widget-box no-border">
                                     <div class="widget-body">
@@ -66,12 +65,12 @@
 
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="password" class="form-control" name="pwd" id="pwd" placeholder="输入密码" required/>
+                                                            <input type="password" class="form-control" name="pw" id="pw" placeholder="输入密码" required/>
                                                             <i class="ace-icon fa fa-lock"></i>
                                                         </span>
                                                     </label>                                                   
                                                     <div id="captcha"></div>
-                                                    
+
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
                                                             <input type="text" class="form-control" name="verify" id="verify" placeholder="输入验证码" required/>
@@ -80,23 +79,22 @@
                                                     </label>
                                                     <label class="block clearfix">
                                                         <span class="block text-center">
-                                                            <img style='cursor:pointer;' onclick="this.src='<?php echo U('vercode');?>#'+Math.random();" src="<?php echo U('vercode')?>">
+                                                            <img style='cursor:pointer;' onclick="this.src = '<?php echo U('vercode');?>#' + Math.random();" src="<?php echo U('vercode')?>">
                                                         </span>
                                                     </label>
-                                                    
+
                                                     <div class="clearfix">
                                                         <label class="inline">
                                                             <input type="checkbox" class="ace" name='rember'/>
                                                             <span class="lbl"> 记住信息</span>
                                                         </label>
-                                                        
+
                                                         <button type="button" class="width-35 pull-right btn btn-sm btn-primary" id='btn'>
                                                             <i class="ace-icon fa fa-key"></i>
                                                             <span class="bigger-110">登录</span>                                                         
                                                         </button>
                                                     </div>
                                                     <div  class="error" id="error"></div>
-
                                                     <!--<div class="space-4"></div>-->                          
                                                 </fieldset>
                                             </form>
@@ -104,7 +102,6 @@
                                     </div><!-- /.widget-body -->
                                 </div><!-- /.login-box -->
                             </div><!-- /.position-relative -->
-
                         </div>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -118,40 +115,38 @@
         <!-- 如果为IE,则引入jq1.12.1 -->
         <!--[if IE]>-->
         <script src="__PUBLIC__/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!--        <![endif]-->
+        <!--      <![endif]-->
         <!-- jquery.form、layer、yfcmf的js -->
-        <script src="__PUBLIC__/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
         <script src="__PUBLIC__/plugins/jQuery/jquery.form.js"></script>
         <script src="__PUBLIC__/other/layer/layer_zh-cn.js"></script>
-        <script src="__PUBLIC__/others/maxlength.js"></script>
-        <!--<script src="__PUBLIC__/yfcmf/yfcmf.js"></script>-->
-        <!--<script src="http://static.geetest.com/static/tools/gt.js"></script>-->
         <!-- 如果为触屏,则引入jquery.mobile -->
         <script type="text/javascript">
-            if ('ontouchstart' in document.documentElement)
-                document.write("<script src='__PUBLIC__/others/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+                                                                if ('ontouchstart' in document.documentElement)
+                                                                    document.write("<script src='__PUBLIC__/others/jquery.mobile.custom.min.js'>" + "<" + "/script>");
         </script>
-        
+
         <!--ajax登录验证-->
-        <script>           
-            $("#btn").click(function(){
-                
+        <script>
+            $("#btn").click(function () {
+
                 var form = $("#login");
                 var formData = form.serialize();
-                
                 $.ajax({
-                    type:"POST",
-                    url:"<?php echo U('ajaxLogin'); ?>",
-                    data:formData,
-                    dataType:"json",
-                    success:function(data){
-                        var errorInfo = '<p style="color:red">'+data.info+'</p>'; 
-                        var err = "123sak";
-                        $("#error").html(errorInfo);                       
+                    type: "POST",
+                    url: "<?php echo U('Login/ajaxLogin'); ?>",
+                    data: formData,
+                    dataType: "json",
+                    success: function (data) {
+                        var errorInfo = '<p style="color:red">' + data.info + '</p>';
+                        $("#error").html(errorInfo);
+                        if(data.info === '登录成功！'){
+                            location.href = "http://www.repairms.com/index.php/Admin/Index/index.html";
+                        }
                     }
                 });
-            });           
+            });
         </script>
-        
+
     </body>
 </html>
