@@ -467,7 +467,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/Department/departmentList'); ?>">
                             <i class="fa fa-sitemap"></i>部门划分
                         </a>
                     </li>
@@ -548,7 +548,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Company/edit/id/011/p/10.html" method="POST">
+        <form class="form" action="/index.php/Company/edit/id/index.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">

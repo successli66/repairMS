@@ -32,7 +32,6 @@ class CompanyController extends BaseController {
         $id = I('get.id');
         $model = D('Company');
         if (IS_POST) {
-            $model = D('Company');
             if ($model->create(I('post.'), 2)) {
                 if ($model->save()) {
                     $this->success('修改成功！', U('companyList', array('p' => I('get.p', 1))), 1);

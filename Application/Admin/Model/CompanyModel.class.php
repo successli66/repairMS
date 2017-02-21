@@ -10,6 +10,7 @@ class CompanyModel extends Model {
     protected $updateFields = array('id', 'company_name', 'business', 'address', 'phone');
     protected $_validate = array(
         array('company_name', 'require', '公司名称不能为空！', 1, 'regex', 3),
+        array('company_name','','公司名称不能重复',1,'unique',3),
         array('address', 'require', '公司地址不能为空！', 1, 'regex', 3),
     );
 

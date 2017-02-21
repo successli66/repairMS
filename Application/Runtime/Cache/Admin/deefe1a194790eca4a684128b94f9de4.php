@@ -471,7 +471,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/Department/departmentList'); ?>">
                             <i class="fa fa-sitemap"></i>部门划分
                         </a>
                     </li>
@@ -591,10 +591,12 @@
                         <h3 class="box-title">公司列表</h3> 
                         <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Company/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
                     </div>
-                    <div class="col-md-5">
+                    
+                    <div class="col-md-6">
                         <form action="/index.php/Admin/Company/search" method="GET">
+                          
                             <div class="box-body">
-                                <div class="input-group margin">
+                                <div class="input-group margin-bottom">
                                     <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入公司名称搜索...">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>

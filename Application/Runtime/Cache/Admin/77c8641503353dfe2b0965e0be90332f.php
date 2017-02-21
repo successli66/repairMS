@@ -263,7 +263,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/Public/image/logo.png" class="user-image" alt="User Image">
-                        <span class="hidden-xs">李绅</span>
+                        <span class="hidden-xs"><?php echo session('user')['real_name'];?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image（头像） -->
@@ -271,21 +271,18 @@
                             <img src="/Public/image/logo.png" class="img-circle" alt="User Image">
 
                             <p>
-                                李绅 - Developer
-                                <small>工号：666666</small>
+                                <?php echo session('user')['real_name'];?> - <?php echo session('user')['post'];?>
+                                <small>工号：<?php echo session('user')['work_number'];?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>信息科技</small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('company')['company_name'];?></small></a>
                                 </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>电子工程处</small></a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>工程师</small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('department')['department_name'];?></small></a>
                                 </div>
                             </div>
                             <!-- /.row -->
@@ -321,12 +318,12 @@
                 <img src="/Public/image/logo.png" class="img-rounded" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p class="text-center">李绅</p>
+                <p class="text-center"><?php echo session('user')['real_name'];?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- search form（搜索） -->
-        <form action="#" method="get" class="sidebar-form">
+<!--        <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="搜索...">
                 <span class="input-group-btn">
@@ -334,7 +331,7 @@
                     </button>
                 </span>
             </div>
-        </form>
+        </form>-->
         <!-- /.search form -->
         <!-- sidebar menu（左侧主菜单）: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -447,7 +444,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/userInfo'); ?>">
                     <i class="fa fa-drivers-license-o"></i> 
                     <span>个人信息</span>
                 </a>
@@ -455,25 +452,25 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-th-list"></i>
-                    <span>部门管理</span>
+                    <span>组织管理</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>    
                     </span>
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/Company/companyList'); ?>">
+                            <i class="fa fa-flag"></i>公司划分
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo U('Admin/Department/departmentList'); ?>">
                             <i class="fa fa-sitemap"></i>部门划分
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-graduation-cap"></i>职务划分
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-puzzle-piece"></i>工作划分
+                        <a href="#">
+                            <i class="fa fa-puzzle-piece"></i>工作划分(暂时不需要)
                         </a>
                     </li>
                 </ul>
@@ -521,7 +518,7 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="<?php echo U('Admin/Admin/sysInfo'); ?>" target="a">
+                        <a href="<?php echo U('Admin/Admin/sysInfo'); ?>">
                             <i class="fa fa-desktop"></i>系统信息
                         </a>
                     </li>
@@ -534,16 +531,92 @@
 </aside>
 
 
+
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
             个人信息
-            <small>User Information</small>
+            <small>Personal Information</small>
         </h1>
     </section>
-
     <section class="content">
-        
+        <div class="box box-info">
+            <div class="box-body bg-info">
+                <div class="row">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+
+                        <h3 class="profile-username text-center">Nina Mcintire</h3>
+
+                        <p class="text-muted text-center">Software Engineer</p>
+                    </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> 用户名</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sitemap"></i>
+                                    </div>
+                                    <input type="text" name="department_name" class="form-control" value="<?php echo $data['username']?>" disabled>
+                                </div> 
+                            </div>
+
+                            <div class="form-group">
+                                <label>姓名</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bookmark"></i>
+                                    </div>
+                                    <input type="text" name="business" class="form-control" placeholder="请输入业务范围">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>职务</label> 
+                                <select class="form-control" name="company_id" style="width: 100%;">   
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>"><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>工号</label> 
+                                <select class="form-control" name="company_id" style="width: 100%;">   
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>"><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="form-group">
+                                <label>联系电话</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <input type="text" name="header" class="form-control" placeholder="请输入负责人姓名">
+                                </div> 
+                            </div>
+                            <!--电话-->
+                            <div class="form-group">
+                                <label>联系电话</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>        
     </section>
 </div>
 

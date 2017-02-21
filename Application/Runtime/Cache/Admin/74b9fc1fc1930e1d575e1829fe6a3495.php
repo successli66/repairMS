@@ -263,7 +263,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/Public/image/logo.png" class="user-image" alt="User Image">
-                        <span class="hidden-xs"><?php echo session('real_name');?></span>
+                        <span class="hidden-xs"><?php echo session('user')['real_name'];?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image（头像） -->
@@ -271,21 +271,18 @@
                             <img src="/Public/image/logo.png" class="img-circle" alt="User Image">
 
                             <p>
-                                <?php echo session('real_name');?> - <?php echo session('post')?>
-                                <small>工号：<?php echo session('work_number');?></small>
+                                <?php echo session('user')['real_name'];?> - <?php echo session('user')['post'];?>
+                                <small>工号：<?php echo session('user')['work_number'];?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>信息科技</small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('company')['company_name'];?></small></a>
                                 </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>电子工程处</small></a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small><?php echo session('post')?></small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('department')['department_name'];?></small></a>
                                 </div>
                             </div>
                             <!-- /.row -->
@@ -321,7 +318,7 @@
                 <img src="/Public/image/logo.png" class="img-rounded" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p class="text-center"><?php echo session('real_name');?></p>
+                <p class="text-center"><?php echo session('user')['real_name'];?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -447,7 +444,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/userInfo'); ?>">
                     <i class="fa fa-drivers-license-o"></i> 
                     <span>个人信息</span>
                 </a>
@@ -472,13 +469,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-graduation-cap"></i>职务划分
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-puzzle-piece"></i>工作划分
+                        <a href="#">
+                            <i class="fa fa-puzzle-piece"></i>工作划分(暂时不需要)
                         </a>
                     </li>
                 </ul>
@@ -539,16 +531,114 @@
 </aside>
 
 
+<style>
+    .pages a,.pages span {
+        display:inline-block;
+        padding:2px 5px;
+        margin:0 1px;
+        border:1px solid #f0f0f0;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+    }
+    .pages a,.pages li {
+        display:inline-block;
+        list-style: none;
+        text-decoration:none; color:#58A0D3;
+    }
+    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+        margin:0;
+    }
+    .pages a:hover{
+        border-color:#50A8E6;
+    }
+    .pages span.current{
+        background:#50A8E6;
+        color:#FFF;
+        font-weight:700;
+        border-color:#50A8E6;
+    }
+</style>
+
+
+
 
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Model
-            <small>model</small>
+            部门划分
+            <small>Departmentt</small>
         </h1>
     </section>
     <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">部门列表</h3> 
+                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Department/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
+                    </div>
+                    <div class="col-md-12">
+                        <form action="/index.php/Admin/Department/search" method="GET">
+                            
+                            <div class="box-body"> 
+                                <div class="form-group col-md-6">    
+                                    <select class="form-control" name="company_id" style="width: 100%;">
+                                        <option value="">请选择搜索部门...</option>
+                                        <?php foreach($cpData as $k=>$v):?>
+                                        <option value="<?php echo $v['id'];?>" <?php if(I('get.company_id')==$v['id']) echo "selected='selected'";?>><?php echo $v['company_name'];?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                                <div class="input-group  col-md-6">
+                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入部门名称...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
+                                    </span>
+                                </div>        
+                            </div>
+                        </form>
+                    </div>
 
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-striped table-hover table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">编 号</th>
+                                    <th class="text-center">部门 名 称</th>
+                                    <th class="text-center">负 责 人</th>
+                                    <th class="text-center">业 务 范 围</th>
+                                    <th class="text-center">电 话</th>
+                                    <th class="text-center">操 作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($data as $k => $v):?>
+                                <tr>
+                                    <td><?php echo $v['id'];?></td>
+                                    <td><?php echo $v['department_name'];?></td>
+                                    <td><?php echo $v['header'];?></td>
+                                    <td><?php echo $v['business'];?></td>
+                                    <td><?php echo $v['phone'];?></td>
+                                    <td class="text-center">
+                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
+                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
+                                    </td>
+                                </tr>
+                                <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='box-body '> 
+                        <div class='pages pull-right'>
+                            <?php if(preg_match('/\d/', $page)): ?>  
+                            <?php echo $page; ?>
+                            <?php endif; ?></div>
+                    </div>
+                </div>
+            </div>    
+        </div>
     </section>
 </div>
 

@@ -8,7 +8,7 @@
                 <img src="__PUBLIC__/image/logo.png" class="img-rounded" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p class="text-center"><?php echo session('real_name');?></p>
+                <p class="text-center"><?php echo session('user')['real_name'];?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -134,7 +134,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/userInfo'); ?>">
                     <i class="fa fa-drivers-license-o"></i> 
                     <span>个人信息</span>
                 </a>
@@ -159,13 +159,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-graduation-cap"></i>职务划分
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-puzzle-piece"></i>工作划分
+                        <a href="#">
+                            <i class="fa fa-puzzle-piece"></i>工作划分(暂时不需要)
                         </a>
                     </li>
                 </ul>

@@ -7,34 +7,29 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            个人信息
-            <small>Personal Information</small>
+            添加部门
+            <small>Add Department</small>
         </h1>
     </section>
     <section class="content">
-        <div class="box box-info">
-            <div class="box-body bg-info">
-                <div class="row">
-                    <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-
-                        <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-                        <p class="text-muted text-center">Software Engineer</p>
-                    </div>
+        <form class="form" action="__SELF__" method="POST">
+            <div class="box box-info">
+                <div class="box-body bg-info">
+                    <div class="row">
                         <div class="col-md-6">
+
                             <div class="form-group">
-                                <label> 用户名</label>
+                                <label> 部门名称</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-sitemap"></i>
                                     </div>
-                                    <input type="text" name="department_name" class="form-control" value="<?php echo $data['username']?>" disabled>
+                                    <input type="text" name="department_name" class="form-control" placeholder="请输入部门名称">
                                 </div> 
                             </div>
 
                             <div class="form-group">
-                                <label>姓名</label>
+                                <label>业务范围</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-bookmark"></i>
@@ -43,15 +38,7 @@
                                 </div> 
                             </div>
                             <div class="form-group">
-                                <label>职务</label> 
-                                <select class="form-control" name="company_id" style="width: 100%;">   
-                                    <?php foreach($cpData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['company_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>工号</label> 
+                                <label>所属公司</label> 
                                 <select class="form-control" name="company_id" style="width: 100%;">   
                                     <?php foreach($cpData as $k=>$v):?>
                                     <option value="<?php echo $v['id'];?>"><?php echo $v['company_name'];?></option>
@@ -61,7 +48,7 @@
                         </div>
                         <div class="col-md-6"> 
                             <div class="form-group">
-                                <label>联系电话</label>
+                                <label>负责人</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
@@ -88,7 +75,8 @@
                         </div>
                     </div>
                 </div>
-            </div>        
+            </div>
+        </form>           
     </section>
 </div>
 
