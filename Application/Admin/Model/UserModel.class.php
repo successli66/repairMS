@@ -38,6 +38,8 @@ class UserModel extends Model {
                 session('work_number',$user['work_number']);
                 session('post',$user['post']);
                 session('portrait',$user['portrait']);
+                session('department_id',$user['department_id']);
+                session('company_id',$user['company_id']);
                 return true;
             }else{
                 $this->error = '用户名或密码错误！';

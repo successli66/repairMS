@@ -1,0 +1,20 @@
+[ 2017-02-21T07:21:58+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000435s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000812s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.2207s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0234s ]
+NOTIC: [8] Undefined variable: pw D:\www\repairMS\Application\Admin\Model\UserModel.class.php 第 33 行.
+
+[ 2017-02-21T07:22:17+08:00 ] 127.0.0.1 /index.php/Admin/Index/overview.html
+ERR: 非法操作:overview
+
+[ 2017-02-21T07:27:41+08:00 ] 127.0.0.1 /index.php/Admin/Department/departmentList.html
+ERR: Think\Model:search方法不存在！
+
+[ 2017-02-21T07:38:37+08:00 ] 127.0.0.1 /index.php/Admin/Department/departmentList.html
+ERR: Think\Model:search方法不存在！
+
+[ 2017-02-21T07:59:14+08:00 ] 127.0.0.1 /index.php/Admin/Department/departmentList.html
+ERR: Think\Model:search方法不存在！
+

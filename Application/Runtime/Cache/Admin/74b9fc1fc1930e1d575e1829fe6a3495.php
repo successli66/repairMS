@@ -467,7 +467,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/Department/departmentList'); ?>">
                             <i class="fa fa-sitemap"></i>部门划分
                         </a>
                     </li>
@@ -543,67 +543,12 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            公司修改
-            <small>Edit Company</small>
+            Model
+            <small>model</small>
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Company/edit/id/011/p/10.html" method="POST">
-            <div class="box box-info">
-                <div class="box-body bg-info">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="hidden" name="id" class="form-control" value="<?php echo $data['id'];?>">
-                            <div class="form-group">
-                                <label> 公司名称</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
-                                    </div>
-                                    <input type="text" name="company_name" class="form-control" value="<?php echo $data['company_name'];?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>主营业务</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-bookmark"></i>
-                                    </div>
-                                    <input type="text" name="business" class="form-control" value="<?php echo $data['business'];?>">
-                                </div> 
-                            </div>    
-                        </div>
-                        <div class="col-md-6"> 
-                            <div class="form-group">
-                                <label>公司地址</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    <input type="text" name="address" class="form-control" value="<?php echo $data['address'];?>">
-                                </div> 
-                            </div>
-                            <!--电话-->
-                            <div class="form-group">
-                                <label>联系电话</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <input type="text" name="phone" class="form-control" value="<?php echo $data['phone'];?>">
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <!--确认-->
-                    <div class="row">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>           
+
     </section>
 </div>
 
@@ -738,6 +683,7 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
+
 
 
         </div>

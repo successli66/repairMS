@@ -17,7 +17,7 @@ class CompanyController extends BaseController {
     public function add() {
         if (IS_POST) {  
             $model = D('Company');
-            if ($model->create(I('post.'), 1)) {
+            if ($model->create(I('post.'),1)) {
                 if ($id = $model->add()) {
                     $this->success('添加成功！', U('companyList',array('p' => I('get.p', 1))),1);
                     exit();
@@ -64,8 +64,7 @@ class CompanyController extends BaseController {
             'data' => $data['data'],
             'page' => $data['page'],
         ));
-        $this->display('companyList');
-        
+        $this->display('companyList');    
     }
 
 }

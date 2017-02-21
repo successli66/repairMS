@@ -467,7 +467,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/Department/departmentList'); ?>">
                             <i class="fa fa-sitemap"></i>部门划分
                         </a>
                     </li>

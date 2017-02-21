@@ -31,12 +31,17 @@ real_name varchar(10) comment '姓名',
 work_number varchar(10) comment '工号',
 telephone varchar(11) comment '手机号',
 portrait varchar(60) comment '头像',
+company_id smallint unsigned not null comment '公司ID',
 department_id tinyint unsigned not null comment '所属部门ID',
 post varchar(10) comment '职务',
 primary key (id),
 key real_name(real_name),
 key department_id(department_id)
 )engine=InnoDB comment '用户';
+
+alter table rm_user add column company_id smallint unsigned not null comment '公司ID';
+alter table rm_user add key company_id(company_id);
+
 
 create table rm_project(
 id smallint(3) unsigned zerofill not null auto_increment comment 'ID',
