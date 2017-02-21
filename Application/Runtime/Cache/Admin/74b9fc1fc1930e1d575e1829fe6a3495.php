@@ -574,7 +574,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box box-info">
-                    <div class="box-header">
+                    <div class="box-header bg-info">
                         <h3 class="box-title">部门列表</h3> 
                         <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Department/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
                     </div>
@@ -601,7 +601,7 @@
                     </div>
 
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body bg-info">
                         <table class="table table-striped table-hover table-bordered table-condensed">
                             <thead>
                                 <tr>

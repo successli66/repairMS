@@ -279,10 +279,10 @@
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-6 text-center">
-                                    <a href="#"><small><?php echo session('cpData')['company_name'];?></small></a>
+                                    <a href="#"><small><?php echo session('company')['company_name'];?></small></a>
                                 </div>
                                 <div class="col-xs-6 text-center">
-                                    <a href="#"><small><?php echo session('dpData')['department_name'];?></small></a>
+                                    <a href="#"><small><?php echo session('department')['department_name'];?></small></a>
                                 </div>
                             </div>
                             <!-- /.row -->
@@ -318,7 +318,7 @@
                 <img src="/Public/image/logo.png" class="img-rounded" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p class="text-center"><?php echo session('real_name');?></p>
+                <p class="text-center"><?php echo session('user')['real_name'];?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -599,7 +599,7 @@
                         <p class="widget-subtitle plugin-date">loading<p>
                     </div>        
                     <div class="icon">
-                        <i class="fa fa-history"></i>
+                        <i class="fa fa-clock-o"></i>
                     </div>
                     <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
                 </div>

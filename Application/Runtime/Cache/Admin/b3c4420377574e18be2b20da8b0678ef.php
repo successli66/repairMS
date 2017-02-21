@@ -263,7 +263,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/Public/image/logo.png" class="user-image" alt="User Image">
-                        <span class="hidden-xs"><?php echo session('real_name');?></span>
+                        <span class="hidden-xs"><?php echo session('user')['real_name'];?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image（头像） -->
@@ -271,21 +271,18 @@
                             <img src="/Public/image/logo.png" class="img-circle" alt="User Image">
 
                             <p>
-                                <?php echo session('real_name');?> - <?php echo session('post')?>
-                                <small>工号：<?php echo session('work_number');?></small>
+                                <?php echo session('user')['real_name'];?> - <?php echo session('user')['post'];?>
+                                <small>工号：<?php echo session('user')['work_number'];?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>信息科技</small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('company')['company_name'];?></small></a>
                                 </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>电子工程处</small></a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small><?php echo session('post')?></small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('department')['department_name'];?></small></a>
                                 </div>
                             </div>
                             <!-- /.row -->
@@ -321,7 +318,7 @@
                 <img src="/Public/image/logo.png" class="img-rounded" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p class="text-center"><?php echo session('real_name');?></p>
+                <p class="text-center"><?php echo session('user')['real_name'];?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -447,7 +444,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/userInfo'); ?>">
                     <i class="fa fa-drivers-license-o"></i> 
                     <span>个人信息</span>
                 </a>
@@ -472,13 +469,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-graduation-cap"></i>职务划分
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-puzzle-piece"></i>工作划分
+                        <a href="#">
+                            <i class="fa fa-puzzle-piece"></i>工作划分(暂时不需要)
                         </a>
                     </li>
                 </ul>
@@ -548,7 +540,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Company/add/p/4.html" method="POST">
+        <form class="form" action="/index.php/Company/add/p/1.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">

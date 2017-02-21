@@ -267,7 +267,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/Public/image/logo.png" class="user-image" alt="User Image">
-                        <span class="hidden-xs"><?php echo session('real_name');?></span>
+                        <span class="hidden-xs"><?php echo session('user')['real_name'];?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image（头像） -->
@@ -275,21 +275,18 @@
                             <img src="/Public/image/logo.png" class="img-circle" alt="User Image">
 
                             <p>
-                                <?php echo session('real_name');?> - <?php echo session('post')?>
-                                <small>工号：<?php echo session('work_number');?></small>
+                                <?php echo session('user')['real_name'];?> - <?php echo session('user')['post'];?>
+                                <small>工号：<?php echo session('user')['work_number'];?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>信息科技</small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('company')['company_name'];?></small></a>
                                 </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small>电子工程处</small></a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#"><small><?php echo session('post')?></small></a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#"><small><?php echo session('department')['department_name'];?></small></a>
                                 </div>
                             </div>
                             <!-- /.row -->
@@ -325,7 +322,7 @@
                 <img src="/Public/image/logo.png" class="img-rounded" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p class="text-center"><?php echo session('real_name');?></p>
+                <p class="text-center"><?php echo session('user')['real_name'];?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -451,7 +448,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/userInfo'); ?>">
                     <i class="fa fa-drivers-license-o"></i> 
                     <span>个人信息</span>
                 </a>
@@ -476,13 +473,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-graduation-cap"></i>职务划分
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-puzzle-piece"></i>工作划分
+                        <a href="#">
+                            <i class="fa fa-puzzle-piece"></i>工作划分(暂时不需要)
                         </a>
                     </li>
                 </ul>
@@ -587,14 +579,13 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box box-info">
-                    <div class="box-header">
+                    <div class="box-header bg-info">
                         <h3 class="box-title">公司列表</h3> 
                         <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Company/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
                     </div>
                     
                     <div class="col-md-6">
                         <form action="/index.php/Admin/Company/search" method="GET">
-                          
                             <div class="box-body">
                                 <div class="input-group margin-bottom">
                                     <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入公司名称搜索...">
@@ -605,9 +596,8 @@
                             </div>
                         </form>
                     </div>
-
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body bg-info">
                         <table class="table table-striped table-hover table-bordered table-condensed">
                             <thead>
                                 <tr>

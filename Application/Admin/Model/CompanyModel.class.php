@@ -14,7 +14,7 @@ class CompanyModel extends Model {
         array('address', 'require', '公司地址不能为空！', 1, 'regex', 3),
     );
 
-    public function search($pageSize = 1) {
+    public function search($pageSize = 3) {
         /*         * ************************************** 搜索 *************************************** */
         $where = array();
         if ($search_name = I('get.search_name'))
