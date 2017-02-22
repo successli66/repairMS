@@ -33,7 +33,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['username']?>">
+                                    <input type="text" name="username" class="form-control" value="<?php echo session('user')['username']?>">
                                 </div> 
                             </div>
 
@@ -43,7 +43,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['real_name']?>">
+                                    <input type="text" name="real_name" class="form-control" value="<?php echo session('user')['real_name']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -52,7 +52,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-sort-numeric-asc"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['work_number']?>">
+                                    <input type="text" name="work_number" class="form-control" value="<?php echo session('user')['work_number']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -61,28 +61,22 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['telephone'];?>" >
+                                    <input type="text" name="telephone" class="form-control" value="<?php echo session('user')['telephone'];?>" >
                                 </div> 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>公司</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
-                                    </div>
-                                    <input type="text" class="form-control" value="<?php echo session('company')['company_name']?>">
-                                </div> 
+                                <label>所属公司</label> 
+                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option <?php if(session('user')['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>部门</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-sitemap"></i>
-                                    </div>
-                                    <input type="text" class="form-control" value="<?php echo session('department')['department_name']?>">
-                                </div> 
+                                <label id="department">所属部门</label>
+
                             </div>
                             <div class="form-group">
                                 <label>职务</label>
@@ -96,6 +90,12 @@
                         </div>
                     </form>
                 </div>
+                <div class="row">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                        <a href="<?php echo U('userInfo');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
+                    </div>
+                </div>
             </div>
         </div>        
     </section>
@@ -103,3 +103,37 @@
 
 
 <include file='common/bottom' />
+
+<script>
+//选择部门ajax
+    $("select[name=company_id]").change(function () {
+        // 获取当前选中的类型的id
+        var company_id = $(this).val();
+        // 如果选择了一个类型就执行AJAX取属性
+        if (company_id > 0)
+        {
+            // 根据类型ID执行AJAX取出这个类型下的属性，并获取返回的JSON数据
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                    var html = '<select class="form-control" id="company_id" name="company_id" style="width: 100%;">';
+
+                    $(data).each(function (k, v) {
+
+                        if (v.id == '<?php echo session("department")["department_id"];?>')
+                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
+                        else
+                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+                        html += '</select>'
+                    });
+                    // 把拼好的LI放到 页面中
+                    $("#department").html(html);
+                }
+            });
+        } else
+            $("#attr_list").html("");  // 如果选的是请 选择就直接清空
+    });
+</script>

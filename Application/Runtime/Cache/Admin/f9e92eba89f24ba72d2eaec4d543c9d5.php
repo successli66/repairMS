@@ -561,7 +561,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['username']?>">
+                                    <input type="text" name="username" class="form-control" value="<?php echo session('user')['username']?>">
                                 </div> 
                             </div>
 
@@ -571,7 +571,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['real_name']?>">
+                                    <input type="text" name="real_name" class="form-control" value="<?php echo session('user')['real_name']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -580,7 +580,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-sort-numeric-asc"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['work_number']?>">
+                                    <input type="text" name="work_number" class="form-control" value="<?php echo session('user')['work_number']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -589,19 +589,19 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['telephone'];?>" >
+                                    <input type="text" name="telephone" class="form-control" value="<?php echo session('user')['telephone'];?>" >
                                 </div> 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>公司</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
-                                    </div>
-                                    <input type="text" class="form-control" value="<?php echo session('company')['company_name']?>">
-                                </div> 
+                                <label>所属公司</label> 
+                                <select class="form-control" name="company_id" style="width: 100%;">
+                                    <option selected="selected">Saab</option>
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option <?php if($data['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>部门</label>

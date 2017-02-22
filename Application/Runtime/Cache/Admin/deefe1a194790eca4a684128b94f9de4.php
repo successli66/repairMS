@@ -294,10 +294,10 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
+                                <a href="<?php echo U('User/userInfo');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
+                                <a href="<?php echo U('Login/logout');?>" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
                             </div>
                         </li>
                     </ul>
