@@ -5,6 +5,8 @@
         <group>
             <file>file:/D:/www/repairMS/Application/Admin/View/department/edit.html</file>
             <file>file:/D:/www/repairMS/Application/Admin/View/department/departmentList.html</file>
+            <file>file:/D:/www/repairMS/Application/Admin/Controller/UserController.class.php</file>
+            <file>file:/D:/www/repairMS/Application/Admin/View/common/header.html</file>
         </group>
     </open-files>
 </project-private>

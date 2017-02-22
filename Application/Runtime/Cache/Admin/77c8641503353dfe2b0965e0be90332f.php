@@ -290,10 +290,10 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
+                                <a href="<?php echo U('User/userInfo');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
+                                <a href="<?php echo U('Login/logout');?>" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
                             </div>
                         </li>
                     </ul>
@@ -583,8 +583,6 @@
                                 <input type="text" class="form-control" value="<?php echo session('user')['work_number']?>" disabled>
                             </div> 
                         </div>
-                    </div>
-                    <div class="col-md-6"> 
                         <div class="form-group">
                             <label>联系电话</label>
                             <div class="input-group">
@@ -594,7 +592,8 @@
                                 <input type="text" class="form-control" value="<?php echo session('user')['telephone'];?>" disabled>
                             </div> 
                         </div>
-                        <!--电话-->
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>公司</label>
                             <div class="input-group">
@@ -611,6 +610,15 @@
                                     <i class="fa fa-sitemap"></i>
                                 </div>
                                 <input type="text" class="form-control" value="<?php echo session('department')['department_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>职务</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['post'];?>" disabled>
                             </div> 
                         </div>
                     </div>

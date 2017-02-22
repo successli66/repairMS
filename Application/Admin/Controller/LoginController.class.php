@@ -31,7 +31,7 @@ class LoginController extends Controller {
     
     //注销
     public function logout() {
-        $model = D('admin');
+        $model = D('User');
         $model->logout();
         redirect('login');
     }
