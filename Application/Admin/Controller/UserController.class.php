@@ -46,8 +46,6 @@ class UserController extends BaseController {
             'cpData' => $cpData,
             'dpData' => $dpData
         ));
-        var_dump($dpData);
-        var_dump($cpData);
         $this->display();
     }
 
@@ -57,6 +55,8 @@ class UserController extends BaseController {
         $data = $dpMoedl->where(array(
             'company_id'=>array('eq',$company_id),
         ));
-        echo json_encode($data);
+        var_dump($data);
+        var_dump($company_id);
+        echo json_encode($$company_id);
     }
 }

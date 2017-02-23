@@ -96,44 +96,57 @@
                         <a href="<?php echo U('userInfo');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
                     </div>
                 </div>
+                <p>Car:
+                    <select class="field" name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </p>
             </div>
         </div>        
     </section>
 </div>
 
 
-<include file='common/bottom' />
 
-<script>
-//选择部门ajax
-    $("select[name=company_id]").change(function () {
-        // 获取当前选中的类型的id
-        var company_id = $(this).val();
-        // 如果选择了一个类型就执行AJAX取属性
-        if (company_id > 0)
-        {
-            // 根据类型ID执行AJAX取出这个类型下的属性，并获取返回的JSON数据
-            $.ajax({
-                type: "GET",
-                url: "<?php echo U('ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-                dataType: "json",
-                success: function (data) {
-                    alert(data);
-                    var html = '<select class="form-control" id="company_id" name="company_id" style="width: 100%;">';
 
-                    $(data).each(function (k, v) {
+<script src="__PUBLIC__/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#company_id").change(function(){
+    $(this).css("background-color","#FFFFCC");
+//    var company_id = $(this).val();
+//        // 如果选择了一个类型就执行AJAX取属性
+//        if (company_id > 0)
+//        {
+//            // 根据类型ID执行AJAX取出这个类型下的属性，并获取返回的JSON数据
+//            $.ajax({
+//                type: "GET",
+//                url: "<?php echo U('ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+//                dataType: "json",
+//                success: function (data) {
+//                    alert(data);
+//                    var html = '<select class="form-control" id="company_id" name="company_id" style="width: 100%;">';
+//
+//                    $(data).each(function (k, v) {
+//
+//                        if (v.id == '<?php echo session("department")["department_id"];?>')
+//                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
+//                        else
+//                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+//                        html += '</select>'
+//                    });
+//                    // 把拼好的LI放到 页面中
+//                    $("#department").html(html);
+//                }
+//            });
+//        } else
+//            $("#attr_list").html(""); 
+  });})
 
-                        if (v.id == '<?php echo session("department")["department_id"];?>')
-                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
-                        else
-                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-                        html += '</select>'
-                    });
-                    // 把拼好的LI放到 页面中
-                    $("#department").html(html);
-                }
-            });
-        } else
-            $("#attr_list").html("");  // 如果选的是请 选择就直接清空
-    });
 </script>
+
+
+<include file='common/bottom' />

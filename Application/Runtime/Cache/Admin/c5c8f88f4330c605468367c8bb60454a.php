@@ -41,6 +41,57 @@
         <script src="other/html5shiv/html5shiv.min.js"></script>
         <script src="other/respond/respond.min.js"></script>
         <![endif]-->
+        
+        <!--引入js文件-->
+        <!-- jQuery 2.2.3 -->
+        <script src="/Public/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="/Public/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button);
+        </script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="/Public/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Morris.js charts -->
+        <script src="/Public/plugins/raphael/raphael.min.js"></script>
+        <script src="/Public/plugins/morris/morris.min.js"></script>
+        <!-- Sparkline -->
+        <script src="/Public/plugins/sparkline/jquery.sparkline.min.js"></script>
+        <!-- jvectormap -->
+        <script src="/Public/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="/Public/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="/Public/plugins/knob/jquery.knob.js"></script>
+        <!-- daterangepicker -->
+        <script src="/Public/plugins/moment/moment.js"></script>
+        <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- datepicker -->
+        <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <!-- Bootstrap WYSIHTML5 -->
+        <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+        <!-- Slimscroll -->
+        <script src="/Public/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="/Public/plugins/fastclick/fastclick.js"></script>
+        <!-- AdminLTE App -->
+        <script src="/Public/dist/js/app.min.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="/Public/dist/js/pages/dashboard.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="/Public/dist/js/demo.js"></script>
+        <!-- Select2 -->
+        <script src="/Public/plugins/select2/select2.full.min.js"></script>
+        <!-- InputMask -->
+        <script src="/Public/plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="/Public/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="/Public/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+        <!-- bootstrap time picker -->
+        <script src="/Public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <!-- iCheck 1.0.1 -->
+        <script src="/Public/plugins/iCheck/icheck.min.js"></script>
+        <!--joliAdmin时钟js-->
+        <script src="/Public/other/JoliAdmin/time.js"></script>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -624,10 +675,57 @@
                         <a href="<?php echo U('userInfo');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
                     </div>
                 </div>
+                <p>Car:
+                    <select class="field" name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </p>
             </div>
         </div>        
     </section>
 </div>
+
+
+
+
+<script src="/Public/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#company_id").change(function(){
+    $(this).css("background-color","#FFFFCC");
+//    var company_id = $(this).val();
+//        // 如果选择了一个类型就执行AJAX取属性
+//        if (company_id > 0)
+//        {
+//            // 根据类型ID执行AJAX取出这个类型下的属性，并获取返回的JSON数据
+//            $.ajax({
+//                type: "GET",
+//                url: "<?php echo U('ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+//                dataType: "json",
+//                success: function (data) {
+//                    alert(data);
+//                    var html = '<select class="form-control" id="company_id" name="company_id" style="width: 100%;">';
+//
+//                    $(data).each(function (k, v) {
+//
+//                        if (v.id == '<?php echo session("department")["department_id"];?>')
+//                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
+//                        else
+//                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+//                        html += '</select>'
+//                    });
+//                    // 把拼好的LI放到 页面中
+//                    $("#department").html(html);
+//                }
+//            });
+//        } else
+//            $("#attr_list").html(""); 
+  });})
+
+</script>
 
 
 <div class="wrapper"></div>
@@ -760,91 +858,10 @@
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
 
-<script>
-//选择部门ajax
-    $("select[name=company_id]").change(function () {
-        // 获取当前选中的类型的id
-        var company_id = $(this).val();
-        // 如果选择了一个类型就执行AJAX取属性
-        if (company_id > 0)
-        {
-            // 根据类型ID执行AJAX取出这个类型下的属性，并获取返回的JSON数据
-            $.ajax({
-                type: "GET",
-                url: "<?php echo U('ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-                dataType: "json",
-                success: function (data) {
-                    alert(data);
-                    var html = '<select class="form-control" id="company_id" name="company_id" style="width: 100%;">';
-
-                    $(data).each(function (k, v) {
-
-                        if (v.id == '<?php echo session("department")["department_id"];?>')
-                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
-                        else
-                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-                        html += '</select>'
-                    });
-                    // 把拼好的LI放到 页面中
-                    $("#department").html(html);
-                }
-            });
-        } else
-            $("#attr_list").html("");  // 如果选的是请 选择就直接清空
-    });
-</script>
 
 
         </div>
-        <!-- jQuery 2.2.3 -->
-        <script src="/Public/plugins/jQuery/jquery-2.2.3.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="/Public/plugins/jQueryUI/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button);
-        </script>
-        <!-- Bootstrap 3.3.6 -->
-        <script src="/Public/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Morris.js charts -->
-        <script src="/Public/plugins/raphael/raphael.min.js"></script>
-        <script src="/Public/plugins/morris/morris.min.js"></script>
-        <!-- Sparkline -->
-        <script src="/Public/plugins/sparkline/jquery.sparkline.min.js"></script>
-        <!-- jvectormap -->
-        <script src="/Public/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="/Public/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="/Public/plugins/knob/jquery.knob.js"></script>
-        <!-- daterangepicker -->
-        <script src="/Public/plugins/moment/moment.js"></script>
-        <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- datepicker -->
-        <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-        <!-- Slimscroll -->
-        <script src="/Public/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-        <!-- FastClick -->
-        <script src="/Public/plugins/fastclick/fastclick.js"></script>
-        <!-- AdminLTE App -->
-        <script src="/Public/dist/js/app.min.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="/Public/dist/js/pages/dashboard.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="/Public/dist/js/demo.js"></script>
-        <!-- Select2 -->
-        <script src="/Public/plugins/select2/select2.full.min.js"></script>
-        <!-- InputMask -->
-        <script src="/Public/plugins/input-mask/jquery.inputmask.js"></script>
-        <script src="/Public/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-        <script src="/Public/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-        <!-- bootstrap time picker -->
-        <script src="/Public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-        <!-- iCheck 1.0.1 -->
-        <script src="/Public/plugins/iCheck/icheck.min.js"></script>
-        <!--joliAdmin时钟js-->
-        <script src="/Public/other/JoliAdmin/time.js"></script>
+        
         <script>
             $(function () {
                 //Initialize Select2 Elements
