@@ -41,10 +41,10 @@
         <script src="other/html5shiv/html5shiv.min.js"></script>
         <script src="other/respond/respond.min.js"></script>
         <![endif]-->
-        
+
         <!--引入js文件-->
         <!-- jQuery 2.2.3 -->
-        <script src="__PUBLIC__/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="__PUBLIC__/plugins/jQueryUI/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -92,6 +92,36 @@
         <script src="__PUBLIC__/plugins/iCheck/icheck.min.js"></script>
         <!--joliAdmin时钟js-->
         <script src="__PUBLIC__/other/JoliAdmin/time.js"></script>
+
+        <style>
+            .pages a,.pages span {
+                display:inline-block;
+                padding:2px 5px;
+                margin:0 1px;
+                border:1px solid #f0f0f0;
+                -webkit-border-radius:3px;
+                -moz-border-radius:3px;
+                border-radius:3px;
+            }
+            .pages a,.pages li {
+                display:inline-block;
+                list-style: none;
+                text-decoration:none; color:#58A0D3;
+            }
+            .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                margin:0;
+            }
+            .pages a:hover{
+                border-color:#50A8E6;
+            }
+            .pages span.current{
+                background:#50A8E6;
+                color:#FFF;
+                font-weight:700;
+                border-color:#50A8E6;
+            }
+        </style>
+
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -101,7 +131,7 @@
 
 
         </div>
-        
+
         <script>
             $(function () {
                 //Initialize Select2 Elements

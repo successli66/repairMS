@@ -1,0 +1,268 @@
+[ 2017-02-28T16:27:12+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000510s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000947s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0879s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0272s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0118s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2017-02-28T16:27:36+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000422s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000813s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0013s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000493s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000582s ]
+
+[ 2017-02-28T16:37:53+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000592s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001034s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000575s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000659s ]
+
+[ 2017-02-28T16:38:03+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000783s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000478s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000556s ]
+
+[ 2017-02-28T16:38:06+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000421s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000768s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000455s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000547s ]
+
+[ 2017-02-28T17:02:48+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000417s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000791s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000448s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000532s ]
+
+[ 2017-02-28T17:02:52+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000441s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000816s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000515s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000598s ]
+
+[ 2017-02-28T17:02:57+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000802s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000490s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000577s ]
+
+[ 2017-02-28T17:16:28+08:00 ] 127.0.0.1 /index.php/Admin/User/addUser.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'department_id' doesn't have a default value
+
+[ 2017-02-28T17:17:12+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000460s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000865s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000490s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000571s ]
+
+[ 2017-02-28T17:17:14+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000517s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000987s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000473s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000558s ]
+
+[ 2017-02-28T17:19:15+08:00 ] 127.0.0.1 /index.php/Admin/User/addUser.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'department_id' doesn't have a default value
+
+[ 2017-02-28T17:23:54+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000781s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000697s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000790s ]
+
+[ 2017-02-28T17:28:29+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000533s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000919s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000617s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000718s ]
+
+[ 2017-02-28T17:29:41+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000683s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001138s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000748s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000839s ]
+
+[ 2017-02-28T17:29:42+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000635s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001032s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000725s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000820s ]
+
+[ 2017-02-28T17:30:54+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000774s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001267s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000875s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000981s ]
+
+[ 2017-02-28T17:31:29+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000814s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000634s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000729s ]
+
+[ 2017-02-28T17:34:04+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000725s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001196s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000676s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000770s ]
+
+[ 2017-02-28T17:36:59+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000613s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000657s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000743s ]
+
+[ 2017-02-28T17:41:03+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000748s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001158s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000762s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000859s ]
+
+[ 2017-02-28T20:36:55+08:00 ] 127.0.0.1 /index.php/Admin/User/userList.html
+ERR: Think\Model:getAllUser方法不存在！
+
+[ 2017-02-28T20:37:10+08:00 ] 127.0.0.1 /index.php/Admin/User/userList.html
+ERR: Think\Model:alies方法不存在！
+
+[ 2017-02-28T21:47:09+08:00 ] 127.0.0.1 /index.php/Admin/User/search?company_id=&department_id=&search_name=
+ERR: 非法操作:search
+
+[ 2017-02-28T21:53:11+08:00 ] 127.0.0.1 /index.php/Admin/User/search?company_id=&department_id=&search_name=lishen
+ERR: 非法操作:search
+
+[ 2017-02-28T22:00:30+08:00 ] 127.0.0.1 /index.php/Admin/User/search?company_id=&department_id=&search_name=lishen
+ERR: 非法操作:search
+
+[ 2017-02-28T22:00:48+08:00 ] 127.0.0.1 /index.php/Admin/User/userList?company_id=002&department_id=&search_name=
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.company_id' in 'where clause'
+
+[ 2017-02-28T22:04:26+08:00 ] 127.0.0.1 /index.php/User/add.html
+ERR: 非法操作:add
+
+[ 2017-02-28T22:06:45+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000615s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000991s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000968s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001090s ]
+
+[ 2017-02-28T22:07:11+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000595s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000727s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000816s ]
+
+[ 2017-02-28T22:07:42+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000641s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001021s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000680s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000767s ]
+
+[ 2017-02-28T22:08:50+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000718s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001264s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000690s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000778s ]
+
+[ 2017-02-28T22:09:11+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000650s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001106s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000716s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000802s ]
+

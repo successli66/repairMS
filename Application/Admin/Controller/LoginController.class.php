@@ -18,17 +18,7 @@ class LoginController extends Controller {
         ));
         $Verify->entry();
     }
-    
-    //判断用户是否登陆
-    public function login() {
-        $aid = session('aid');
-        if ($aid) {
-            $this->redirect(U('Index/index'));
-            exit;
-        }
-        $this->display();
-    }
-    
+
     //注销
     public function logout() {
         $model = D('User');

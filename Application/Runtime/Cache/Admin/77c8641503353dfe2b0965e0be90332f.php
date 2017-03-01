@@ -643,134 +643,91 @@
     <section class="content">
         <div class="box box-info">
             <div class="box-header bg-info">
-                <h3 class="box-title">修改信息</h3> 
+                <h3 class="box-title">信息详情</h3> 
+                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('edit',array('id'=>session('user')['id']));?>"><i class="fa fa-pencil-square-o"></i> 修改</a>
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/User/edit/id/1.html" method="post">
-                    <div class="row">
-                        <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
-                            <h3 class="profile-username text-center"><?php echo session('user')['real_name'];?></h3>
-                            <p class="text-muted text-center"><?php echo session('user')['post'];?></p>
-                        </div>
+                <div class="row">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
+                        <h3 class="profile-username text-center"><?php echo session('user')['real_name'];?></h3>
+                        <p class="text-muted text-center"><?php echo session('user')['post'];?></p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
-                            <div class="form-group">
-                                <label> 用户名</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                    <input type="text" name="username" class="form-control" value="<?php echo session('user')['username']?>">
-                                </div> 
-                            </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> 用户名</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['username']?>" disabled>
+                            </div> 
+                        </div>
 
-                            <div class="form-group">
-                                <label>姓名</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <input type="text" name="real_name" class="form-control" value="<?php echo session('user')['real_name']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>工号</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-sort-numeric-asc"></i>
-                                    </div>
-                                    <input type="text" name="work_number" class="form-control" value="<?php echo session('user')['work_number']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>联系电话</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <input type="text" name="telephone" class="form-control" value="<?php echo session('user')['telephone'];?>" >
-                                </div> 
-                            </div>
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['real_name']?>" disabled>
+                            </div> 
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>密码</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-key"></i>
-                                    </div>
-                                    <input type="password" name="pw" class="form-control"  >
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>所属公司</label> 
-                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">
-                                    <?php foreach($cpData as $k=>$v):?>
-                                    <option <?php if(session('user')['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>所属部门</label>
-                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
-                                    <?php foreach($dpData as $k=>$v):?>
-                                    <option <?php if(session('user')['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>职务</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['post'];?>">
-                                </div> 
-                            </div>
+                        <div class="form-group">
+                            <label>工号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sort-numeric-asc"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['work_number']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['telephone'];?>" disabled>
+                            </div> 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
-                            <a href="<?php echo U('userInfo');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>公司</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-bank"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('company')['company_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>部门</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sitemap"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('department')['department_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>职务</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['post'];?>" disabled>
+                            </div> 
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>        
     </section>
 </div>
-
-<!--ajax获得部门数据-->
-<script type="text/javascript">
-    $("#company_id").change(function () {
-
-        var company_id = $(this).val();
-        if (company_id > 0) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo U('Admin/User/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-                dataType: "json",
-                success: function (data) {
-                    $("#department_id").empty();
-                    var html = '';
-                    $(data).each(function (k, v) {
-                        if (v.id == '<?php echo session("department")["department_id"];?>')
-                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
-                        else
-                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-                    });
-                    // 把拼好的LI放到 页面中
-                    $("#department_id").html(html);
-                }
-            });
-        } else
-            $("#department_id").html("");
-    });
-</script>
 
 
 <div class="wrapper"></div>
@@ -902,7 +859,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
 
 
         </div>

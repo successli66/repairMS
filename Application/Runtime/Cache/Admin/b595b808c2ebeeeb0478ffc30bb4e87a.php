@@ -604,7 +604,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="<?php echo U('Admin/User/addUser');?>">
+                        <a href="<?php echo U('Admin/User/userList');?>">
                             <i class="fa fa-user-circle-o"></i>用户管理
                         </a>
                     </li>
@@ -633,144 +633,348 @@
 
 
 
+<!--中间内容开始-->
 <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            个人信息
-            <small>Personal Information</small>
-        </h1>
+        <h1>欢迎您！</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+            <li class="active"><a href="#">首页</a></li>
+        </ol>
     </section>
+
+    <!-- Main content -->
     <section class="content">
-        <div class="box box-info">
-            <div class="box-header bg-info">
-                <h3 class="box-title">修改信息</h3> 
-            </div>
-            <div class="box-body bg-info">
-                <form action="/index.php/User/edit/id/1.html" method="post">
-                    <div class="row">
-                        <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
-                            <h3 class="profile-username text-center"><?php echo session('user')['real_name'];?></h3>
-                            <p class="text-muted text-center"><?php echo session('user')['post'];?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
-                            <div class="form-group">
-                                <label> 用户名</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                    <input type="text" name="username" class="form-control" value="<?php echo session('user')['username']?>">
-                                </div> 
-                            </div>
+        <!-- Small boxes (Stat box)（中间部分四个提示框） -->
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>5</h3>
 
-                            <div class="form-group">
-                                <label>姓名</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <input type="text" name="real_name" class="form-control" value="<?php echo session('user')['real_name']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>工号</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-sort-numeric-asc"></i>
-                                    </div>
-                                    <input type="text" name="work_number" class="form-control" value="<?php echo session('user')['work_number']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>联系电话</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <input type="text" name="telephone" class="form-control" value="<?php echo session('user')['telephone'];?>" >
-                                </div> 
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>密码</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-key"></i>
-                                    </div>
-                                    <input type="password" name="pw" class="form-control"  >
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>所属公司</label> 
-                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">
-                                    <?php foreach($cpData as $k=>$v):?>
-                                    <option <?php if(session('user')['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>所属部门</label>
-                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
-                                    <?php foreach($dpData as $k=>$v):?>
-                                    <option <?php if(session('user')['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>职务</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['post'];?>">
-                                </div> 
-                            </div>
-                        </div>
+                        <p>新报修</p>
                     </div>
-                    <div class="row">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
-                            <a href="<?php echo U('userInfo');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
-                        </div>
+                    <div class="icon">
+                        <i class="fa fa-envelope-o"></i>
                     </div>
-                </form>
+                    <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
             </div>
-        </div>        
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>53</h3>
+
+                        <p>维修中</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-spinner"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>65</h3>
+
+                        <p>工作计划</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-pencil-square-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3 class="plugin-clock">0:0</h3>
+                        <p class="widget-subtitle plugin-date">loading<p>
+                    </div>        
+                    <div class="icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- ./col -->
+
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+                <!-- Custom tabs (Charts with tabs)图表1-->
+                <div class="nav-tabs-custom">
+                    <!-- Tabs within a box -->
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+                        <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+                        <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+                    </ul>
+                    <div class="tab-content no-padding">
+                        <!-- Morris chart - Sales -->
+                        <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+                    </div>
+                </div>
+                <!-- /.nav-tabs-custom -->
+
+                <!-- TO DO List（任务表） -->
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <i class="ion ion-clipboard"></i>
+
+                        <h3 class="box-title">To Do List</h3>
+
+                        <div class="box-tools pull-right">
+                            <ul class="pagination pagination-sm inline">
+                                <li><a href="#">&laquo;</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <ul class="todo-list">
+                            <li>
+                                <!-- drag handle -->
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <!-- checkbox -->
+                                <input type="checkbox" value="">
+                                <!-- todo text -->
+                                <span class="text">Design a nice theme</span>
+                                <!-- Emphasis label -->
+                                <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                                <!-- General tools such as edit or delete-->
+                                <div class="tools">
+                                    <i class="fa fa-edit"></i>
+                                    <i class="fa fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                <span class="text">Make the theme responsive</span>
+                                <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+                                <div class="tools">
+                                    <i class="fa fa-edit"></i>
+                                    <i class="fa fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                <span class="text">Let theme shine like a star</span>
+                                <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+                                <div class="tools">
+                                    <i class="fa fa-edit"></i>
+                                    <i class="fa fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                <span class="text">Let theme shine like a star</span>
+                                <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
+                                <div class="tools">
+                                    <i class="fa fa-edit"></i>
+                                    <i class="fa fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                <span class="text">Check your messages and notifications</span>
+                                <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                                <div class="tools">
+                                    <i class="fa fa-edit"></i>
+                                    <i class="fa fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                <span class="text">Let theme shine like a star</span>
+                                <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
+                                <div class="tools">
+                                    <i class="fa fa-edit"></i>
+                                    <i class="fa fa-trash-o"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix no-border">
+                        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.Left col -->
+
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-5 connectedSortable">
+                <!-- solid sales graph（图表2） -->
+                <div class="box box-solid bg-teal-gradient">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+
+                        <h3 class="box-title">Sales Graph</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <div class="chart" id="line-chart" style="height: 250px;"></div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer no-border">
+                        <div class="row">
+                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                                <div class="knob-label">Mail-Orders</div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                                <div class="knob-label">Online</div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-xs-4 text-center">
+                                <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                                <div class="knob-label">In-Store</div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+
+                <!-- Calendar（日历） -->
+                <div class="box box-solid bg-green-gradient">
+                    <div class="box-header">
+                        <i class="fa fa-calendar"></i>
+
+                        <h3 class="box-title">Calendar</h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                            <!-- button with a dropdown -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bars"></i></button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="#">Add new event</a></li>
+                                    <li><a href="#">Clear events</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">View calendar</a></li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                        <!-- /. tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <!--The calendar -->
+                        <div id="calendar" style="width: 100%"></div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer text-black">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- Progress bars -->
+                                <div class="clearfix">
+                                    <span class="pull-left">Task #1</span>
+                                    <small class="pull-right">90%</small>
+                                </div>
+                                <div class="progress xs">
+                                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <span class="pull-left">Task #2</span>
+                                    <small class="pull-right">70%</small>
+                                </div>
+                                <div class="progress xs">
+                                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <span class="pull-left">Task #3</span>
+                                    <small class="pull-right">60%</small>
+                                </div>
+                                <div class="progress xs">
+                                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <span class="pull-left">Task #4</span>
+                                    <small class="pull-right">40%</small>
+                                </div>
+                                <div class="progress xs">
+                                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+
     </section>
+    <!-- /.content -->
 </div>
-
-<!--ajax获得部门数据-->
-<script type="text/javascript">
-    $("#company_id").change(function () {
-
-        var company_id = $(this).val();
-        if (company_id > 0) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo U('Admin/User/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-                dataType: "json",
-                success: function (data) {
-                    $("#department_id").empty();
-                    var html = '';
-                    $(data).each(function (k, v) {
-                        if (v.id == '<?php echo session("department")["department_id"];?>')
-                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
-                        else
-                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-                    });
-                    // 把拼好的LI放到 页面中
-                    $("#department_id").html(html);
-                }
-            });
-        } else
-            $("#department_id").html("");
-    });
-</script>
+<!--中间内容结束-->
 
 
 <div class="wrapper"></div>

@@ -604,7 +604,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="<?php echo U('Admin/User/addUser');?>">
+                        <a href="<?php echo U('Admin/User/userList');?>">
                             <i class="fa fa-user-circle-o"></i>用户管理
                         </a>
                     </li>
@@ -636,44 +636,52 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            个人信息
-            <small>Personal Information</small>
+            添加用户
+            <small>Add User</small>
         </h1>
     </section>
     <section class="content">
-        <div class="box box-info">
-            <div class="box-header bg-info">
-                <h3 class="box-title">修改信息</h3> 
-            </div>
-            <div class="box-body bg-info">
-                <form action="/index.php/User/edit/id/1.html" method="post">
-                    <div class="row">
-                        <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
-                            <h3 class="profile-username text-center"><?php echo session('user')['real_name'];?></h3>
-                            <p class="text-muted text-center"><?php echo session('user')['post'];?></p>
-                        </div>
-                    </div>
+        <form class="form" action="/index.php/Admin/User/addUser.html" method="POST">
+            <div class="box box-info">
+                <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
+
                             <div class="form-group">
                                 <label> 用户名</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <input type="text" name="username" class="form-control" value="<?php echo session('user')['username']?>">
+                                    <input type="text" name="username" class="form-control" placeholder="请输入用户名">
                                 </div> 
                             </div>
 
                             <div class="form-group">
-                                <label>姓名</label>
+                                <label>密码</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" name="pw" class="form-control" placeholder="请输入密码">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>确认密码</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" name="rpw" class="form-control" placeholder="请再次输入密码">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>员工姓名</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <input type="text" name="real_name" class="form-control" value="<?php echo session('user')['real_name']?>">
+                                    <input type="text" name="real_name" class="form-control" placeholder="请输入员工姓名">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -682,42 +690,36 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-sort-numeric-asc"></i>
                                     </div>
-                                    <input type="text" name="work_number" class="form-control" value="<?php echo session('user')['work_number']?>">
+                                    <input type="text" name="work_number" class="form-control" placeholder="请输入负责人姓名">
                                 </div> 
                             </div>
+
+                        </div>
+                        <div class="col-md-6"> 
+                            <!--电话-->
                             <div class="form-group">
-                                <label>联系电话</label>
+                                <label>电话</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" name="telephone" class="form-control" value="<?php echo session('user')['telephone'];?>" >
-                                </div> 
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>密码</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-key"></i>
-                                    </div>
-                                    <input type="password" name="pw" class="form-control"  >
+                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
                                 </div> 
                             </div>
                             <div class="form-group">
-                                <label>所属公司</label> 
-                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">
+                                <label>公司</label> 
+                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">   
+                                    <option value='0'>请选择所属公司</option>
                                     <?php foreach($cpData as $k=>$v):?>
-                                    <option <?php if(session('user')['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
+                                    <option value="<?php echo $v['id'];?>"><?php echo $v['company_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>所属部门</label>
-                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
+                                <label>部门</label> 
+                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">   
                                     <?php foreach($dpData as $k=>$v):?>
-                                    <option <?php if(session('user')['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
+                                    <option value="<?php echo $v['id'];?>"><?php echo $v['department_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
@@ -727,27 +729,31 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-graduation-cap"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['post'];?>">
+                                    <input type="text" name="post" class="form-control" placeholder="请输入负责人姓名">
                                 </div> 
+                            </div>
+                            <div class="form-group">
+                                <label for="portrait">头像</label>
+                                <input type="file" name="portrait" id="portrait">
+                                <p class="help-block">非必选项，可以不上传。</p>
                             </div>
                         </div>
                     </div>
+                    <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
-                            <a href="<?php echo U('userInfo');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <a href="<?php echo U('userList');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消添加</a>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>        
+        </form>           
     </section>
 </div>
 
-<!--ajax获得部门数据-->
 <script type="text/javascript">
     $("#company_id").change(function () {
-
         var company_id = $(this).val();
         if (company_id > 0) {
             $.ajax({
@@ -758,12 +764,8 @@
                     $("#department_id").empty();
                     var html = '';
                     $(data).each(function (k, v) {
-                        if (v.id == '<?php echo session("department")["department_id"];?>')
-                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
-                        else
-                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+                        html += '<option value="' + v.id + '">' + v.department_name + '</option>';
                     });
-                    // 把拼好的LI放到 页面中
                     $("#department_id").html(html);
                 }
             });
@@ -902,6 +904,7 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
+
 
 
 

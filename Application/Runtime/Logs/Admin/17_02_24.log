@@ -1,0 +1,123 @@
+[ 2017-02-24T09:24:40+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000538s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000946s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.1295s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0041s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0444s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0220s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+
+[ 2017-02-24T14:05:13+08:00 ] 127.0.0.1 /index.php/Project/overview.html
+ERR: 非法操作:overview
+
+[ 2017-02-24T16:44:38+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001082s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001595s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0005s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001114s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001212s ]
+
+[ 2017-02-24T16:44:42+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000978s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001461s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001079s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001175s ]
+
+[ 2017-02-24T16:48:25+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001347s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000979s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001069s ]
+
+[ 2017-02-24T16:49:04+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001020s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001507s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000904s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000991s ]
+
+[ 2017-02-24T16:49:20+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000854s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001313s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000872s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000958s ]
+
+[ 2017-02-24T16:49:22+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000861s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001353s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001053s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001149s ]
+
+[ 2017-02-24T16:53:05+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000994s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000605s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000693s ]
+
+[ 2017-02-24T16:53:08+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000720s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001251s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0005s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000849s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000961s ]
+
+[ 2017-02-24T16:53:48+08:00 ] 127.0.0.1 /index.php/Admin/userList.html
+ERR: 无法加载控制器:UserList
+
+[ 2017-02-24T18:02:40+08:00 ] 127.0.0.1 /index.php/Admin/Admin/addUser.html
+ERR: 非法操作:addUser
+
+[ 2017-02-24T18:09:38+08:00 ] 127.0.0.1 /index.php/User/userList.html
+ERR: 模板不存在:./Application/Admin/View/User/userList.html
+
+[ 2017-02-24T18:10:01+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000637s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001078s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '003'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000733s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000820s ]
+
+[ 2017-02-24T18:10:02+08:00 ] 127.0.0.1 /index.php/Admin/User/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001036s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000673s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000751s ]
+

@@ -134,10 +134,30 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="<?php echo U('Admin/User/userInfo'); ?>">
-                    <i class="fa fa-drivers-license-o"></i> 
-                    <span>个人信息</span>
+                <a href="#">
+                    <i class="fa fa-th-list"></i>
+                    <span>维修项目管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?php echo U('Admin/Project/projectList'); ?>">
+                            <i class="fa fa-flag"></i>项目表
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo U('Admin/Department/departmentList'); ?>">
+                            <i class="fa fa-sitemap"></i>设备库
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-puzzle-piece"></i>配件库
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="treeview">
                 <a href="#">
@@ -193,7 +213,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/User/userList');?>">
                             <i class="fa fa-user-circle-o"></i>用户管理
                         </a>
                     </li>

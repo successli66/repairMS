@@ -1,0 +1,78 @@
+<layout name='common/layout' />
+
+<include file='common/header' />
+<include file='common/nav' />
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            项目划分
+            <small>Project List</small>
+        </h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header bg-info">
+                        <h3 class="box-title">项目列表</h3> 
+                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Project/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <form action="__CONTROLLER__/search" method="GET">
+                            <div class="box-body">
+                                <div class="input-group margin-bottom">
+                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入项目名称搜索...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
+                                    </span>
+                                </div>        
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body bg-info">
+                        <table class="table table-striped table-hover table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">编 号</th>
+                                    <th class="text-center">项 目 名 称</th>
+                                    <th class="text-center">维 修 团 队</th>
+                                    <th class="text-center">所 属 部 门</th>
+                                    <th class="text-center">操 作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($data as $k => $v):?>
+                                <tr>
+                                    <td><?php echo $v['id'];?></td>
+                                    <td><?php echo $v['project_name'];?></td>
+                                    <td><?php echo $v['team'];?></td>
+                                    <td><?php echo $v['department_name'];?></td>
+                                    <td class="text-center">
+                                        <a class="btn btn-info btn-sm" href="<?php echo U('detail?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
+                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
+                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
+                                    </td>
+                                </tr>
+                                <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='box-body '> 
+                        <div class='pages pull-right'>
+                            <?php if(preg_match('/\d/', $page)): ?>  
+                            <?php echo $page; ?>
+                            <?php endif; ?></div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </section>
+</div>
+
+
+
+<include file='common/bottom' />
