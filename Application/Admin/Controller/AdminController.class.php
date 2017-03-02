@@ -39,8 +39,8 @@ class AdminController extends BaseController {
 
     //获得数据库版本
     private function get_mysql_version() {
-        $Model = M();
-        $version = $Model->query("select version() as ver");
+        $model = M();
+        $version = $model->query("select version() as ver");
         return $version[0]['ver'];
     }
 

@@ -604,7 +604,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="<?php echo U('Admin/User/addUser');?>">
+                        <a href="<?php echo U('Admin/User/userList');?>">
                             <i class="fa fa-user-circle-o"></i>用户管理
                         </a>
                     </li>

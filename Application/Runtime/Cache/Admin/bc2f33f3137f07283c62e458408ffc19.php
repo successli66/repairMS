@@ -636,67 +636,97 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            添加维修项目
-            <small>Add Project</small>
+            个人信息
+            <small>Personal Information</small>
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Project/add.html" method="POST">
-            <div class="box box-info">
-                <div class="box-body bg-info">
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label> 项目名称</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
-                                    </div>
-                                    <input type="text" name="所属部门" class="form-control" placeholder="请输入项目名称">
-                                </div> 
-                            </div>
-
-                            <div class="form-group">
-                                <label>维修团队</label> 
-                                <select class="form-control" multiple='multiple' name="team" style="width: 100%;">   
-                                    <?php foreach($uData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['real_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>    
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">信息详情</h3> 
+                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('edit');?>"><i class="fa fa-pencil-square-o"></i> 信息修改</a>
+              
+            </div>
+            <div class="box-body bg-info">
+                <div class="row">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
+                        <h3 class="profile-username text-center"><?php echo session('user')['real_name'];?></h3>
+                        <p class="text-muted text-center"><?php echo session('user')['post'];?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> 用户名</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['username']?>" disabled>
+                            </div> 
                         </div>
-                        <div class="col-md-6"> 
-                            <div class="form-group">
-                                <label>公司地址</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    <input type="text" name="address" class="form-control" placeholder="请输入公司地址">
-                                </div> 
-                            </div>
-                            <!--电话-->
-                            <div class="form-group">
-                                <label>联系电话</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
-                                </div> 
-                            </div>
+
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['real_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>工号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sort-numeric-asc"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['work_number']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['telephone'];?>" disabled>
+                            </div> 
                         </div>
                     </div>
-                    <!--确认-->
-                    <div class="row">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>公司</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-bank"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('company')['company_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>部门</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sitemap"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('department')['department_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>职务</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo session('user')['post'];?>" disabled>
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
-        </form>           
+        </div>        
     </section>
 </div>
 
@@ -830,7 +860,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
 
 
         </div>

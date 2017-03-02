@@ -371,7 +371,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="<?php echo U('User/userInfo');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
+                                <a href="<?php echo U('User/info');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
                             </div>
                             <div class="pull-right">
                                 <a href="<?php echo U('Login/logout');?>" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
@@ -604,7 +604,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="<?php echo U('Admin/User/addUser');?>">
+                        <a href="<?php echo U('Admin/User/userList');?>">
                             <i class="fa fa-user-circle-o"></i>用户管理
                         </a>
                     </li>
@@ -644,9 +644,11 @@
         <div class="box box-info">
             <div class="box-header bg-info">
                 <h3 class="box-title">修改信息</h3> 
+                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('editPw');?>"><i class="fa fa-key"></i> 修改密码</a>
+            
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/User/edit/id/1.html" method="post">
+                <form action="/index.php/User/edit.html" method="post">
                     <div class="row">
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
@@ -656,7 +658,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo session('user')['id'];?>">
                             <div class="form-group">
                                 <label> 用户名</label>
                                 <div class="input-group">
@@ -697,15 +699,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>密码</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-key"></i>
-                                    </div>
-                                    <input type="password" name="pw" class="form-control"  >
-                                </div> 
-                            </div>
-                            <div class="form-group">
                                 <label>所属公司</label> 
                                 <select class="form-control" id='company_id' name="company_id" style="width: 100%;">
                                     <?php foreach($cpData as $k=>$v):?>
@@ -735,7 +728,7 @@
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
-                            <a href="<?php echo U('userInfo');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
+                            <a href="<?php echo U('info');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
                         </div>
                     </div>
                 </form>
@@ -750,12 +743,12 @@
 
         var company_id = $(this).val();
         if (company_id > 0) {
+            $("#department_id").empty();
             $.ajax({
                 type: "GET",
-                url: "<?php echo U('Admin/User/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
                 dataType: "json",
                 success: function (data) {
-                    $("#department_id").empty();
                     var html = '';
                     $(data).each(function (k, v) {
                         if (v.id == '<?php echo session("department")["department_id"];?>')

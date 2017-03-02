@@ -371,7 +371,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="<?php echo U('User/userInfo');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
+                                <a href="<?php echo U('User/info');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
                             </div>
                             <div class="pull-right">
                                 <a href="<?php echo U('Login/logout');?>" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
@@ -604,7 +604,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/User/userList');?>">
                             <i class="fa fa-user-circle-o"></i>用户管理
                         </a>
                     </li>

@@ -7,15 +7,15 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            个人信息
-            <small>Personal Information</small>
+            用户信息
+            <small>User Information</small>
         </h1>
     </section>
     <section class="content">
         <div class="box box-info">
             <div class="box-header bg-info">
-                <h3 class="box-title">修改信息</h3> 
-                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('editPw');?>"><i class="fa fa-key"></i> 修改密码</a>
+                <h3 class="box-title">修改信息</h3>
+                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('userEditPw',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-key"></i> 修改密码</a>
             
             </div>
             <div class="box-body bg-info">
@@ -23,20 +23,20 @@
                     <div class="row">
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="__PUBLIC__/image/logo.png" alt="User profile picture">
-                            <h3 class="profile-username text-center"><?php echo session('user')['real_name'];?></h3>
-                            <p class="text-muted text-center"><?php echo session('user')['post'];?></p>
+                            <h3 class="profile-username text-center"><?php echo $data['real_name'];?></h3>
+                            <p class="text-muted text-center"><?php echo $data['post'];?></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="hidden" name="id" class="form-control" value="<?php echo session('user')['id'];?>">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
                             <div class="form-group">
                                 <label> 用户名</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <input type="text" name="username" class="form-control" value="<?php echo session('user')['username']?>">
+                                    <input type="text" name="username" class="form-control" value="<?php echo $data['username']?>">
                                 </div> 
                             </div>
 
@@ -46,7 +46,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <input type="text" name="real_name" class="form-control" value="<?php echo session('user')['real_name']?>">
+                                    <input type="text" name="real_name" class="form-control" value="<?php echo $data['real_name']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -55,7 +55,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-sort-numeric-asc"></i>
                                     </div>
-                                    <input type="text" name="work_number" class="form-control" value="<?php echo session('user')['work_number']?>">
+                                    <input type="text" name="work_number" class="form-control" value="<?php echo $data['work_number']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -64,7 +64,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" name="telephone" class="form-control" value="<?php echo session('user')['telephone'];?>" >
+                                    <input type="text" name="telephone" class="form-control" value="<?php echo $data['telephone'];?>" >
                                 </div> 
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 <label>所属公司</label> 
                                 <select class="form-control" id='company_id' name="company_id" style="width: 100%;">
                                     <?php foreach($cpData as $k=>$v):?>
-                                    <option <?php if(session('user')['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
+                                    <option <?php if($data['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
@@ -81,7 +81,7 @@
                                 <label>所属部门</label>
                                 <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
                                     <?php foreach($dpData as $k=>$v):?>
-                                    <option <?php if(session('user')['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
+                                    <option <?php if($data['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
@@ -91,7 +91,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-graduation-cap"></i>
                                     </div>
-                                    <input type="text" class="form-control" value="<?php echo session('user')['post'];?>">
+                                    <input type="text" class="form-control" value="<?php echo $data['post'];?>">
                                 </div> 
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
-                            <a href="<?php echo U('info');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
+                            <a href="<?php echo U('userList?p='.I('get.p'));?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
                         </div>
                     </div>
                 </form>
@@ -119,10 +119,10 @@
                 type: "GET",
                 url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
                 dataType: "json",
-                success: function (data) {
+                success: function (data) {   
                     var html = '';
                     $(data).each(function (k, v) {
-                        if (v.id == '<?php echo session("department")["department_id"];?>')
+                        if (v.id == '<?php echo $data["department_id"];?>')
                             html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
                         else
                             html += '<option value="' + v.id + '">' + v.department_name + '</option>';

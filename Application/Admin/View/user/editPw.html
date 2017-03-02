@@ -1,0 +1,92 @@
+<layout name='common/layout' />
+
+<include file='common/header' />
+<include file='common/nav' />
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            个人信息
+            <small>Personal Information</small>
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">修改密码</h3> 
+                </div>
+            <div class="box-body bg-info">
+                <form action="__SELF__" method="post">
+                    <div class="row">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="__PUBLIC__/image/logo.png" alt="User profile picture">
+                            <h3 class="profile-username text-center"><?php echo session('user')['real_name'];?></h3>
+                            <p class="text-muted text-center"><?php echo session('user')['post'];?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>新密码</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" name="pw" class="form-control"  placeholder="请输入新密码！">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>确认新密码</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" name="pw" class="form-control"  placeholder="请再次输入新密码！">
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a href="<?php echo U('info');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>        
+    </section>
+</div>
+
+<!--ajax获得部门数据-->
+<script type="text/javascript">
+    $("#company_id").change(function () {
+
+        var company_id = $(this).val();
+        if (company_id > 0) {
+            $("#department_id").empty();
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+                dataType: "json",
+                success: function (data) {
+                    var html = '';
+                    $(data).each(function (k, v) {
+                        if (v.id == '<?php echo session("department")["department_id"];?>')
+                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
+                        else
+                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+                    });
+                    // 把拼好的LI放到 页面中
+                    $("#department_id").html(html);
+                }
+            });
+        } else
+            $("#department_id").html("");
+    });
+</script>
+
+
+<include file='common/bottom' />

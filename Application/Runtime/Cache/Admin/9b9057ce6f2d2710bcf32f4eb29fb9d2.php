@@ -636,49 +636,69 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            添加维修项目
-            <small>Add Project</small>
+            添加用户
+            <small>Add User</small>
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Project/add.html" method="POST">
+        <form class="form" action="/index.php/User/userAdd/p/1.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label> 项目名称</label>
+                                <label> 用户名</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
+                                        <i class="fa fa-user"></i>
                                     </div>
-                                    <input type="text" name="所属部门" class="form-control" placeholder="请输入项目名称">
+                                    <input type="text" name="username" class="form-control" placeholder="请输入用户名">
                                 </div> 
                             </div>
 
                             <div class="form-group">
-                                <label>维修团队</label> 
-                                <select class="form-control" multiple='multiple' name="team" style="width: 100%;">   
-                                    <?php foreach($uData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['real_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>    
-                        </div>
-                        <div class="col-md-6"> 
-                            <div class="form-group">
-                                <label>公司地址</label>
+                                <label>密码</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
+                                        <i class="fa fa-key"></i>
                                     </div>
-                                    <input type="text" name="address" class="form-control" placeholder="请输入公司地址">
+                                    <input type="password" name="pw" class="form-control" placeholder="请输入密码">
                                 </div> 
                             </div>
+                            <div class="form-group">
+                                <label>确认密码</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" name="rpw" class="form-control" placeholder="请再次输入密码">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>员工姓名</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <input type="text" name="real_name" class="form-control" placeholder="请输入员工姓名">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>工号</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sort-numeric-asc"></i>
+                                    </div>
+                                    <input type="text" name="work_number" class="form-control" placeholder="请输入负责人姓名">
+                                </div> 
+                            </div>
+
+                        </div>
+                        <div class="col-md-6"> 
                             <!--电话-->
                             <div class="form-group">
-                                <label>联系电话</label>
+                                <label>电话</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
@@ -686,12 +706,44 @@
                                     <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
                                 </div> 
                             </div>
+                            <div class="form-group">
+                                <label>公司</label> 
+                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">   
+                                    <option value='0'>请选择所属公司</option>
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>"><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>部门</label> 
+                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">   
+                                    <?php foreach($dpData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>"><?php echo $v['department_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>职务</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <input type="text" name="post" class="form-control" placeholder="请输入负责人姓名">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label for="portrait">头像</label>
+                                <input type="file" name="portrait" id="portrait">
+                                <p class="help-block">非必选项，可以不上传。</p>
+                            </div>
                         </div>
                     </div>
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <a href="<?php echo U('userList');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消添加</a>
                         </div>
                     </div>
                 </div>
@@ -699,6 +751,28 @@
         </form>           
     </section>
 </div>
+
+<script type="text/javascript">
+    $("#company_id").change(function () {
+        var company_id = $(this).val();
+        if (company_id > 0) {
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+                dataType: "json",
+                success: function (data) {
+                    $("#department_id").empty();
+                    var html = '';
+                    $(data).each(function (k, v) {
+                        html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+                    });
+                    $("#department_id").html(html);
+                }
+            });
+        } else
+            $("#department_id").html("");
+    });
+</script>
 
 
 <div class="wrapper"></div>
@@ -830,6 +904,7 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
+
 
 
 

@@ -636,69 +636,134 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            添加维修项目
-            <small>Add Project</small>
+            用户信息
+            <small>User Information</small>
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Project/add.html" method="POST">
-            <div class="box box-info">
-                <div class="box-body bg-info">
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">修改信息</h3>
+                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('userEditPw',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-key"></i> 修改密码</a>
+            
+            </div>
+            <div class="box-body bg-info">
+                <form action="/index.php/User/userEdit/id/9/p/2.html" method="post">
+                    <div class="row">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
+                            <h3 class="profile-username text-center"><?php echo $data['real_name'];?></h3>
+                            <p class="text-muted text-center"><?php echo $data['post'];?></p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
-
+                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
                             <div class="form-group">
-                                <label> 项目名称</label>
+                                <label> 用户名</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
+                                        <i class="fa fa-user"></i>
                                     </div>
-                                    <input type="text" name="所属部门" class="form-control" placeholder="请输入项目名称">
+                                    <input type="text" name="username" class="form-control" value="<?php echo $data['username']?>">
                                 </div> 
                             </div>
 
                             <div class="form-group">
-                                <label>维修团队</label> 
-                                <select class="form-control" multiple='multiple' name="team" style="width: 100%;">   
-                                    <?php foreach($uData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['real_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>    
-                        </div>
-                        <div class="col-md-6"> 
-                            <div class="form-group">
-                                <label>公司地址</label>
+                                <label>姓名</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
+                                        <i class="fa fa-star"></i>
                                     </div>
-                                    <input type="text" name="address" class="form-control" placeholder="请输入公司地址">
+                                    <input type="text" name="real_name" class="form-control" value="<?php echo $data['real_name']?>">
                                 </div> 
                             </div>
-                            <!--电话-->
+                            <div class="form-group">
+                                <label>工号</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sort-numeric-asc"></i>
+                                    </div>
+                                    <input type="text" name="work_number" class="form-control" value="<?php echo $data['work_number']?>">
+                                </div> 
+                            </div>
                             <div class="form-group">
                                 <label>联系电话</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
+                                    <input type="text" name="telephone" class="form-control" value="<?php echo $data['telephone'];?>" >
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>所属公司</label> 
+                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option <?php if($data['company_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>所属部门</label>
+                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
+                                    <?php foreach($dpData as $k=>$v):?>
+                                    <option <?php if($data['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>职务</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <input type="text" class="form-control" value="<?php echo $data['post'];?>">
                                 </div> 
                             </div>
                         </div>
                     </div>
-                    <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a href="<?php echo U('userList?p='.I('get.p'));?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>           
+        </div>        
     </section>
 </div>
+
+<!--ajax获得部门数据-->
+<script type="text/javascript">
+    $("#company_id").change(function () {
+
+        var company_id = $(this).val();
+        if (company_id > 0) {
+            $("#department_id").empty();
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+                dataType: "json",
+                success: function (data) {   
+                    var html = '';
+                    $(data).each(function (k, v) {
+                        if (v.id == '<?php echo $data["department_id"];?>')
+                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
+                        else
+                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+                    });
+                    // 把拼好的LI放到 页面中
+                    $("#department_id").html(html);
+                }
+            });
+        } else
+            $("#department_id").html("");
+    });
+</script>
 
 
 <div class="wrapper"></div>

@@ -371,7 +371,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="<?php echo U('User/userInfo');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
+                                <a href="<?php echo U('User/info');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
                             </div>
                             <div class="pull-right">
                                 <a href="<?php echo U('Login/logout');?>" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
@@ -677,13 +677,13 @@
                 <div class="box box-info">
                     <div class="box-header bg-info">
                         <h3 class="box-title">部门列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('User/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
+                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('User/userAdd?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
                     </div>
                     <div class="col-md-12">
 
                         <div class="box-body">
                             <form action="/index.php/Admin/User/userList" method="GET">
-                                <div class="form-group col-md-4">    
+                                <div class="form-group col-md-6">    
                                     <select class="form-control" id="company_id" name="company_id" style="width: 100%;">
                                         <option value="">请选择公司名称...</option>
                                         <?php foreach($cpData as $k=>$v):?>
@@ -691,12 +691,8 @@
                                         <?php endforeach;?>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">    
-                                    <select class="form-control" id="department_id" name="department_id" style="width: 100%;">
-                                        <option value="">请选择搜索部门...</option>
-                                    </select>
-                                </div>
-                                <div class="input-group  col-md-4">
+
+                                <div class="input-group  col-md-6">
                                     <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入用户信息...">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
@@ -732,8 +728,8 @@
                                     <td><?php echo $v['company_name'];?></td>
                                     <td><?php echo $v['department_name'];?></td>
                                     <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
+                                        <a class="btn btn-success btn-sm" href="<?php echo U('userEdit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
+                                        <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('userDelet?id='.$v['id']);?>">删除</a>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -752,29 +748,13 @@
     </section>
 </div>
 
-<script type="text/javascript">
-    $("#company_id").change(function () {
-        var company_id = $(this).val();
-        if (company_id > 0) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo U('Admin/User/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-                dataType: "json",
-                success: function (data) {
-                    $("#department_id").empty();
-                    var html = '<option value="">请选择公司名称...</option>';
-                    $(data).each(function (k, v) {
-                        if (v.id == "<?php echo(I('get.department_id'));?>") {
-                            html += '<option value="' + v.id + '" selected="selected">' + v.department_name + '</option>';
-                        } else {
-                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-                        }
-                    });
-                    $("#department_id").html(html);
-                }
-            });
-        } else
-            $("#department_id").html("");
+<script>
+    $('#deleteBtn').click(function () {
+        if (confirm('确定删除该用户吗？')) {
+            return true;
+        } else {
+            return false;
+        }
     });
 </script>
 

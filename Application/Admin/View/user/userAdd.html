@@ -129,7 +129,7 @@
         if (company_id > 0) {
             $.ajax({
                 type: "GET",
-                url: "<?php echo U('Admin/User/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
                 dataType: "json",
                 success: function (data) {
                     $("#department_id").empty();

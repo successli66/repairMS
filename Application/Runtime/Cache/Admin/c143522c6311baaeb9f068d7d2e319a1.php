@@ -636,69 +636,81 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            添加维修项目
-            <small>Add Project</small>
+            用户信息
+            <small>User Information</small>
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Project/add.html" method="POST">
-            <div class="box box-info">
-                <div class="box-body bg-info">
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">修改密码</h3> 
+                </div>
+            <div class="box-body bg-info">
+                <form action="/index.php/User/userEditPw/id/9/p/2.html" method="post">
+                    
                     <div class="row">
-                        <div class="col-md-6">
-
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
                             <div class="form-group">
-                                <label> 项目名称</label>
+                                <label>新密码</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
+                                        <i class="fa fa-key"></i>
                                     </div>
-                                    <input type="text" name="所属部门" class="form-control" placeholder="请输入项目名称">
+                                    <input type="password" name="pw" class="form-control"  placeholder="请输入新密码！">
                                 </div> 
                             </div>
-
                             <div class="form-group">
-                                <label>维修团队</label> 
-                                <select class="form-control" multiple='multiple' name="team" style="width: 100%;">   
-                                    <?php foreach($uData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['real_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>    
-                        </div>
-                        <div class="col-md-6"> 
-                            <div class="form-group">
-                                <label>公司地址</label>
+                                <label>确认新密码</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
+                                        <i class="fa fa-key"></i>
                                     </div>
-                                    <input type="text" name="address" class="form-control" placeholder="请输入公司地址">
-                                </div> 
-                            </div>
-                            <!--电话-->
-                            <div class="form-group">
-                                <label>联系电话</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
+                                    <input type="password" name="rpw" class="form-control"  placeholder="请再次输入新密码！">
                                 </div> 
                             </div>
                         </div>
                     </div>
-                    <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a href="<?php echo U('userList?p='.I('get.p'));?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消修改</a>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>           
+        </div>        
     </section>
 </div>
+
+<!--ajax获得部门数据-->
+<script type="text/javascript">
+    $("#company_id").change(function () {
+
+        var company_id = $(this).val();
+        if (company_id > 0) {
+            $("#department_id").empty();
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+                dataType: "json",
+                success: function (data) {
+                    var html = '';
+                    $(data).each(function (k, v) {
+                        if (v.id == '<?php echo session("department")["department_id"];?>')
+                            html += '<option selected="selected" value="' + v.id + '">' + v.department_name + '</option>';
+                        else
+                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+                    });
+                    // 把拼好的LI放到 页面中
+                    $("#department_id").html(html);
+                }
+            });
+        } else
+            $("#department_id").html("");
+    });
+</script>
 
 
 <div class="wrapper"></div>

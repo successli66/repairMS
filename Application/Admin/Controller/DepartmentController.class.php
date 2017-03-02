@@ -81,5 +81,11 @@ class DepartmentController extends BaseController {
         $this->assign('cpData', $cpData);
         $this->display('departmentList');
     }
-
+    
+    public function ajaxGetDep() {
+        $company_id = I('get.company_id');
+        $dpModel = D('Department');
+        $dpData = $dpModel->getDpByCpId($company_id);
+        echo json_encode($dpData);
+    }
 }
