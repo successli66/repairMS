@@ -56,11 +56,11 @@ class UserController extends BaseController {
                 $data['pw'] = md5($_POST['pw']);
                 $uData = $model->find($id);
                 if ($uData['pw'] === $data['pw']) {
-                    $this->success('修改密码成功！', U('userList?p=' . I('get.p')), 1);
+                    $this->success('修改密码成功！', U('userList?p=' . I('get.p',1)), 1);
                     exit;
                 }
                 if ($model->where(array('id' => $id))->save($data)) {
-                    $this->success('修改密码成功！', U('userList?p=' . I('get.p')), 1);
+                    $this->success('修改密码成功！', U('userList?p=' . I('get.p',1)), 1);
                     exit;
                 }
             }
@@ -87,7 +87,7 @@ class UserController extends BaseController {
             $model = D('User');
             if ($model->create(I('post.'), 1)) {
                 if ($model->add()) {
-                    $this->success('添加成功！', U('userList?p=' . I('get.p')), 1);
+                    $this->success('添加成功！', U('userList?p=' . I('get.p',1)), 1);
                     exit();
                 }
             }
@@ -104,7 +104,7 @@ class UserController extends BaseController {
             $model = D('user');
             if ($model->create(I('post.'), 2)) {
                 if ($model->save()) {
-                    $this->success('修改成功！', U('userList?p=' . I('get.p')), 1);
+                    $this->success('修改成功！', U('userList?p=' . I('get.p',1)), 1);
                     exit();
                 }
             }
@@ -133,11 +133,11 @@ class UserController extends BaseController {
                 $data['pw'] = md5($_POST['pw']);
                 $uData = $model->find($id);
                 if ($uData['pw'] === $data['pw']) {
-                    $this->success('修改密码成功！', U('userList?p=' . I('get.p')), 1);
+                    $this->success('修改密码成功！', U('userList?p=' . I('get.p',1)), 1);
                     exit;
                 }
                 if ($model->where(array('id' => $id))->save($data)) {
-                    $this->success('修改密码成功！', U('userList?p=' . I('get.p')), 1);
+                    $this->success('修改密码成功！', U('userList?p=' . I('get.p'),1), 1);
                     exit;
                 }
             }

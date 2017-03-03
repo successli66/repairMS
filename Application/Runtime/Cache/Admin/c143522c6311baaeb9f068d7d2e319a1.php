@@ -18,8 +18,6 @@
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="/Public/dist/css/skins/_all-skins.min.css">
         <!-- iCheck(表单美化) -->
-        <link rel="stylesheet" href="/Public/plugins/iCheck/flat/blue.css">
-        <!-- iCheck for checkboxes and radio inputs（选择） -->
         <link rel="stylesheet" href="/Public/plugins/iCheck/all.css">
         <!-- Morris chart（莫里斯图表） -->
         <link rel="stylesheet" href="/Public/plugins/morris/morris.css"> 
@@ -27,12 +25,8 @@
         <link rel="stylesheet" href="/Public/plugins/datepicker/datepicker3.css">
         <!-- Daterange picker（时间区间选择器） -->
         <link rel="stylesheet" href="/Public/plugins/daterangepicker/daterangepicker.css">
-        <!-- bootstrap wysihtml5 - text editor（文本编辑器） -->
-        <link rel="stylesheet" href="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
         <!-- Bootstrap time Picker（bootstrap时间选择器） -->
         <link rel="stylesheet" href="/Public/plugins/timepicker/bootstrap-timepicker.min.css">
-        <!-- Select2 -->
-        <link rel="stylesheet" href="/Public/plugins/select2/select2.min.css">
         <!--引入joliAdmin时钟样式-->
         <link rel="stylesheet" type="text/css" id="theme" href="/Public/other/JoliAdmin/theme-default2.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -646,7 +640,7 @@
                 <h3 class="box-title">修改密码</h3> 
                 </div>
             <div class="box-body bg-info">
-                <form action="/index.php/User/userEditPw/id/9/p/2.html" method="post">
+                <form action="/index.php/User/userEditPw/id/1.html" method="post">
                     
                     <div class="row">
                         <div class="col-md-4"></div>
@@ -847,45 +841,5 @@
 
         </div>
 
-        <script>
-            $(function () {
-                //Initialize Select2 Elements
-                $(".select2").select2();
-                //Datemask dd/mm/yyyy
-                $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-                //Datemask2 mm/dd/yyyy
-                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-                //Date range picker
-                $('#reservation').daterangepicker();
-                //Date range picker with time picker
-                $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-                //Date range as a button
-                $('#daterange-btn').daterangepicker(
-                        {
-                            ranges: {
-                                'Today': [moment(), moment()],
-                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                            },
-                            startDate: moment().subtract(29, 'days'),
-                            endDate: moment()
-                        },
-                        function (start, end) {
-                            $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                        }
-                );
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                });
-                //Timepicker
-                $(".timepicker").timepicker({
-                    showInputs: false
-                });
-            });
-        </script> 
     </body>
 </html>

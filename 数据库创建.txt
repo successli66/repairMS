@@ -49,6 +49,7 @@ project_name varchar(20) not null comment '项目名称',
 department_id tinyint unsigned not null comment '所属部门ID',
 team varchar(50) not null comment '项目团队,职员ID逗号隔开',
 descr text comment '项目描述',
+phone varchar(20) comment '维修电话',
 primary key (id),
 key department_id(department_id),
 key team(team)

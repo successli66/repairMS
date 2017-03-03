@@ -2,7 +2,7 @@
 
 //防止XSS攻击
 function removeXSS($data) {
-    require_once './Plugin/htmlpurifier/HTMLPurifier.auto.php';
+    require_once '../Public/plugin/htmlpurifier/library/HTMLPurifier.auto.php';
     $_clean_xss_config = HTMLPurifier_Config::createDefault();
     $_clean_xss_config->set('Core.Encoding', 'UTF-8');
     $_clean_xss_config->set('HTML.Allowed', 'div,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]');

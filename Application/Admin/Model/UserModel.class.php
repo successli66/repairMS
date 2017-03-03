@@ -6,8 +6,8 @@ use Think\Model;
 
 class UserModel extends Model {
 
-    protected $insertFields = array('username', 'pw', 'rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id', 'verify');
-    protected $updateFields = array('id', 'username', 'pw','rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id');
+    protected $insertFields = array('username', 'pw', 'rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id','post', 'verify');
+    protected $updateFields = array('id', 'username', 'pw','rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id','post');
     //为登录表单定义一个验证规则
     public $_validate = array(
         array('username', 'require', '用户名不能为空！', 1, 'regex', 3),
@@ -68,13 +68,6 @@ class UserModel extends Model {
         session(null);
     }
 
-    public function getUserByDep() {
-        $uData = $this->where(array(
-                    'department_id' => session('department')['id']
-                ))->select();
-        return $uData;
-    }
-
     public function search($pageSize = 2) {
         $map = array();
         $company_id = I('get.company_id');
@@ -106,6 +99,20 @@ class UserModel extends Model {
         return $data;
     }
 
+    public function getUserByDp($department_id) {
+        $uData = $this->where(array(
+                    'department_id' => $department_id
+                ))->select();
+        return $uData;
+    }
+    
+    public function getUserByCp($company_id){
+        $uData = $this->where(array(
+                    'company_id' => $company_id
+                ))->select();
+        return $uData;
+    }
+    
     //添加用户前密码加密
     protected function _before_insert(&$data, $option) {
         $data['pw'] = md5($data['pw']);

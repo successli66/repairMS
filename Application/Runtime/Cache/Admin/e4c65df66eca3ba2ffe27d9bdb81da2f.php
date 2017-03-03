@@ -18,8 +18,6 @@
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="/Public/dist/css/skins/_all-skins.min.css">
         <!-- iCheck(表单美化) -->
-        <link rel="stylesheet" href="/Public/plugins/iCheck/flat/blue.css">
-        <!-- iCheck for checkboxes and radio inputs（选择） -->
         <link rel="stylesheet" href="/Public/plugins/iCheck/all.css">
         <!-- Morris chart（莫里斯图表） -->
         <link rel="stylesheet" href="/Public/plugins/morris/morris.css"> 
@@ -27,12 +25,8 @@
         <link rel="stylesheet" href="/Public/plugins/datepicker/datepicker3.css">
         <!-- Daterange picker（时间区间选择器） -->
         <link rel="stylesheet" href="/Public/plugins/daterangepicker/daterangepicker.css">
-        <!-- bootstrap wysihtml5 - text editor（文本编辑器） -->
-        <link rel="stylesheet" href="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
         <!-- Bootstrap time Picker（bootstrap时间选择器） -->
         <link rel="stylesheet" href="/Public/plugins/timepicker/bootstrap-timepicker.min.css">
-        <!-- Select2 -->
-        <link rel="stylesheet" href="/Public/plugins/select2/select2.min.css">
         <!--引入joliAdmin时钟样式-->
         <link rel="stylesheet" type="text/css" id="theme" href="/Public/other/JoliAdmin/theme-default2.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -80,16 +74,12 @@
         <script src="/Public/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="/Public/dist/js/demo.js"></script>
-        <!-- Select2 -->
-        <script src="/Public/plugins/select2/select2.full.min.js"></script>
         <!-- InputMask -->
         <script src="/Public/plugins/input-mask/jquery.inputmask.js"></script>
         <script src="/Public/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="/Public/plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <!-- bootstrap time picker -->
         <script src="/Public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-        <!-- iCheck 1.0.1 -->
-        <script src="/Public/plugins/iCheck/icheck.min.js"></script>
         <!--joliAdmin时钟js-->
         <script src="/Public/other/JoliAdmin/time.js"></script>
 
@@ -124,10 +114,20 @@
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
-
+        <div class="wrapper">        
 
             
+            
+
+<!--多选下拉框-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/Public/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="/Public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<!-- 编辑器配置文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
 
 <!--头部-->
 <header class="main-header">
@@ -641,7 +641,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Project/add.html" method="POST">
+        <form class="form" action="/index.php/Project/add/p/1.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
@@ -651,47 +651,57 @@
                                 <label> 项目名称</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
+                                        <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="所属部门" class="form-control" placeholder="请输入项目名称">
+                                    <input type="text" name="project_name" class="form-control" placeholder="请输入项目名称">
                                 </div> 
                             </div>
 
                             <div class="form-group">
                                 <label>维修团队</label> 
-                                <select class="form-control" multiple='multiple' name="team" style="width: 100%;">   
+                                <select class="form-control selectpicker" name="team[]" multiple data-live-search="true">
                                     <?php foreach($uData as $k=>$v):?>
                                     <option value="<?php echo $v['id'];?>"><?php echo $v['real_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
-                            </div>    
+                            </div>
                         </div>
                         <div class="col-md-6"> 
                             <div class="form-group">
-                                <label>公司地址</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    <input type="text" name="address" class="form-control" placeholder="请输入公司地址">
-                                </div> 
+                                <label>所属部门</label>
+                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
+                                    <?php foreach($dpData as $k=>$v):?>
+                                    <option <?php if(session('user')['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                             <!--电话-->
                             <div class="form-group">
-                                <label>联系电话</label>
+                                <label>维修电话</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
+                                    <input type="text" name="phone" class="form-control" placeholder="请输入维修电话">
                                 </div> 
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>项目描述</label>
+                                <textarea id="descr" name="descr"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('projectList?p='.I('get.p'));?>"><i class="fa fa-times"> 取消添加</i></a>
                         </div>
                     </div>
                 </div>
@@ -699,6 +709,21 @@
         </form>           
     </section>
 </div>
+
+<script>
+    //多选下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto',
+
+        });
+    });
+    
+    <!-- 实例化编辑器 -->
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+</script>
 
 
 <div class="wrapper"></div>
@@ -834,46 +859,5 @@
 
 
         </div>
-
-        <script>
-            $(function () {
-                //Initialize Select2 Elements
-                $(".select2").select2();
-                //Datemask dd/mm/yyyy
-                $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-                //Datemask2 mm/dd/yyyy
-                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-                //Date range picker
-                $('#reservation').daterangepicker();
-                //Date range picker with time picker
-                $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-                //Date range as a button
-                $('#daterange-btn').daterangepicker(
-                        {
-                            ranges: {
-                                'Today': [moment(), moment()],
-                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                            },
-                            startDate: moment().subtract(29, 'days'),
-                            endDate: moment()
-                        },
-                        function (start, end) {
-                            $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                        }
-                );
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                });
-                //Timepicker
-                $(".timepicker").timepicker({
-                    showInputs: false
-                });
-            });
-        </script> 
     </body>
 </html>

@@ -9,3 +9,174 @@ SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
 SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0039s ]
 SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
 
+[ 2017-03-03T07:55:50+08:00 ] 127.0.0.1 /index.php/Project/add.html
+ERR: Think\Model:getUserByDep方法不存在！
+
+[ 2017-03-03T07:55:56+08:00 ] 127.0.0.1 /index.php/Project/add.html
+ERR: Think\Model:getUserByDep方法不存在！
+
+[ 2017-03-03T08:07:22+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000650s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001088s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2017-03-03T08:07:32+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000590s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001032s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-03T08:38:05+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000534s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000886s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 2  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000689s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000768s ]
+
+[ 2017-03-03T08:49:41+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001003s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 3  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000543s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000623s ]
+
+[ 2017-03-03T08:49:43+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000528s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000943s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 2  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000541s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000620s ]
+
+[ 2017-03-03T08:59:54+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000693s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001152s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-03T09:19:32+08:00 ] 127.0.0.1 /index.php/Admin/Index/overview.html
+ERR: 非法操作:overview
+
+[ 2017-03-03T10:48:40+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/004
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000656s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001238s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 4  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000650s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000725s ]
+
+[ 2017-03-03T10:48:41+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/003
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000618s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001031s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 3  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000661s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000748s ]
+
+[ 2017-03-03T10:48:45+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000587s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000958s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 2  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000704s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000797s ]
+
+[ 2017-03-03T10:48:56+08:00 ] 127.0.0.1 /index.php/Admin/User/index.html
+ERR: 非法操作:index
+
+[ 2017-03-03T11:49:01+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000827s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001295s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 2  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000646s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000732s ]
+
+[ 2017-03-03T12:42:12+08:00 ] 127.0.0.1 /index.php/Admin/Department/ajaxGetDep/company_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000621s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001043s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_department` WHERE `company_id` = 2  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000665s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000751s ]
+
+[ 2017-03-03T15:58:53+08:00 ] 127.0.0.1 /index.php/Project/add.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'team' doesn't have a default value
+
+[ 2017-03-03T16:06:30+08:00 ] 127.0.0.1 /index.php/Project/add.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'team' doesn't have a default value
+
+[ 2017-03-03T16:07:08+08:00 ] 127.0.0.1 /index.php/Project/add.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'team' doesn't have a default value
+
+[ 2017-03-03T16:35:36+08:00 ] 127.0.0.1 /index.php/Project/detail/id/003/p/1.html
+ERR: 非法操作:detail
+
+[ 2017-03-03T16:35:42+08:00 ] 127.0.0.1 /index.php/Project/edit/id/001/p/1.html
+ERR: 模板不存在:./Application/Admin/View/Project/edit.html
+
+[ 2017-03-03T21:58:20+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000422s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000822s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0884s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0338s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0139s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2017-03-03T23:27:45+08:00 ] 127.0.0.1 /index.php/Project/detail/id/001.html
+ERR: 非法操作:detail
+
+[ 2017-03-03T23:42:09+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000523s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000825s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2017-03-03T23:42:33+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000659s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001059s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-03T23:44:23+08:00 ] 127.0.0.1 /index.php/Project/edit/id/004/p/2.html
+ERR: 模板不存在:./Application/Admin/View/Project/edit.html
+

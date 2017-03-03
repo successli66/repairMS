@@ -1,5 +1,15 @@
 <layout name='common/layout' />
 
+<!--多选下拉框-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="__PUBLIC__/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<!-- 编辑器配置文件 -->
+<script type="text/javascript" src="__PUBLIC__/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="__PUBLIC__/plugins/ueditor/ueditor.all.js"></script>
+
 <include file='common/header' />
 <include file='common/nav' />
 
@@ -22,47 +32,57 @@
                                 <label> 项目名称</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
+                                        <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="所属部门" class="form-control" placeholder="请输入项目名称">
+                                    <input type="text" name="project_name" class="form-control" placeholder="请输入项目名称">
                                 </div> 
                             </div>
 
                             <div class="form-group">
                                 <label>维修团队</label> 
-                                <select class="form-control" multiple='multiple' name="team" style="width: 100%;">   
+                                <select class="form-control selectpicker" name="team[]" multiple data-live-search="true">
                                     <?php foreach($uData as $k=>$v):?>
                                     <option value="<?php echo $v['id'];?>"><?php echo $v['real_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
-                            </div>    
+                            </div>
                         </div>
                         <div class="col-md-6"> 
                             <div class="form-group">
-                                <label>公司地址</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    <input type="text" name="address" class="form-control" placeholder="请输入公司地址">
-                                </div> 
+                                <label>所属部门</label>
+                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
+                                    <?php foreach($dpData as $k=>$v):?>
+                                    <option <?php if(session('user')['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                             <!--电话-->
                             <div class="form-group">
-                                <label>联系电话</label>
+                                <label>维修电话</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" name="phone" class="form-control" placeholder="请输入联系电话">
+                                    <input type="text" name="phone" class="form-control" placeholder="请输入维修电话">
                                 </div> 
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>项目描述</label>
+                                <textarea id="descr" name="descr"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('projectList?p='.I('get.p'));?>"><i class="fa fa-times"> 取消添加</i></a>
                         </div>
                     </div>
                 </div>
@@ -70,6 +90,21 @@
         </form>           
     </section>
 </div>
+
+<script>
+    //多选下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto',
+
+        });
+    });
+    
+    <!-- 实例化编辑器 -->
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+</script>
 
 
 <include file='common/bottom' />
