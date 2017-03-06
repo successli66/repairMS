@@ -81,6 +81,22 @@ class UserController extends BaseController {
         $this->assign('page', $data['page']);
         $this->display();
     }
+    
+    public function userInfo() {
+        $id = I('get.id');
+        $model = M('User');
+        $data = $model->find($id);
+        $cpModel = M('Company');
+        $cpData = $cpModel->find($data['company_id']);
+        $dpModel = M('Department');
+        $dpData = $dpModel->find($data['department_id']);
+        $this->assign(array(
+            'data' => $data,
+            'cpData' => $cpData,
+            'dpData' => $dpData
+        ));
+        $this->display();
+    }
 
     public function userAdd() {
         if (IS_POST) {

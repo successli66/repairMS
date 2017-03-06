@@ -1,6 +1,10 @@
 <?php
 
 return array(
+    //常量配置
+    'PUBLIC_URL' => '/Public/',
+    'COMMON_URL' => '/Common/',
+    
     //开启显示追踪信息
     'SHOW_PAGE_TRACE' => true,
     

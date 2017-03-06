@@ -6,8 +6,6 @@ class ProjectController extends BaseController {
 
     public function projectList() {
         $model = D('Project');
-        $uModel = M('User');
-        $dpModel = M('Department');
         $admin = array(1); //用户分组待完善
         if (in_array(session('user')['id'], $admin)) {
             $data = $model->search();
@@ -15,16 +13,19 @@ class ProjectController extends BaseController {
             $data = $model->where(array('department_id' => session('user')['department_id']))->search();
         }
         foreach ($data['data'] as $k => &$v) {//循环获得每条数据获得team元素
-            $dpData = $dpModel->find($v['deparment_id']);
-            $v['department_name'] = $dpData['department_name'];
-            $team = explode(',', $v['team']); //将team元素字符串转换为数组
-            $user = array();
-            foreach ($team as $k1 => $v1) {//循环team数组，取得用户名
-                $uData = $uModel->find($v1);
-                $user[] = $uData['real_name']; //获得用户名数组
-            }
-            $user = implode(',', $user); //用户名数组转换为字符串
-            $v['team_name'] = $user;
+//            $dpData = $dpModel->find($v['department_id']);
+//            $v['department_name'] = $dpData['department_name'];
+//            $team = explode(',', $v['team']); //将team元素字符串转换为数组
+//            $user = array();
+//            foreach ($team as $k1 => $v1) {//循环team数组，取得用户名
+//                $uData = $uModel->find($v1);
+//                $user[] = $uData['real_name']; //获得用户名数组
+//            }
+//            $user = implode(',', $user); //用户名数组转换为字符串
+//            $v['team_name'] = $user;
+            $tdData = $this->getTmAndDp($v);
+            $v['team_name'] = $tdData['team_name'];
+            $v['department_name'] = $tdData['department_name'];
         }
         $this->assign(array(
             'data' => $data['data'],
@@ -33,13 +34,24 @@ class ProjectController extends BaseController {
         $this->display();
     }
 
+    public function info() {
+        $id = I('get.id');
+        $model = M('Project');
+        $data = $model->find($id);
+        $tdData = $this->getTmAndDp($data);
+        $data['team'] = explode(',', $data['team']);//字符串转换为数组
+        $data['team_name'] = explode(',', $tdData['team_name']);
+        $data['department_name'] = $tdData['department_name'];
+        $this->assign('data', $data);
+        $this->display();
+    }
+
     public function add() {
         if (IS_POST) {
             $model = D('project');
             if ($model->create(I('post.'), 1)) {
                 $_POST['team'] = implode(',', $_POST['team']);
-                //$_POST['desc'] = removeXSS($_POST['desc']); //防止xss攻击
-                var_dump($_POST);
+                $_POST['desc'] = removeXSS($_POST['desc']); //防止xss攻击
                 if ($id = $model->add($_POST)) {
                     $this->success('添加成功！', U('projectList', array('p' => I('get.p', 1))), 1);
                     exit();
@@ -104,6 +116,21 @@ class ProjectController extends BaseController {
             'page' => $data['page'],
         ));
         $this->display('companyList');
+    }
+
+    protected function getTmAndDp($data) {//获得一个项目的维修团队和部门名称
+        $uModel = M('User');
+        $dpModel = M('Department');
+        $dpData = $dpModel->find($data['department_id']);
+        $tdData['department_name'] = $dpData['department_name'];
+        $team = explode(',', $data['team']); //将team元素字符串转换为数组
+        $name = array();
+        foreach ($team as $k1 => $v1) {//循环team数组，取得用户名
+            $uData = $uModel->find($v1);
+            $name[] = $uData['real_name']; //获得用户名数组
+        }
+        $tdData['team_name'] = implode(',', $name); //用户名数组转换为字符串
+        return $tdData;
     }
 
 }

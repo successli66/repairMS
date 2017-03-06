@@ -2,7 +2,7 @@
 
 //防止XSS攻击
 function removeXSS($data) {
-    require_once '../Public/plugin/htmlpurifier/library/HTMLPurifier.auto.php';
+    require_once ('Public/plugins/htmlpurifier/library/HTMLPurifier.auto.php');
     $_clean_xss_config = HTMLPurifier_Config::createDefault();
     $_clean_xss_config->set('Core.Encoding', 'UTF-8');
     $_clean_xss_config->set('HTML.Allowed', 'div,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]');
@@ -93,6 +93,7 @@ function deleteImage($image = array())
 	}
 }
 
+//分页
 function getpage($count, $pageSize = 10) {
     $p = new Think\Page($count, $pageSize);
     $p->setConfig('header', '<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');

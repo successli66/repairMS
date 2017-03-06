@@ -671,7 +671,7 @@
                                     <td><?php echo $v['team_name'];?></td>
                                     <td><?php echo $v['department_name'];?></td>
                                     <td class="text-center">
-                                        <a class="btn btn-info btn-sm" href="<?php echo U('detail?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
+                                        <a class="btn btn-info btn-sm" href="<?php echo U('info?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
                                         <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
                                         <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
                                     </td>

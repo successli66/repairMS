@@ -626,93 +626,78 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            用户信息
-            <small>User Information</small>
+            维修项目信息
+            <small>Project Information</small>
         </h1>
     </section>
     <section class="content">
         <div class="box box-info">
             <div class="box-header bg-info">
-                <h3 class="box-title">信息详情</h3> 
+                <h3 class="box-title">项目详情</h3> 
+                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('edit?id='.I('get.id'));?>"><i class="fa fa-pencil-square-o"></i> 信息修改</a>
+
             </div>
             <div class="box-body bg-info">
-                <div class="row">
-                    <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
-                        <h3 class="profile-username text-center"><?php echo $data['real_name'];?></h3>
-                        <p class="text-muted text-center"><?php echo $data['post'];?></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label> 用户名</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <input type="text" class="form-control" value="<?php echo $data['username']?>" disabled>
-                            </div> 
-                        </div>
 
-                        <div class="form-group">
-                            <label>姓名</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <input type="text" class="form-control" value="<?php echo $data['real_name']?>" disabled>
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label>工号</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-sort-numeric-asc"></i>
-                                </div>
-                                <input type="text" class="form-control" value="<?php echo $data['work_number']?>" disabled>
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label>联系电话</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                                <input type="text" class="form-control" value="<?php echo $data['telephone'];?>" disabled>
-                            </div> 
-                        </div>
-                    </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>公司</label>
+                            <label> 项目名</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="fa fa-bank"></i>
+                                    <i class="fa fa-header"></i>
                                 </div>
-                                <input type="text" class="form-control" value="<?php echo $cpData['company_name']?>" disabled>
+                                <input type="text" class="form-control" value="<?php echo $data['project_name']?>" disabled>
                             </div> 
                         </div>
                         <div class="form-group">
-                            <label>部门</label>
+                            <label>所属部门</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-sitemap"></i>
                                 </div>
-                                <input type="text" class="form-control" value="<?php echo $dpData['department_name']?>" disabled>
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label>职务</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <input type="text" class="form-control" value="<?php echo $data['post'];?>" disabled>
+                                <input type="text" class="form-control" value="<?php echo $data['department_name']?>" disabled>
                             </div> 
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>维修团队</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-group"></i>
+                                </div>
+                                <?php foreach ($data['team'] as $k=>$v):?>
+                                <a class="btn btn-default" href="<?php echo U('User/userInfo?id='.$v);?>"><?php echo $data['team_name'][$k];?></a>
+                                <?php endforeach;?>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>维修电话</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['phone']?>" disabled>
+                            </div> 
+                        </div> 
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>项目描述</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box-body">   
+                        <div class="form-group col-md-12">  
+                            <div class="text-center">
+                                <?php echo $data['descr'];?>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>        
     </section>
