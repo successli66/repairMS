@@ -631,7 +631,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/User/userAdd/p/2.html" method="POST">
+        <form class="form" action="/index.php/User/userAdd/p/1.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">

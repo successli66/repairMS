@@ -641,12 +641,12 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Project/add/p/3.html" method="POST">
+        <form class="form" action="/index.php/Project/add.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-6">
-
+                            <input type="hidden" name="id" class="form-control" value="<?php echo I('get.id');?>">
                             <div class="form-group">
                                 <label> 项目名称</label>
                                 <div class="input-group">
@@ -688,11 +688,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>项目描述</label>
-                                <textarea id="descr" name="descr"></textarea>
+                        <div class="col-md-6">
+                            <label>项目描述</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="box-body col-md-12">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <textarea id="descr" name="descr"></textarea>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-2"></div>
@@ -720,8 +725,8 @@
 
         });
     });
-    
-    <!-- 实例化编辑器 -->
+
+<!-- 实例化编辑器 -->
     var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
 </script>
 

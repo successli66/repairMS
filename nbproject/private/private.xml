@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/www/repairMS/Application/Admin/View/project/projectList.html</file>
-            <file>file:/D:/www/repairMS/Application/Admin/Model/ProjectModel.class.php</file>
-            <file>file:/D:/www/repairMS/Application/Admin/Controller/ProjectController.class.php</file>
+            <file>file:/E:/PHP/www/repairMS/Application/Admin/Model/ProjectModel.class.php</file>
+            <file>file:/E:/PHP/www/repairMS/Application/Admin/Controller/ProjectController.class.php</file>
+            <file>file:/E:/PHP/www/repairMS/Application/Admin/View/project/add.html</file>
+            <file>file:/E:/PHP/www/repairMS/Application/Admin/View/project/edit.html</file>
+            <file>file:/E:/PHP/www/repairMS/Application/Admin/View/project/info.html</file>
         </group>
     </open-files>
 </project-private>

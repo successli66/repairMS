@@ -39,7 +39,7 @@ class ProjectController extends BaseController {
         $model = M('Project');
         $data = $model->find($id);
         $tdData = $this->getTmAndDp($data);
-        $data['team'] = explode(',', $data['team']);//字符串转换为数组
+        $data['team'] = explode(',', $data['team']); //字符串转换为数组
         $data['team_name'] = explode(',', $tdData['team_name']);
         $data['department_name'] = $tdData['department_name'];
         $this->assign('data', $data);
@@ -48,10 +48,10 @@ class ProjectController extends BaseController {
 
     public function add() {
         if (IS_POST) {
-            $model = D('project');
+            $model = D('Project');
             if ($model->create(I('post.'), 1)) {
                 $_POST['team'] = implode(',', $_POST['team']);
-                $_POST['desc'] = removeXSS($_POST['desc']); //防止xss攻击
+                $_POST['descr'] = removeXSS($_POST['descr']); //防止xss攻击
                 if ($id = $model->add($_POST)) {
                     $this->success('添加成功！', U('projectList', array('p' => I('get.p', 1))), 1);
                     exit();
@@ -81,19 +81,43 @@ class ProjectController extends BaseController {
     }
 
     public function edit() {
-        $id = I('get.id');
-        $model = D('Company');
-        if (IS_POST) {
+         $model = D('Project');
+         if (IS_POST) {
             if ($model->create(I('post.'), 2)) {
-                if ($model->save()) {
-                    $this->success('修改成功！', U('companyList', array('p' => I('get.p', 1))), 1);
+                $_POST['team'] = implode(',', $_POST['team']);
+                $_POST['descr'] = removeXSS($_POST['descr']); //防止xss攻击
+                if ($model->save($_POST)) {
+                    $this->success('修改成功！', U('projectList', array('p' => I('get.p', 1))), 1);
                     exit();
                 }
             }
             $this->error($model->getError());
         }
+        $id = I('get.id');
         $data = $model->find($id);
+        $tdData = $this->getTmAndDp($data);
+        $data['team'] = explode(',', $data['team']); //字符串转换为数组
+        $data['team_name'] = explode(',', $tdData['team_name']);
+        $data['department_name'] = $tdData['department_name'];
+        $admin = array(1); //超级管理员id，分组功能待完善！！！
+        if (in_array(session('user')['id'], $admin)) {
+            //超级管理员允许修改所有部门项目
+            $uModel = D('User');
+            $uData = $uModel->getUserByCp(session('user')['company_id']); //获得本公司人员
+            $dpModel = D('Department');
+            $dpData = $dpModel->getDpByCpId(session('user')['company_id']); //获得本公司部门
+        } else {
+            //普通管理员只允许修改本部门项目
+            $uModel = D('User');
+            $uData = $uModel->getUserByDp(session('user')['department_id']); //获得本部门人员
+            $dpData[] = array(//构造出本部门数据数组
+                'id' => session('department')['id'],
+                'department_name' => session('department')['department_name']
+            );
+        }
         $this->assign('data', $data);
+        $this->assign('dpData', $dpData);
+        $this->assign('uData', $uData);
         $this->display();
     }
 
