@@ -119,6 +119,12 @@
             
             
 
+
+<!-- 编辑器配置文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
+
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -534,7 +540,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo U('Admin/Part/partList'); ?>">
                             <i class="fa fa-puzzle-piece"></i>配件库
                         </a>
                     </li>
@@ -622,117 +628,120 @@
 </aside>
 
 
-<style>
-    .pages a,.pages span {
-        display:inline-block;
-        padding:2px 5px;
-        margin:0 1px;
-        border:1px solid #f0f0f0;
-        -webkit-border-radius:3px;
-        -moz-border-radius:3px;
-        border-radius:3px;
-    }
-    .pages a,.pages li {
-        display:inline-block;
-        list-style: none;
-        text-decoration:none; color:#58A0D3;
-    }
-    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
-        margin:0;
-    }
-    .pages a:hover{
-        border-color:#50A8E6;
-    }
-    .pages span.current{
-        background:#50A8E6;
-        color:#FFF;
-        font-weight:700;
-        border-color:#50A8E6;
-    }
-</style>
-
-
-
 
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            部门划分
-            <small>Departmentt</small>
+            添加配件
+            <small>Add Part</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header bg-info">
-                        <h3 class="box-title">部门列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Department/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
-                    </div>
-                    <div class="col-md-12">
-                        <form action="/index.php/Admin/Department/search" method="GET">
-                            
-                            <div class="box-body"> 
-                                <div class="form-group col-md-6">    
-                                    <select class="form-control" name="company_id" style="width: 100%;">
-                                        <option value="">请选择搜索部门...</option>
-                                        <?php foreach($cpData as $k=>$v):?>
-                                        <option value="<?php echo $v['id'];?>" <?php if(I('get.company_id')==$v['id']) echo "selected='selected'";?>><?php echo $v['company_name'];?></option>
-                                        <?php endforeach;?>
-                                    </select>
-                                </div>
-                                <div class="input-group  col-md-6">
-                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入部门名称...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                    </span>
-                                </div>        
+        <form class="form" action="/index.php/Part/add/p/1.html" method="POST">
+            <div class="box box-info">
+                <div class="box-body bg-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> 配件名称</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <input type="text" name="part_name" class="form-control" placeholder="请输入配件名称">
+                                </div> 
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <label>所属部门</label> 
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sitemap"></i>
+                                    </div>
+                                    <input type="text" class="form-control" value="<?php echo $dpData['department_name']?>" disabled>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>所属项目</label> 
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bookmark"></i>
+                                    </div>
+                                    <input type="text" class="form-control" value="<?php echo $pjData['project_name']?>" disabled>
+                                    <input type="hidden" name="project_id" class="form-control" value="<?php echo I('get.project_id');?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 厂家</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bank"></i>
+                                    </div>
+                                    <input type="text" name="manufacturer" class="form-control" placeholder="请输入厂家">
+                                </div>
+                            </div>   
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="form-group">
+                                <label> 型号</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sort-alpha-asc"></i>
+                                    </div>
+                                    <input type="text" name="model" class="form-control" placeholder="请输入型号">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 进价</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                    <input type="text" name="in_price" class="form-control" placeholder="请输入进价">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 出价</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-arrow-left"></i>
+                                    </div>
+                                    <input type="text" name="out_price" class="form-control" placeholder="请输入售价">
+                                </div> 
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">编 号</th>
-                                    <th class="text-center">部门 名 称</th>
-                                    <th class="text-center">负 责 人</th>
-                                    <th class="text-center">业 务 范 围</th>
-                                    <th class="text-center">电 话</th>
-                                    <th class="text-center">操 作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['id'];?></td>
-                                    <td><?php echo $v['department_name'];?></td>
-                                    <td><?php echo $v['header'];?></td>
-                                    <td><?php echo $v['business'];?></td>
-                                    <td><?php echo $v['phone'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>配件描述</label>
+                        </div>
                     </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?></div>
+                    <div class="row">
+                        <div class="box-body col-md-12">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <textarea id="descr" name="descr"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('partList?p='.I('get.p'));?>"><i class="fa fa-times"> 取消添加</i></a>
+                        </div>
                     </div>
                 </div>
-            </div>    
-        </div>
+            </div>
+        </form>           
     </section>
 </div>
 
+<script>
+<!-- 实例化编辑器 -->
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+</script>
 
 
 <div class="wrapper"></div>

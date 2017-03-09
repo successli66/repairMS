@@ -119,6 +119,16 @@
             
             
 
+<!--多选下拉框-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/Public/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="/Public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<!-- 编辑器配置文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
+
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -534,7 +544,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo U('Admin/Part/partList'); ?>">
                             <i class="fa fa-puzzle-piece"></i>配件库
                         </a>
                     </li>
@@ -622,118 +632,104 @@
 </aside>
 
 
-<style>
-    .pages a,.pages span {
-        display:inline-block;
-        padding:2px 5px;
-        margin:0 1px;
-        border:1px solid #f0f0f0;
-        -webkit-border-radius:3px;
-        -moz-border-radius:3px;
-        border-radius:3px;
-    }
-    .pages a,.pages li {
-        display:inline-block;
-        list-style: none;
-        text-decoration:none; color:#58A0D3;
-    }
-    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
-        margin:0;
-    }
-    .pages a:hover{
-        border-color:#50A8E6;
-    }
-    .pages span.current{
-        background:#50A8E6;
-        color:#FFF;
-        font-weight:700;
-        border-color:#50A8E6;
-    }
-</style>
-
-
-
 
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            部门划分
-            <small>Departmentt</small>
+            维修项目信息
+            <small>Project Information</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header bg-info">
-                        <h3 class="box-title">部门列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Department/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
-                    </div>
-                    <div class="col-md-12">
-                        <form action="/index.php/Admin/Department/search" method="GET">
-                            
-                            <div class="box-body"> 
-                                <div class="form-group col-md-6">    
-                                    <select class="form-control" name="company_id" style="width: 100%;">
-                                        <option value="">请选择搜索部门...</option>
-                                        <?php foreach($cpData as $k=>$v):?>
-                                        <option value="<?php echo $v['id'];?>" <?php if(I('get.company_id')==$v['id']) echo "selected='selected'";?>><?php echo $v['company_name'];?></option>
-                                        <?php endforeach;?>
-                                    </select>
-                                </div>
-                                <div class="input-group  col-md-6">
-                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入部门名称...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                    </span>
-                                </div>        
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">项目修改</h3> 
+            </div>
+            <div class="box-body bg-info">
+                <form action="/index.php/Part/edit/id/1/p/1.html" method="POST">
+                    <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> 项目名</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <input type="text" name='project_name' class="form-control" value="<?php echo $data['project_name']?>">
+                                </div> 
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <label>所属部门</label>
+                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
+                                    <?php foreach($dpData as $k=>$v):?>
+                                    <option <?php if($data['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>维修团队</label> 
+                                <select class="form-control selectpicker" name="team[]" multiple data-live-search="true">
+                                    <?php foreach($uData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$data['team'])) echo selected;?>><?php echo $v['real_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>维修电话</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input type="text" name='phone' class="form-control" value="<?php echo $data['phone']?>">
+                                </div> 
+                            </div> 
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>项目描述</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="box-body">   
+                            <div class="form-group col-md-12">  
+                                <div class="text-center">
+                                    <textarea id="descr" name="descr" ><?php echo $data['descr'];?></textarea>
 
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">编 号</th>
-                                    <th class="text-center">部门 名 称</th>
-                                    <th class="text-center">负 责 人</th>
-                                    <th class="text-center">业 务 范 围</th>
-                                    <th class="text-center">电 话</th>
-                                    <th class="text-center">操 作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['id'];?></td>
-                                    <td><?php echo $v['department_name'];?></td>
-                                    <td><?php echo $v['header'];?></td>
-                                    <td><?php echo $v['business'];?></td>
-                                    <td><?php echo $v['phone'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
+                                </div>   
+                            </div>
+                        </div>
                     </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?></div>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('projectList?p='.I('get.p'));?>"><i class="fa fa-times"> 取消添加</i></a>
+                        </div>
                     </div>
-                </div>
-            </div>    
-        </div>
+                </form>
+            </div>
+        </div>        
     </section>
 </div>
 
+<script>
+    //多选下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto',
 
+        });
+    });
+
+<!-- 实例化编辑器 -->
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+</script>
 
 <div class="wrapper"></div>
         <footer class="main-footer">
@@ -864,7 +860,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
 
 
         </div>

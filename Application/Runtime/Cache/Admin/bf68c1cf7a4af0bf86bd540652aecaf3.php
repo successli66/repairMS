@@ -534,7 +534,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo U('Admin/Part/partList'); ?>">
                             <i class="fa fa-puzzle-piece"></i>配件库
                         </a>
                     </li>
@@ -633,8 +633,11 @@
     <section class="content">
         <div class="box box-info">
             <div class="box-header bg-info">
-                <h3 class="box-title">项目详情</h3> 
-                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('edit',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-pencil-square-o"></i> 信息修改</a>
+                <h3 class="box-title">项目详情</h3>    
+                <a type="button" class="btn btn-info pull-right btn-sm" href="<?php echo U('Part/partList',array('project_id'=>I('get.id')));?>"><i class="fa fa-cubes"></i> 配 件 库</a>
+                <a type="button" class="btn btn-info pull-right btn-sm" href="<?php echo U('Equipment/equipmentList',array('project_id'=>I('get.id')));?>"><i class="fa fa-newspaper-o"></i> 设 备 库</a>
+                <a type="button" class="btn btn-info pull-right btn-sm" href="<?php echo U('edit',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-pencil-square-o"></i> 信息修改</a>
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('projectList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
             </div>
             <div class="box-body bg-info">
 
@@ -696,12 +699,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="text-center">
-                        <a type="button" class="btn btn-default" href="<?php echo U('projectList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
-                    </div>
-                </div>
-
             </div>
         </div>        
     </section>

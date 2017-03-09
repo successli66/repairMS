@@ -534,7 +534,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo U('Admin/Part/partList'); ?>">
                             <i class="fa fa-puzzle-piece"></i>配件库
                         </a>
                     </li>
@@ -659,6 +659,7 @@
                                     <th class="text-center">编 号</th>
                                     <th class="text-center">项 目 名 称</th>
                                     <th class="text-center">维 修 团 队</th>
+                                    <th class="text-center">维 修 电 话</th>
                                     <th class="text-center">所 属 部 门</th>
                                     <th class="text-center">操 作</th>
                                 </tr>
@@ -669,6 +670,7 @@
                                     <td><?php echo $v['id'];?></td>
                                     <td><?php echo $v['project_name'];?></td>
                                     <td><?php echo $v['team_name'];?></td>
+                                    <td><?php echo $v['phone'];?></td>
                                     <td><?php echo $v['department_name'];?></td>
                                     <td class="text-center">
                                         <a class="btn btn-info btn-sm" href="<?php echo U('info?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>

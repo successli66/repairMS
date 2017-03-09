@@ -18,8 +18,6 @@
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="/Public/dist/css/skins/_all-skins.min.css">
         <!-- iCheck(表单美化) -->
-        <link rel="stylesheet" href="/Public/plugins/iCheck/flat/blue.css">
-        <!-- iCheck for checkboxes and radio inputs（选择） -->
         <link rel="stylesheet" href="/Public/plugins/iCheck/all.css">
         <!-- Morris chart（莫里斯图表） -->
         <link rel="stylesheet" href="/Public/plugins/morris/morris.css"> 
@@ -27,12 +25,8 @@
         <link rel="stylesheet" href="/Public/plugins/datepicker/datepicker3.css">
         <!-- Daterange picker（时间区间选择器） -->
         <link rel="stylesheet" href="/Public/plugins/daterangepicker/daterangepicker.css">
-        <!-- bootstrap wysihtml5 - text editor（文本编辑器） -->
-        <link rel="stylesheet" href="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
         <!-- Bootstrap time Picker（bootstrap时间选择器） -->
         <link rel="stylesheet" href="/Public/plugins/timepicker/bootstrap-timepicker.min.css">
-        <!-- Select2 -->
-        <link rel="stylesheet" href="/Public/plugins/select2/select2.min.css">
         <!--引入joliAdmin时钟样式-->
         <link rel="stylesheet" type="text/css" id="theme" href="/Public/other/JoliAdmin/theme-default2.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,7 +35,7 @@
         <script src="other/html5shiv/html5shiv.min.js"></script>
         <script src="other/respond/respond.min.js"></script>
         <![endif]-->
-        
+
         <!--引入js文件-->
         <!-- jQuery 2.2.3 -->
         <script type="text/javascript" src="/Public/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -80,23 +74,49 @@
         <script src="/Public/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="/Public/dist/js/demo.js"></script>
-        <!-- Select2 -->
-        <script src="/Public/plugins/select2/select2.full.min.js"></script>
         <!-- InputMask -->
         <script src="/Public/plugins/input-mask/jquery.inputmask.js"></script>
         <script src="/Public/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="/Public/plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <!-- bootstrap time picker -->
         <script src="/Public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-        <!-- iCheck 1.0.1 -->
-        <script src="/Public/plugins/iCheck/icheck.min.js"></script>
         <!--joliAdmin时钟js-->
         <script src="/Public/other/JoliAdmin/time.js"></script>
+
+        <style>
+            .pages a,.pages span {
+                display:inline-block;
+                padding:2px 5px;
+                margin:0 1px;
+                border:1px solid #f0f0f0;
+                -webkit-border-radius:3px;
+                -moz-border-radius:3px;
+                border-radius:3px;
+            }
+            .pages a,.pages li {
+                display:inline-block;
+                list-style: none;
+                text-decoration:none; color:#58A0D3;
+            }
+            .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                margin:0;
+            }
+            .pages a:hover{
+                border-color:#50A8E6;
+            }
+            .pages span.current{
+                background:#50A8E6;
+                color:#FFF;
+                font-weight:700;
+                border-color:#50A8E6;
+            }
+        </style>
+
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
+        <div class="wrapper">        
 
-
+            
             
 
 <!--头部-->
@@ -341,7 +361,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="<?php echo U('User/userInfo');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
+                                <a href="<?php echo U('User/info');?>" ><i class="fa fa-drivers-license-o fa-2x"></i></a>
                             </div>
                             <div class="pull-right">
                                 <a href="<?php echo U('Login/logout');?>" ><i class="fa fa-power-off fa-2x" style="color: red"></i></a>
@@ -495,10 +515,30 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="<?php echo U('Admin/User/userInfo'); ?>">
-                    <i class="fa fa-drivers-license-o"></i> 
-                    <span>个人信息</span>
+                <a href="#">
+                    <i class="fa fa-th-list"></i>
+                    <span>维修项目管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>    
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?php echo U('Admin/Project/projectList'); ?>">
+                            <i class="fa fa-flag"></i>项目表
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo U('Admin/Department/departmentList'); ?>">
+                            <i class="fa fa-sitemap"></i>设备库
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-puzzle-piece"></i>配件库
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="treeview">
                 <a href="#">
@@ -554,7 +594,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('Admin/User/userList');?>">
                             <i class="fa fa-user-circle-o"></i>用户管理
                         </a>
                     </li>
@@ -794,46 +834,5 @@
 
 
         </div>
-        
-        <script>
-            $(function () {
-                //Initialize Select2 Elements
-                $(".select2").select2();
-                //Datemask dd/mm/yyyy
-                $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-                //Datemask2 mm/dd/yyyy
-                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-                //Date range picker
-                $('#reservation').daterangepicker();
-                //Date range picker with time picker
-                $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-                //Date range as a button
-                $('#daterange-btn').daterangepicker(
-                        {
-                            ranges: {
-                                'Today': [moment(), moment()],
-                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                            },
-                            startDate: moment().subtract(29, 'days'),
-                            endDate: moment()
-                        },
-                        function (start, end) {
-                            $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                        }
-                );
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                });
-                //Timepicker
-                $(".timepicker").timepicker({
-                    showInputs: false
-                });
-            });
-        </script> 
     </body>
 </html>

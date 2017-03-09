@@ -74,9 +74,10 @@ key project_id(project_id)
 create table rm_part(
 id int unsigned not null auto_increment comment 'ID',
 part_name varchar(20) not null comment '配件名称',
-model varchar(30) not null comment '设备型号',
-in_price decimal(10,2) comment '进价',
-out_price decimal(10,2) comment '出价',
+model varchar(30) not null comment '配件型号',
+manufacturer varchar(30) comment '厂家',
+in_price decimal(10,2) unsigned not null default 0.00 comment '进价',
+out_price decimal(10,2) unsigned not null default 0.00 comment '出价',
 project_id smallint unsigned not null comment '所属项目ID',
 descr text comment '配件描述',
 image varchar(150) comment '图片路径',
