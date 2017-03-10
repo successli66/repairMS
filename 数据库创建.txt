@@ -44,7 +44,7 @@ alter table rm_user add key company_id(company_id);
 
 
 create table rm_project(
-id smallint(3) unsigned zerofill not null auto_increment comment 'ID',
+id smallint(4) unsigned zerofill not null auto_increment comment 'ID',
 project_name varchar(20) not null comment '项目名称',
 department_id tinyint unsigned not null comment '所属部门ID',
 team varchar(50) not null comment '项目团队,职员ID逗号隔开',
@@ -60,15 +60,19 @@ id mediumint unsigned not null auto_increment comment 'ID',
 equipment_name varchar(20) not null comment '设备名称',
 model varchar(30) not null comment '设备型号',
 serial_number varchar(30) not null comment '设备编号',
+manufacturer varchar(30) comment '设备厂家',
 project_id smallint unsigned not null comment '所属项目ID',
 install_date date comment '安装时间',
-address varchar(30) comment '安放地点',
+company_id smallint unsigned not null comment '安放公司ID',
+address varchar(30) comment '详细地址',
+descr text comment '设备描述',
 primary key (id),
 key equipment_name(equipment_name),
 key model(model),
 key serial_number(serial_number),
 key install_date(install_date),
-key project_id(project_id)
+key project_id(project_id),
+key manufacturer(manufacturer)
 )engine=InnoDB comment '设备表';
 
 create table rm_part(
@@ -84,7 +88,8 @@ image varchar(150) comment '图片路径',
 primary key (id),
 key part_name(part_name),
 key model(model),
-key project_id(project_id)
+key project_id(project_id),
+key manufacturer(manufacturer)
 )engine=InnoDB comment '配件表';
 
 create table rm_repair(

@@ -62,6 +62,7 @@
         <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
@@ -534,7 +535,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo U('Admin/Part/partList'); ?>">
                             <i class="fa fa-puzzle-piece"></i>配件库
                         </a>
                     </li>
@@ -622,37 +623,6 @@
 </aside>
 
 
-<style>
-    .pages a,.pages span {
-        display:inline-block;
-        padding:2px 5px;
-        margin:0 1px;
-        border:1px solid #f0f0f0;
-        -webkit-border-radius:3px;
-        -moz-border-radius:3px;
-        border-radius:3px;
-    }
-    .pages a,.pages li {
-        display:inline-block;
-        list-style: none;
-        text-decoration:none; color:#58A0D3;
-    }
-    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
-        margin:0;
-    }
-    .pages a:hover{
-        border-color:#50A8E6;
-    }
-    .pages span.current{
-        background:#50A8E6;
-        color:#FFF;
-        font-weight:700;
-        border-color:#50A8E6;
-    }
-</style>
-
-
-
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -670,7 +640,6 @@
                         <a class="btn btn-info pull-right btn-sm" href="<?php echo U('User/userAdd?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
                     </div>
                     <div class="col-md-12">
-
                         <div class="box-body">
                             <form action="/index.php/Admin/User/userList" method="GET">
                                 <div class="form-group col-md-6">    

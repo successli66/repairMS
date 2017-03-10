@@ -62,6 +62,7 @@
         <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
@@ -637,12 +638,14 @@
                     <div class="box-header bg-info">
                         <h3 class="box-title">配件列表</h3> 
                         <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Part/add',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-plus-square"></i> 添 加</a>
+                        <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('Project/info?id='.I('get.project_id'));?>"><i class="fa fa-reply"> 返回项目</i></a>
                     </div>
                     
                     <div class="col-md-6">
                         <form action="/index.php/Admin/Part/search" method="GET">
                             <div class="box-body">
                                 <div class="input-group margin-bottom">
+                                    <input type="hidden" name="project_id" class="form-control" value="<?php echo I('get.project_id');?>"> 
                                     <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入项目名称搜索...">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
@@ -672,12 +675,12 @@
                                     <td><?php echo $v['part_name'];?></td>
                                     <td><?php echo $v['model'];?></td>
                                     <td><?php echo $v['manufacturer'];?></td>
-                                    <td><?php echo $v['in_price'];?></td>
-                                    <td><?php echo $v['out_price'];?></td>
+                                    <td>￥<?php echo $v['in_price'];?> 元</td>
+                                    <td>￥<?php echo $v['out_price'];?> 元</td>
                                     <td class="text-center">
-                                        <a class="btn btn-info btn-sm" href="<?php echo U('info?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
+                                        <a class="btn btn-info btn-sm" href="<?php echo U('info',array('id'=>$v['id'],'project_id'=>I('get.project_id'),'p'=>I('get.p')));?>">详情</a>
+                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit',array('id'=>$v['id'],'project_id'=>I('get.project_id'),'p'=>I('get.p')));?>">修改</a>
+                                        <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('delet',array('id'=>$v['id'],'project_id'=>I('get.project_id'),'p'=>I('get.p')));?>">删除</a> 
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -696,7 +699,15 @@
     </section>
 </div>
 
-
+<script>
+    $('#deleteBtn').click(function () {
+        if (confirm('确定删除该配件吗？')) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+</script>
 
 <div class="wrapper"></div>
         <footer class="main-footer">

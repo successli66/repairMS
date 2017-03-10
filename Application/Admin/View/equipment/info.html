@@ -7,8 +7,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            配件信息
-            <small>Part Information</small>
+            设备信息
+            <small>Equipment Information</small>
         </h1>
     </section>
     <section class="content">
@@ -16,18 +16,18 @@
             <div class="box-header bg-info">
                 <h3 class="box-title">配件详情</h3> 
                 <a class="btn btn-info pull-right btn-sm" href="<?php echo U('edit',array('project_id'=>I('get.project_id'),'id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-pencil-square-o"></i> 信息修改</a>
-                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('partList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('equipmentList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
             </div>
             <div class="box-body bg-info">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label> 配件名称</label>
+                            <label> 设备名称</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-header"></i>
                                 </div>
-                                <input type="text" name="part_name" class="form-control" value="<?php echo $data['part_name']?>" disabled>
+                                <input type="text" name="equipment_name" class="form-control" value="<?php echo $data['equipment_name'];?>" disabled>
                             </div> 
                         </div>
                         <div class="form-group">
@@ -46,7 +46,6 @@
                                     <i class="fa fa-bookmark"></i>
                                 </div>
                                 <input type="text" class="form-control" value="<?php echo $pjData['project_name']?>" disabled>
-                                <!--<input type="hidden" name="project_id" class="form-control" value="<?php echo I('get.project_id');?>">-->
                             </div> 
                         </div>
                         <div class="form-group">
@@ -55,36 +54,57 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-bank"></i>
                                 </div>
-                                <input type="text" name="manufacturer" class="form-control" value="<?php echo $data['manufacturer']?>" disabled>
+                                <input type="text" name="manufacturer" class="form-control" value="<?php echo $data['manufacturer'];?>" disabled>
                             </div>
-                        </div>   
-                    </div>
-                    <div class="col-md-6"> 
+                        </div> 
                         <div class="form-group">
-                            <label> 型号</label>
+                            <label> 设备型号</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-sort-alpha-asc"></i>
                                 </div>
-                                <input type="text" class="form-control" value="<?php echo $data['model']?>" disabled>
+                                <input type="text" name="model" class="form-control" value="<?php echo $data['model'];?>" disabled>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-6"> 
+
+                        <div class="form-group">
+                            <label> 设备编号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sort-numeric-asc"></i>
+                                </div>
+                                <input type="text" name="serial_number" class="form-control" value="<?php echo $data['serial_number'];?>" disabled>
                             </div> 
                         </div>
                         <div class="form-group">
-                            <label> 进价</label>
+                            <label> 安放时间</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="fa fa-arrow-right"></i>
+                                    <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control" value="￥<?php echo $data['in_price']?> 元" disabled>
+                                <input type="text" name="install_date" class="form-control" id="datepicker" value="<?php echo $data['install_date'];?>" disabled>
                             </div> 
                         </div>
                         <div class="form-group">
-                            <label> 出价</label>
+                            <label> 安放地点</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="fa fa-arrow-left"></i>
+                                    <i class="fa fa-map-pin"></i>
                                 </div>
-                                <input type="text" class="form-control" value="￥<?php echo $data['out_price']?> 元" disabled>
+                                <input type="text" name="company_name" class="form-control" id="datepicker" value="<?php echo $cpData['company_name'];?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label> 详细地址</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-map"></i>
+                                </div>
+                                <div id="address">
+                                    <input type="text" name="address" class="form-control" value="<?php echo $data['address'];?>" disabled>
+                                </div>
                             </div> 
                         </div>
                     </div>

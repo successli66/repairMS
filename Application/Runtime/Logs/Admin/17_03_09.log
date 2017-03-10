@@ -12,3 +12,56 @@ SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0009s ]
 [ 2017-03-09T07:56:37+08:00 ] 127.0.0.1 /index.php/Part/projectList/p/1.html
 ERR: 非法操作:projectList
 
+[ 2017-03-09T10:59:41+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000586s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001004s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0307s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-09T11:44:05+08:00 ] 127.0.0.1 /index.php/Part/projectList.html
+ERR: 非法操作:projectList
+
+[ 2017-03-09T12:06:36+08:00 ] 127.0.0.1 /index.php/Part/projectList.html
+ERR: 非法操作:projectList
+
+[ 2017-03-09T12:26:40+08:00 ] 127.0.0.1 /index.php/Admin/Part/search?search_name=
+ERR: 模板不存在:./Application/Admin/View/Part/companyList.html
+
+[ 2017-03-09T16:44:38+08:00 ] 127.0.0.1 /index.php/Equipment/equipmentList/project_id/001.html
+ERR: Think\Model:search方法不存在！
+
+[ 2017-03-09T16:54:27+08:00 ] 127.0.0.1 /index.php/Part/edit/id/1/project_id/001.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'project_id' doesn't have a default value
+
+[ 2017-03-09T16:55:17+08:00 ] 127.0.0.1 /index.php/Part/edit/id/1/project_id/001.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'project_id' doesn't have a default value
+
+[ 2017-03-09T16:55:47+08:00 ] 127.0.0.1 /index.php/Part/edit/id/1/project_id/001.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'project_id' doesn't have a default value
+
+[ 2017-03-09T16:55:54+08:00 ] 127.0.0.1 /index.php/Part/edit/id/1/project_id/001.html
+ERR: SQLSTATE[HY000]: General error: 1364 Field 'project_id' doesn't have a default value
+
+[ 2017-03-09T16:59:15+08:00 ] 127.0.0.1 /index.php/Part/edit/id/1/project_id/001.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY'
+
+[ 2017-03-09T17:00:49+08:00 ] 127.0.0.1 /index.php/Part/edit/id/1/project_id/001.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY'
+
+[ 2017-03-09T18:07:23+08:00 ] 127.0.0.1 /index.php/Equipment/equipmentList/project_id/001.html
+ERR: Think\Model:search方法不存在！
+
+[ 2017-03-09T18:08:41+08:00 ] 127.0.0.1 /index.php/Equipment/equipmentList/project_id/001.html
+ERR: Think\Model:search方法不存在！
+
+[ 2017-03-09T18:16:56+08:00 ] 127.0.0.1 /index.php/Equipment/equipmentList/project_id/001.html
+ERR: Think\Model:search方法不存在！
+
+[ 2017-03-09T18:31:20+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/search?project_id=001&search_name=
+ERR: 模板不存在:./Application/Admin/View/Equipment/partList.html
+

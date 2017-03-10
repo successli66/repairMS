@@ -65,5 +65,11 @@ class CompanyController extends BaseController {
         ));
         $this->display('companyList');    
     }
-
+    
+    public function ajaxGetCp(){
+        $id = I('get.company_id');
+        $model = M('Company');
+        $data = $model->find($id);
+        echo json_encode($data);
+    }
 }

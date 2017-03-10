@@ -62,6 +62,7 @@
         <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
@@ -646,7 +647,7 @@
                 <h3 class="box-title">项目修改</h3> 
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/Project/edit/id/008/p/4.html" method="POST">
+                <form action="/index.php/Project/edit/id/001.html" method="POST">
                     <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
                     <div class="row">
                         <div class="col-md-6">

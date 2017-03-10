@@ -120,6 +120,11 @@
             
             
 
+<!-- 编辑器配置文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
+
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -628,106 +633,163 @@
     <section class="content-header">
         <h1>
             配件信息
-            <small>Part Information</small>
+            <small>Equipment Information</small>
         </h1>
     </section>
     <section class="content">
         <div class="box box-info">
             <div class="box-header bg-info">
-                <h3 class="box-title">配件详情</h3> 
-                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('edit',array('project_id'=>I('get.project_id'),'id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-pencil-square-o"></i> 信息修改</a>
-                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('partList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+                <h3 class="box-title">配件修改</h3> 
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('equipmentList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+
             </div>
             <div class="box-body bg-info">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label> 配件名称</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-header"></i>
-                                </div>
-                                <input type="text" name="part_name" class="form-control" value="<?php echo $data['part_name']?>" disabled>
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label>所属部门</label> 
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-sitemap"></i>
-                                </div>
-                                <input type="text" class="form-control" value="<?php echo $dpData['department_name']?>" disabled>
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label>所属项目</label> 
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-bookmark"></i>
-                                </div>
-                                <input type="text" class="form-control" value="<?php echo $pjData['project_name']?>" disabled>
-                                <!--<input type="hidden" name="project_id" class="form-control" value="<?php echo I('get.project_id');?>">-->
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label> 厂家</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-bank"></i>
-                                </div>
-                                <input type="text" name="manufacturer" class="form-control" value="<?php echo $data['manufacturer']?>" disabled>
+                <form action="/index.php/Equipment/edit/id/3/project_id/001.html" method="POST">
+                    <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> 设备名称</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <input type="text" name="equipment_name" class="form-control" value="<?php echo $data['equipment_name'];?>">
+                                </div> 
                             </div>
-                        </div>   
-                    </div>
-                    <div class="col-md-6"> 
-                        <div class="form-group">
-                            <label> 型号</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-sort-alpha-asc"></i>
+                            <div class="form-group">
+                                <label>所属部门</label> 
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sitemap"></i>
+                                    </div>
+                                    <input type="text" class="form-control" value="<?php echo $dpData['department_name']?>" disabled>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>所属项目</label> 
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bookmark"></i>
+                                    </div>
+                                    <input type="text" class="form-control" value="<?php echo $pjData['project_name']?>" disabled>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 厂家</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bank"></i>
+                                    </div>
+                                    <input type="text" name="manufacturer" class="form-control" value="<?php echo $data['manufacturer']?>">
                                 </div>
-                                <input type="text" class="form-control" value="<?php echo $data['model']?>" disabled>
                             </div> 
-                        </div>
-                        <div class="form-group">
-                            <label> 进价</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </div>
-                                <input type="text" class="form-control" value="￥<?php echo $data['in_price']?> 元" disabled>
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label> 出价</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-arrow-left"></i>
-                                </div>
-                                <input type="text" class="form-control" value="￥<?php echo $data['out_price']?> 元" disabled>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>配件描述</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="box-body col-md-12">
-                        <div class="col-md-12">
-                            <div class="text-center">
-                                <?php echo $data['descr'];?>
+                            <div class="form-group">
+                                <label> 设备型号</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sort-alpha-asc"></i>
+                                    </div>
+                                    <input type="text" name="model" class="form-control"  value="<?php echo $data['model'];?>">
+                                </div> 
                             </div>
                         </div>
+                        <div class="col-md-6"> 
+
+                            <div class="form-group">
+                                <label> 设备编号</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sort-numeric-asc"></i>
+                                    </div>
+                                    <input type="text" name="serial_number" class="form-control" value="<?php echo $data['serial_number'];?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 安放时间</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="install_date" class="form-control" id="datepicker" value="<?php echo $data['install_date'];?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>安放地点</label> 
+                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">   
+                                    <option value='0'>请选择安放地点</option>
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if($data['company_id']==$v['id']) echo 'selected';?>><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label> 详细地址</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-map"></i>
+                                    </div>
+                                    <div id="address">
+                                        <input type="text" name="address" class="form-control" value="<?php echo $data['address'];?>">
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-2"></div>
-                </div> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>配件描述</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="box-body col-md-12">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <textarea id="descr" name="descr"><?php echo $data['descr'];?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('partList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取消修改</i></a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>        
     </section>
 </div>
+
+<script>
+<!-- 实例化编辑器 -->
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+    <!--Ajax获得公司地址-->
+    $("#company_id").change(function () {
+        var company_id = $(this).val();
+        if (company_id > 0) {
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('Admin/Company/ajaxGetCp', '', FALSE); ?>/company_id/" + company_id,
+                dataType: "json",
+                success: function (data) {
+                    $("#address").empty();
+                    var html = '<input type="text" id="address" name="address" class="form-control" value="' + data["address"] + '">';
+                    $("#address").html(html);
+                }
+            });
+        } else
+            $("#department_id").html("");
+    });
+<!--Date picker-->
+    $('#datepicker').datepicker({
+        autoclose: true,
+        language: 'zh-CN'
+    });
+</script>
 
 <div class="wrapper"></div>
         <footer class="main-footer">

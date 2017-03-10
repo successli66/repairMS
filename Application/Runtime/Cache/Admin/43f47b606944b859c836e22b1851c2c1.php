@@ -62,6 +62,7 @@
         <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
@@ -637,7 +638,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Part/add/p/1.html" method="POST">
+        <form class="form" action="/index.php/Part/add/project_id/001.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
@@ -729,7 +730,7 @@
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('partList?p='.I('get.p'));?>"><i class="fa fa-times"> 取消添加</i></a>
+                            <a type="button" class="btn btn-default" href="<?php echo U('partList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取消添加</i></a>
                         </div>
                     </div>
                 </div>

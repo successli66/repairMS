@@ -62,6 +62,7 @@
         <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
@@ -641,7 +642,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Project/add/p/4.html" method="POST">
+        <form class="form" action="/index.php/Project/add.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
