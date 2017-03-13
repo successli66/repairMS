@@ -171,5 +171,22 @@ class UserController extends BaseController {
         }
         $this->error($model->getError());
     }
+    
+    public function addressBook() {
+        $cpModel = M('Company');
+        $cpData = $cpModel->select();
+        $this->assign(array(
+            'cpData' => $cpData,
+        ));
+//        $dpModel = D('Department');
+//        $dpData = $dpModel->getDpByCpId();
+        $companyId = session('company')['id'];
+        $model = D('User');
+        $data = $model->getUserByCp($companyId);
+        $this->assign('data', $data['data']);
+        $this->assign('page', $data['page']);
+        var_dump($data);
+        $this->display();
+    }
 
 }
