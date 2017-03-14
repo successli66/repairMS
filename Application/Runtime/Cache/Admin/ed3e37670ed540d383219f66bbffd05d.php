@@ -62,6 +62,7 @@
         <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
@@ -509,7 +510,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/addressBook'); ?>">
                     <i class="fa fa-address-book-o"></i> 
                     <span>通讯录</span>
                 </a>
@@ -534,7 +535,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo U('Admin/Part/partList'); ?>">
                             <i class="fa fa-puzzle-piece"></i>配件库
                         </a>
                     </li>
@@ -638,7 +639,7 @@
             
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/User/userEdit/id/10/p/3.html" method="post">
+                <form action="/index.php/User/userEdit/id/1.html" method="post">
                     <div class="row">
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">

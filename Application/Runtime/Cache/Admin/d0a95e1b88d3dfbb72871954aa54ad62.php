@@ -120,6 +120,12 @@
             
             
 
+<!--多选下拉框-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/Public/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="/Public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -627,8 +633,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            用户管理
-            <small>User Manage</small>
+            通讯录
+            <small>Address Book</small>
         </h1>
     </section>
     <section class="content">
@@ -636,22 +642,26 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header bg-info">
-                        <h3 class="box-title">部门列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('User/userAdd?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
+                        <h3 class="box-title">用户列表</h3> 
                     </div>
                     <div class="col-md-12">
                         <div class="box-body">
-                            <form action="/index.php/Admin/User/userList" method="GET">
+                            <form action="/index.php/User/addressBook/p/1.html" method="GET">
                                 <div class="form-group col-md-6">    
-                                    <select class="form-control" id="company_id" name="company_id" style="width: 100%;">
-                                        <option value="">请选择公司名称...</option>
+                                    <select class="form-control selectpicker" id="company_id" name="company_id" data-live-search="true" style="width: 100%;">
+                                        <option value="">请选择公司</option>
                                         <?php foreach($cpData as $k=>$v):?>
                                         <option value="<?php echo $v['id'];?>" <?php if(I('get.company_id')==$v['id']) echo "selected='selected'";?>><?php echo $v['company_name'];?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>
+<!--                                <div class="form-group col-md-4">    
+                                    <select class="form-control" id="department_id" name="department_id" data-live-search="true" style="width: 100%;">
+                                        <option value="">请选择部门</option>
+                                    </select>
+                                </div>-->
                                 <div class="input-group  col-md-6">
-                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入用户信息...">
+                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" value="<?php echo I('get.search_name');?>" placeholder="输入用户信息...">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
                                     </span>
@@ -666,13 +676,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">编 号</th>
-                                    <th class="text-center">用 户 名</th>
                                     <th class="text-center">姓 名</th>
-                                    <th class="text-center">工 号</th>
                                     <th class="text-center">电 话</th>
                                     <th class="text-center">公 司</th>
-                                    <th class="text-center">部 门</th>  
-                                    <th class="text-center">职 务</th>
+                                    <th class="text-center">部 门</th>
                                     <th class="text-center">操 作</th>
                                 </tr>
                             </thead>
@@ -680,16 +687,12 @@
                                 <?php foreach($data as $k => $v):?>
                                 <tr>
                                     <td><?php echo $v['id'];?></td>
-                                    <td><?php echo $v['username'];?></td>
                                     <td><?php echo $v['real_name'];?></td>
-                                    <td><?php echo $v['work_number'];?></td>
                                     <td><?php echo $v['telephone'];?></td>
                                     <td><?php echo $v['company_name'];?></td>
                                     <td><?php echo $v['department_name'];?></td>
-                                    <td><?php echo $v['post'];?></td>
                                     <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('userEdit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('userDelet?id='.$v['id']);?>">删除</a>
+                                        <a class="btn btn-success btn-sm" href="<?php echo U('userInfo?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -700,7 +703,8 @@
                         <div class='pages pull-right'>
                             <?php if(preg_match('/\d/', $page)): ?>  
                             <?php echo $page; ?>
-                            <?php endif; ?></div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>    
@@ -709,13 +713,38 @@
 </div>
 
 <script>
-    $('#deleteBtn').click(function () {
-        if (confirm('确定删除该用户吗？')) {
-            return true;
-        } else {
-            return false;
-        }
+    //下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto',
+
+        });
     });
+//    $("#company_id").change(function () {
+//        var company_id = $(this).val();
+//        if (company_id > 0) {
+//            $.ajax({
+//                type: "GET",
+//                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
+//                dataType: "json",
+//                success: function (data) {
+//                    $("#department_id").empty();
+//                    var html = '<option value="">请选择部门</option>';
+//                    $(data).each(function (k, v) {
+//                        if (v.id == "<?php echo I('get.department_id');?>") {
+//                            html += '<option selected value="' + v.id + '">' + v.department_name + '</option>';
+//                        } else {
+//                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
+//                        }
+//                    });
+//                    $("#department_id").html(html);
+//                }
+//            });
+//        } else
+//            $("#department_id").html("");
+//    });
 </script>
 
 

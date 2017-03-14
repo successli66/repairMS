@@ -178,14 +178,10 @@ class UserController extends BaseController {
         $this->assign(array(
             'cpData' => $cpData,
         ));
-//        $dpModel = D('Department');
-//        $dpData = $dpModel->getDpByCpId();
-        $companyId = session('company')['id'];
         $model = D('User');
-        $data = $model->getUserByCp($companyId);
+        $data = $model->search();
         $this->assign('data', $data['data']);
         $this->assign('page', $data['page']);
-        var_dump($data);
         $this->display();
     }
 

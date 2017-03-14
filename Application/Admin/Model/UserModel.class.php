@@ -6,8 +6,8 @@ use Think\Model;
 
 class UserModel extends Model {
 
-    protected $insertFields = array('username', 'pw', 'rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id','post', 'verify');
-    protected $updateFields = array('id', 'username', 'pw','rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id','post');
+    protected $insertFields = array('username', 'pw', 'rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id', 'post', 'verify');
+    protected $updateFields = array('id', 'username', 'pw', 'rpw', 'real_name', 'work_number', 'telephone', 'company_id', 'department_id', 'post');
     //为登录表单定义一个验证规则
     public $_validate = array(
         array('username', 'require', '用户名不能为空！', 1, 'regex', 3),
@@ -22,7 +22,6 @@ class UserModel extends Model {
         array('verify', 'require', '验证码不能为空！', 1),
         array('verify', 'check_vercode', '验证码错误！', 1, 'callback'),
     );
-    
     public $_editPw_validate = array(
         array('pw', 'require', '密码不能为空！', 1, 'regex', 3),
         array('pw', '6,32', '密码长度为6到32个字符！', 1, 'length', 3),
@@ -79,10 +78,10 @@ class UserModel extends Model {
             $map['a.department_id'] = array('eq', $department_id);
         }
         $search_name = I('get.search_name');
-        if($search_name){//模糊查询
-            $where['a.username'] = array('like',"%$search_name%");
-            $where['a.real_name'] = array('like',"%$search_name%");
-            $where['a.work_number'] = array('like',"%$search_name%");
+        if ($search_name) {//模糊查询
+            $where['a.username'] = array('like', "%$search_name%");
+            $where['a.real_name'] = array('like', "%$search_name%");
+            $where['a.work_number'] = array('like', "%$search_name%");
             $where['_logic'] = 'or';
             $map['_complex'] = $where;
         }
@@ -105,14 +104,23 @@ class UserModel extends Model {
                 ))->select();
         return $uData;
     }
-    
-    public function getUserByCp($company_id){
-        $uData = $this->where(array(
-                    'company_id' => $company_id
-                ))->select();
-        return $uData;
+
+    public function getUserByCp($company_id) {
+        $where['a.company_id'] = $company_id; //需加上a.，否则department表中也有company_id列，违反完整性约束
+        $count = $this->alias('a')->where($where)->count();
+        $page = getpage($count, $pageSize);
+        $data['page'] = $page->show();
+        $data['data'] = $this->alias('a')
+                ->field('a.id,a.real_name,a.telephone,b.company_name,c.department_name')
+                ->join('LEFT JOIN __COMPANY__ b ON a.company_id=b.id')
+                ->join('LEFT JOIN __DEPARTMENT__ c ON a.department_id=c.id')
+                ->where($where)
+                ->group('a.id')
+                ->limit($page->firstRow . ',' . $page->listRows)
+                ->select();
+        return $data;
     }
-    
+
     //添加用户前密码加密
     protected function _before_insert(&$data, $option) {
         $data['pw'] = md5($data['pw']);
