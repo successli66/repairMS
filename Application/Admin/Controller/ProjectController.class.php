@@ -75,7 +75,7 @@ class ProjectController extends BaseController {
                 'department_name' => session('department')['department_name']
             );
         }
-        $this->assign("uData", $uData);
+        $this->assign("uData", $uData['data']);
         $this->assign("dpData", $dpData);
         $this->display();
     }
@@ -117,7 +117,7 @@ class ProjectController extends BaseController {
         }
         $this->assign('data', $data);
         $this->assign('dpData', $dpData);
-        $this->assign('uData', $uData);
+        $this->assign('uData', $uData['data']);
         $this->display();
     }
 

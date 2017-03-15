@@ -516,7 +516,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/addressBook'); ?>">
                     <i class="fa fa-address-book-o"></i> 
                     <span>通讯录</span>
                 </a>

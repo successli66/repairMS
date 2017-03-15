@@ -62,6 +62,7 @@
         <script src="/Public/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="/Public/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/Public/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="/Public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- Slimscroll -->
@@ -74,16 +75,12 @@
         <script src="/Public/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="/Public/dist/js/demo.js"></script>
-        <!-- Select2 -->
-        <script src="/Public/plugins/select2/select2.full.min.js"></script>
         <!-- InputMask -->
         <script src="/Public/plugins/input-mask/jquery.inputmask.js"></script>
         <script src="/Public/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="/Public/plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <!-- bootstrap time picker -->
         <script src="/Public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-        <!-- iCheck 1.0.1 -->
-        <script src="/Public/plugins/iCheck/icheck.min.js"></script>
         <!--joliAdmin时钟js-->
         <script src="/Public/other/JoliAdmin/time.js"></script>
 
@@ -118,9 +115,9 @@
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
+        <div class="wrapper">        
 
-
+            
             
 
 <!--头部-->
@@ -513,7 +510,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/addressBook'); ?>">
                     <i class="fa fa-address-book-o"></i> 
                     <span>通讯录</span>
                 </a>
@@ -538,7 +535,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo U('Admin/Part/partList'); ?>">
                             <i class="fa fa-puzzle-piece"></i>配件库
                         </a>
                     </li>
@@ -840,6 +837,5 @@
 
 
         </div>
-
     </body>
 </html>

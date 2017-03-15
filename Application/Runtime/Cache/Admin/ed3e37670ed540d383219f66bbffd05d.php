@@ -635,11 +635,11 @@
         <div class="box box-info">
             <div class="box-header bg-info">
                 <h3 class="box-title">修改信息</h3>
-                <a class="btn btn-info pull-right btn-sm" href="<?php echo U('userEditPw',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-key"></i> 修改密码</a>
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('userList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
             
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/User/userEdit/id/1.html" method="post">
+                <form action="/index.php/User/userEdit/id/2.html" method="post">
                     <div class="row">
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">

@@ -68,6 +68,7 @@
                                     <td><?php echo $v['department_name'];?></td>
                                     <td><?php echo $v['post'];?></td>
                                     <td class="text-center">
+                                        <a class="btn btn-info btn-sm" href="<?php echo U('userInfo?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
                                         <a class="btn btn-success btn-sm" href="<?php echo U('userEdit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
                                         <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('userDelet?id='.$v['id']);?>">删除</a>
                                     </td>

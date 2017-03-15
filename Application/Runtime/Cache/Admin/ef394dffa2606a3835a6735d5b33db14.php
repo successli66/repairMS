@@ -520,7 +520,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/addressBook'); ?>">
                     <i class="fa fa-address-book-o"></i> 
                     <span>通讯录</span>
                 </a>
@@ -647,7 +647,7 @@
                 <h3 class="box-title">项目修改</h3> 
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/Project/edit/id/001.html" method="POST">
+                <form action="/index.php/Project/edit/id/002.html" method="POST">
                     <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
                     <div class="row">
                         <div class="col-md-6">
