@@ -120,16 +120,6 @@
             
             
 
-<!--多选下拉框-->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="/Public/plugins/bootstrap-select/css/bootstrap-select.min.css">
-<!-- Latest compiled and minified JavaScript -->
-<script src="/Public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
-<!-- 编辑器配置文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
-
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -637,100 +627,100 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            维修项目信息
-            <small>Project Information</small>
+            用户信息
+            <small>User Information</small>
         </h1>
     </section>
     <section class="content">
         <div class="box box-info">
             <div class="box-header bg-info">
-                <h3 class="box-title">项目修改</h3> 
+                <h3 class="box-title">信息详情</h3> 
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('addressBook?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
+            
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/Project/edit/id/001.html" method="POST">
-                    <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label> 项目名</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-header"></i>
-                                    </div>
-                                    <input type="text" name='project_name' class="form-control" value="<?php echo $data['project_name']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>所属部门</label>
-                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
-                                    <?php foreach($dpData as $k=>$v):?>
-                                    <option <?php if($data['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
+                <div class="row">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" src="/Public/image/logo.png" alt="User profile picture">
+                        <h3 class="profile-username text-center"><?php echo $data['real_name'];?></h3>
+                        <p class="text-muted text-center"><?php echo $data['post'];?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> 用户名</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['username']?>" disabled>
+                            </div> 
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>维修团队</label> 
-                                <select class="form-control selectpicker" name="team[]" multiple data-live-search="true">
-                                    <?php foreach($uData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$data['team'])) echo selected;?>><?php echo $v['real_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>维修电话</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <input type="text" name='phone' class="form-control" value="<?php echo $data['phone']?>">
-                                </div> 
+
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['real_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>工号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sort-numeric-asc"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['work_number']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['telephone'];?>" disabled>
                             </div> 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>项目描述</label>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>公司</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-bank"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $cpData['company_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>部门</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sitemap"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $dpData['department_name']?>" disabled>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>职务</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['post'];?>" disabled>
+                            </div> 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="box-body">   
-                            <div class="form-group col-md-12">  
-                                <div class="text-center">
-                                    <textarea id="descr" name="descr" ><?php echo $data['descr'];?></textarea>
-
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                    <!--确认-->
-                    <div class="row">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('projectList?p='.I('get.p'));?>"><i class="fa fa-times"> 取消修改</i></a>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>        
     </section>
 </div>
 
-<script>
-    //多选下拉框JS
-    $(window).on('load', function () {
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-            selectedText: 'cat',
-            size: 'auto',
-
-        });
-    });
-
-<!-- 实例化编辑器 -->
-    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
-</script>
 
 <div class="wrapper"></div>
         <footer class="main-footer">

@@ -41,5 +41,11 @@ class EquipmentModel extends Model{
                 ->limit($page->firstRow . ',' . $page->listRows)->select();
         return $data;
     }
+    
+    public function getEqByPj($pjId){
+        return $this->where(array(
+            'project_id'=>array('eq',$pjId)
+        ))->select();
+    }
 }
 

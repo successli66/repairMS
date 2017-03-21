@@ -90,10 +90,6 @@ class UserController extends BaseController {
         $cpData = $cpModel->find($data['company_id']);
         $dpModel = M('Department');
         $dpData = $dpModel->find($data['department_id']);
-        $return_url = session('return_url'); 
-        if(!$return_url){
-            session('return_url',U('userList','',FALSE)) ;
-        }
         $this->assign(array(
             'data' => $data,
             'cpData' => $cpData,
@@ -177,8 +173,6 @@ class UserController extends BaseController {
     }
     
     public function addressBook() {
-        $return_url = U('addressBook','',FALSE);
-        session('return_url',$return_url);
         $cpModel = M('Company');
         $cpData = $cpModel->select();
         $this->assign(array(
@@ -191,4 +185,19 @@ class UserController extends BaseController {
         $this->display();
     }
 
+    public function addressBookInfo() {
+        $id = I('get.id');
+        $model = M('User');
+        $data = $model->find($id);
+        $cpModel = M('Company');
+        $cpData = $cpModel->find($data['company_id']);
+        $dpModel = M('Department');
+        $dpData = $dpModel->find($data['department_id']);
+        $this->assign(array(
+            'data' => $data,
+            'cpData' => $cpData,
+            'dpData' => $dpData,
+        ));
+        $this->display();
+    }
 }

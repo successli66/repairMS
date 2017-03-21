@@ -1,5 +1,11 @@
 <layout name='common/layout' />
 
+<!--多选下拉框-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="__PUBLIC__/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+
 <include file='common/header' />
 <include file='common/nav' />
 
@@ -30,14 +36,21 @@
                             <!--选择所属项目-->
                             <div class="form-group">
                                 <label>问题属性</label> 
-                                <select class="form-control" style="width: 100%;">
-                                    <option selected="selected">请选择...</option>
-                                    <option>Alaska</option>
-                                    <option>California</option>
-                                    <option>Delaware</option>
-                                    <option>Tennessee</option>
-                                    <option>Texas</option>
-                                    <option>Washington</option>
+                                <select class="form-control selectpicker" id="project_id" name="project_id" data-live-search="true" style="width: 100%;" placeholder="请选择维修项目">
+                                    <option value=''>请选择维修项目</option>
+                                    <?php foreach($prData as $k=>$v):?>
+                                    <option value="<?php echo $v['id']?>"><?php echo $v['project_name']?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                             <!--选择所属项目-->
+                            <div class="form-group">
+                                <label>问题属性</label> 
+                                <select class="form-control selectpicker" id="project_id" name="project_id" multiple data-live-search="true" style="width: 100%;" placeholder="请选择设备编号">
+                                    <option value=''>请选择设备编号</option>
+                                    <?php foreach($prData as $k=>$v):?>
+                                    <option value="<?php echo $v['id']?>"><?php echo $v['project_name']?></option>
+                                    <?php endforeach;?>
                                 </select>
                             </div>
                             <!--报修人-->
@@ -50,6 +63,9 @@
                                     <input type="text" class="form-control" value="<?php echo session('user')['real_name']?>" disabled>
                                 </div> 
                             </div>
+                            
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>报修单位</label>
                                 <div class="input-group">
@@ -59,8 +75,6 @@
                                     <input type="text" class="form-control" value="<?php echo session('company')['company_name']?>" disabled>
                                 </div> 
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <!--维修地址-->
                             <div class="form-group">
                                 <label>维修地址</label>
@@ -109,7 +123,6 @@
                         <div class="text-center">
                             <a class="btn btn-default"><i class="fa fa-send"></i>  确认报修</a>
                             <a href="<?php echo U('Index/index');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消报修</a>
-                        
                         </div>
                     </div>
                 </div>
@@ -126,5 +139,37 @@
 <script type="text/javascript" src="__PUBLIC__/plugins/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
+        //多选下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto',
+
+        });
+    });
+    //uEditor
     var ue = UE.getEditor('desc', {initialFrameWidth: "100%", initialFrameHeight: 400});
+    //ajax获得设备编号
+     $("#project_id").change(function () {
+        var project_id = $(this).val();
+        if (project_id > 0) {
+               
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('Admin/Equipment/ajaxGetEq', '', FALSE); ?>/project_id/" + project_id,
+                dataType: "json",
+                success: function (data) { 
+                    alert(1111);
+                    $("#equipment_id").empty();
+                    var html = '';
+                    $(data).each(function (k, v) {
+                        html += '<option value="' + v.id + '">' + v.serial_number + '</option>';
+                    });
+                    $("#department_id").html(html);
+                }
+            });
+        } else
+            $("#department_id").html("");
+    });
 </script>
