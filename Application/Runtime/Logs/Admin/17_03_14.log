@@ -659,3 +659,6 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
 INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
 
+[ 2017-03-14T14:10:48+08:00 ] 127.0.0.1 /index.php/Equipment/equipmentList/project_id/001.html
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.company_id' in 'on clause'
+

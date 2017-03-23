@@ -520,7 +520,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="index.html">
+                <a href="<?php echo U('Admin/User/addressBook'); ?>">
                     <i class="fa fa-address-book-o"></i> 
                     <span>通讯录</span>
                 </a>
@@ -662,7 +662,7 @@
                             </div>
                             <div class="form-group">
                                 <label>所属部门</label>
-                                <select class="form-control" id='department_id' name="department_id" style="width: 100%;">
+                                <select class="form-control selectpicker" id='department_id' name="department_id" data-live-search="true" style="width: 100%;">
                                     <?php foreach($dpData as $k=>$v):?>
                                     <option <?php if($data['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
                                     <?php endforeach;?>
@@ -674,7 +674,7 @@
                                 <label>维修团队</label> 
                                 <select class="form-control selectpicker" name="team[]" multiple data-live-search="true">
                                     <?php foreach($uData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$data['team'])) echo selected;?>><?php echo $v['real_name'];?></option>
+                                    <option  <?php if(in_array($v['id'],$data['team'])) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['real_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
@@ -723,8 +723,7 @@
         $('.selectpicker').selectpicker({
             style: 'btn-info',
             selectedText: 'cat',
-            size: 'auto',
-
+            size: 'auto'
         });
     });
 
