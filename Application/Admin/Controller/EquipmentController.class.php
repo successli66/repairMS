@@ -37,7 +37,7 @@ class EquipmentController extends BaseController {
             if ($model->create(I('post.'), 1)) {
                 $_POST['descr'] = removeXSS($_POST['descr']); //防止xss攻击
                 if ($model->add($_POST)) {
-                    $this->success('添加成功！', U('equipmentList', array('project_id'=>I('get.project_id'),'p' => I('get.p', 1))), 1);
+                    $this->success('添加成功！', U('equipmentList', array('project_id' => I('get.project_id'), 'p' => I('get.p', 1))), 1);
                     exit();
                 }
             }
@@ -57,8 +57,8 @@ class EquipmentController extends BaseController {
         if (IS_POST) {
             if ($model->create(I('post.'), 2)) {
                 $_POST['descr'] = removeXSS($_POST['descr']); //防止xss攻击 
-                if ($model->save($_POST)) {  
-                    $this->success('修改成功！', U('equipmentList', array('project_id'=>I('get.project_id'),'p' => I('get.p', 1))), 1);
+                if ($model->save($_POST)) {
+                    $this->success('修改成功！', U('equipmentList', array('project_id' => I('get.project_id'), 'p' => I('get.p', 1))), 1);
                     exit();
                 }
             }
@@ -80,7 +80,7 @@ class EquipmentController extends BaseController {
         $id = I('get.id');
         $model = D('Equipment');
         if ($model->delete($id)) {
-            $this->success('删除成功！', U('equipmentList',array('project_id'=>I('get.project_id'))), 1);
+            $this->success('删除成功！', U('equipmentList', array('project_id' => I('get.project_id'))), 1);
             exit;
         } else {
             $this->error($model->getError());
@@ -107,7 +107,12 @@ class EquipmentController extends BaseController {
         $pdData['dpData'] = $dpData;
         return $pdData;
     }
-    
-    
+
+    public function ajaxGetEq() {
+        $projectId = I('get.project_id');
+        $eqModel = D('Equipment');
+        $eqData = $eqModel->getEqByPj($projectId);
+        echo json_encode($eqData);
+    }
 
 }

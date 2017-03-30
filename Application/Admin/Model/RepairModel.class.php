@@ -3,7 +3,7 @@
 namespace Admin\Model;
 use Think\Model;
 
-class RepairModel extends Model{
+class EquipmentModel extends Model{
     protected $insertFields = array('project_id', 'equipment_name','manufacturer', 'model', 'serial_number','install_date','address','descr');
     protected $updateFields = array('id', 'equipment_name','manufacturer', 'model', 'serial_number','install_date','address','descr');
     protected $_validate = array(

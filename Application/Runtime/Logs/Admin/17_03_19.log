@@ -1,0 +1,104 @@
+[ 2017-03-19T08:38:07+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000487s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000864s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.1283s ]
+
+[ 2017-03-19T08:38:25+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000451s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000828s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0516s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2017-03-19T09:00:45+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000682s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001164s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = ''  [ RunTime:0.0149s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000737s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000816s ]
+
+[ 2017-03-19T09:00:47+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000980s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = ''  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000671s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000745s ]
+
+[ 2017-03-19T09:01:34+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000782s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001284s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = ''  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000838s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000922s ]
+
+[ 2017-03-19T09:03:19+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000626s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001013s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = ''  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000766s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000855s ]
+
+[ 2017-03-19T09:03:53+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000570s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000942s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = ''  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000586s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000660s ]
+
+[ 2017-03-19T09:04:31+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000546s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000907s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0003s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0003s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-19T09:04:45+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000639s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001044s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = ''  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000653s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000722s ]
+
+[ 2017-03-19T09:06:55+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001044s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = ''  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000558s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000632s ]
+
+[ 2017-03-19T09:07:19+08:00 ] 127.0.0.1 /index.php/admin/repair/index.html
+ERR: 非法操作:index
+
+[ 2017-03-19T09:12:11+08:00 ] 127.0.0.1 /index.php/admin/repair/overview.html
+ERR: 非法操作:overview
+

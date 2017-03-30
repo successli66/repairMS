@@ -635,6 +635,8 @@
         <div class="box box-info">
             <div class="box-header bg-info">
                 <h3 class="box-title">信息详情</h3> 
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('userList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
+            
             </div>
             <div class="box-body bg-info">
                 <div class="row">
