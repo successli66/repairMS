@@ -3,15 +3,25 @@
 namespace Admin\Model;
 use Think\Model;
 
-class EquipmentModel extends Model{
-    protected $insertFields = array('project_id', 'equipment_name','manufacturer', 'model', 'serial_number','install_date','address','descr');
-    protected $updateFields = array('id', 'equipment_name','manufacturer', 'model', 'serial_number','install_date','address','descr');
+class RepairModel extends Model{
+    protected $insertFields = array('project_id', 'title','equipment_id', 'descr', 'report_person','address','contact','phone');
+    protected $updateFields = array('id', 'project_id', 'title','equipment_id', 'descr', 'report_person','address','contact','phone');
     protected $_validate = array(
-        array('equipment_name', 'require', '配件名称不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('model', 'require', '型号不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('serial_number', 'require', '设备编号不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('serial_number','','设备编号不能重复',1,'unique',1),
+        array('title', 'require', '报修标题不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('project_id', 'require', '问题类别不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('equipment_id', 'check_equipment_id', '设备编号不能为空！', 1, 'callback'),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('address', 'require', '维修地址不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('contact', 'require', '联系人不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('phone', 'require', '电话不能为空！', 1, 'regex', 3),//1表示不管字段存不存在都验证，3表示新增、编辑都验证
     );
+    
+    protected function check_equipment_id($equipment_id){
+        if($equipment_id > 0){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
     public function search($pageSize = 15) {
         /*         * ************************************** 搜索 *************************************** */
@@ -42,10 +52,13 @@ class EquipmentModel extends Model{
         return $data;
     }
     
-    public function getEqByPj($pjId){
-        return $this->where(array(
-            'project_id'=>array('eq',$pjId)
-        ))->select();
+    protected function _before_insert(&$data, $options) {
+        $time = date('Y-m-d H:i:s',time());
+        $order_time = date('YmdHis') . rand(0,99);
+        $company_id = session('company')['id'];
+        $report_order = $company_id . $order_time;
+        $data['time'] = $time;
+        $data['report_order'] = $report_order;
     }
 }
 
