@@ -26,17 +26,21 @@ class RepairModel extends Model{
     public function search($pageSize = 15) {
         /*         * ************************************** 搜索 *************************************** */
         $where = array();
-        $company_id = I('get.company_id');
-        if($company_id){
-            $map['company_id'] = $company_id;
+        $repair_status = I('get.repair_status');
+        if($repair_status){
+            $map['repair_status'] = $repair_status;
         }
         $search_name = I('get.search_name');
-        $map['project_id'] = I('get.project_id');
         if($search_name){//模糊查询
-            $where['equipment_name'] = array('like',"%$search_name%");
-            $where['model'] = array('like',"%$search_name%");
-            $where['manufacturer'] = array('like',"%$search_name%");
-            $where['serial_number'] = array('like',"%$search_name%");
+            $where['title'] = array('like',"%$search_name%");
+            $where['equipment_id'] = array('like',"%$search_name%");
+            $where['repair_order'] = array('like',"%$search_name%");
+            $where['address'] = array('like',"%$search_name%");
+            $where['contact'] = array('like',"%$search_name%");
+            $where['phone'] = array('like',"%$search_name%");
+            $where['b.project_name'] = array('like',"%$search_name%");
+            $where['c.real_name'] = array('like',"%$search_name%");
+            $where['d.company_name'] = array('like',"%$search_name%");
             $where['_logic'] = 'or';
             $map['_complex'] = $where;
         }
@@ -45,8 +49,10 @@ class RepairModel extends Model{
         $page = getpage($count, $pageSize);
         $data['page'] = $page->show();
         /*         * ************************************ 取数据 ***************************************** */
-        $data['data'] = $this->alias('a')->field('a.*,b.id as company_id,b.company_name')
-                ->join('LEFT JOIN __COMPANY__ b ON a.company_id=b.id')
+        $data['data'] = $this->alias('a')->field('a.*,b.id as project_id,b.project_name,c.id as user_id,d.id as company_id,d.company_name')
+                ->join('LEFT JOIN __PROJECT__ b ON a.project_id=b.id')
+                ->join('LEFT JOIN __USER__ c ON a.report_persion_id=c.id')
+                ->join('LEFT JOIN __COMPANY__ d ON a.company_id=d.id')
                 ->where($map)
                 ->limit($page->firstRow . ',' . $page->listRows)->select();
         return $data;
@@ -59,6 +65,7 @@ class RepairModel extends Model{
         $report_order = $company_id . $order_time;
         $data['time'] = $time;
         $data['report_order'] = $report_order;
+        $data['repair_status'] = 0;
     }
 }
 
