@@ -8,8 +8,9 @@ class RepairController extends BaseController {
         if (IS_POST) {
             $model = D('Repair');
             if ($model->create(I('post.'), 1)) {
-                if ($model->add()) {
-                    $this->success('提交成功！', U('reportList'), 1);
+                $_POST['descr'] = removeXSS($_POST['descr']); //防止xss攻击
+                if ($model->add($_POST)) {//add()必须加$_POST,否则添加的ueditor内容不能正常显示
+                    $this->success('报修成功！', U('repairList'), 1);
                     exit();
                 }
             }
@@ -22,28 +23,51 @@ class RepairController extends BaseController {
     }
 
     public function repairList() {
-        $model = M('Repair');
-        $data = $model->select();
-        $this->assign(data, $data);
+        $order_time = date('YmdHis') . rand(10, 99);
+        $model = D('Repair');
+        $data = $model->search(2);
+        $this->assign(data, $data['data']);
+        $this->assign(page, $data['page']);
         $this->display();
     }
 
     public function search() {
         $model = D('Repair');
         $data = $model->search(15);
-        $this->assign('data', $data);
+        $this->assign('data', $data['data']);
+        $this->assign('page', $data['page']);
         $this->display('repairList');
+    }
+
+        public function info() {
+        $id = I('get.id');
+        $model = D('Repair');
+        $data = $model->findById($id);
+        $this->assign(array(
+            'data'=>$data,
+        ));
+        $this->display();  
+    }
+    
+    public function detail() {
+        $id = I('get.id');
+        $model = D('Repair');
+        $data = $model->findById($id);
+        $this->assign(array(
+            'data'=>$data,
+        ));
+        $this->display();      
     }
 
     public function edit() {
         $id = I('get.id');
         $model = D('Repair');
         $data = $model->find($id);
-        if ($data['repair_status'] == '0') {
+        if ($data['repair_status'] == '1') {
             $this->assign('data', $data);
             $this->display();
         } else {
-            $this->error('报修已处理，不允许修改！', U('reportList?p=' . I('get.p')), 1);
+            $this->error('报修已处理，不允许修改！', U('repairList?p=' . I('get.p')), 3);
         }
     }
 
@@ -53,11 +77,11 @@ class RepairController extends BaseController {
         $data = $model->find($id);
         if ($data['repair_status'] == '0') {
             if ($model->delete($id)) {
-                $this->success('删除成功！', U('reportList'), 1);
+                $this->success('删除成功！', U('repairList'), 1);
             }
             $this->error($model->getError());
         } else {
-            $this->error('报修已处理，不允许删除！', U('reportList?p=' . I('get.p')), 1);
+            $this->error('报修已处理，不允许删除！', U('repairList?p=' . I('get.p')), 1);
         }
     }
 

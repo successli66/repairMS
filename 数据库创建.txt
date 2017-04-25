@@ -106,6 +106,11 @@ contact varchar(20) not null comment '联系人',
 phone varchar(20) not null comment '电话',
 repair_status tinyint unsigned not null comment '维修状态',
 repair_order varchar(30) not null comment '维修单号',
+company_id smallint unsigned comment '公司表ID',
+appointment_time datetime comment '预约维修时间',
+repair_time datetime comment '维修时间',
+repaired_time datetime comment '维修完时间',
+end_time datetime comment '办结时间',
 primary key (id),
 key title(title),
 key project_id(project_id),
@@ -113,19 +118,31 @@ key report_person(report_person),
 key equipment_id(equipment_id),
 key repair_status(repair_status),
 key report_time(report_time),
-key repair_order(repair_order)
+key repair_order(repair_order),
+key company_id(company_id)
 )engine=InnoDB comment '报修表';
 
 create table rm_event(
 id int unsigned not null auto_increment comment 'ID',
 repair_id int unsigned not null comment '报修表ID',
-event_datetime datetime not null comment '事件时间',
+event_type varchar(1) not null comment '事件类型',
+event_name varchar(10) not null comment '事件名称',
+event_value varchar(50) comment '事件值',
+user_id smallint unsigned not null comment '操作人ID',
+event_time datetime not null comment '发生时间',
 descr text comment '事件描述',
-operator smallint unsigned not null comment '操作人',
-engineer smallint unsigned comment '维修人',
 primary key (id),
 key repair_id(repair_id)
-)engine=InnoDB comment '维修事件表';
+)engine=InnoDB comment '事件表';
+
+create table rm_modify(
+id int unsigned not null auto_increment comment 'ID',
+modify_item varchar(50) not null comment 'repair表中的列名',
+modify_name varchar(50) not null comment '列名说明',
+origin varchar(50) not null comment '原始值',
+modified varchar(50) not null comment '修改后值',
+primary key (id),
+)engine=InnoDB comment '修改记录表';
 
 create table rm_fee(
 id int unsigned not null auto_increment comment 'ID',
@@ -147,3 +164,5 @@ key repair_id(repair_id),
 key part_id(part_id),
 key fee_id(fee_id)
 )engine=InnoDB comment '配件用量表';
+
+

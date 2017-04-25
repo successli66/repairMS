@@ -426,7 +426,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="overview.html">
+                        <a href="<?php echo U('admin/repair/repairList'); ?>">
                             <i class="fa fa-info-circle"></i>维修总览
                         </a>
                     </li>

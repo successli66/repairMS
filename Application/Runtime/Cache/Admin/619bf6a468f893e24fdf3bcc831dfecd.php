@@ -120,10 +120,6 @@
             
             
 
-
-<!-- page -->
-<link rel="stylesheet" href="/Public/plugins/jQueryPager/page.css">
-
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -631,98 +627,154 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            维修记录
-            <small>Repair List</small>
+            报修信息
+            <small>Report Information</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header bg-info">
-                        <h3 class="box-title">维修列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Repair/report?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-6">
-                            <div class="box-body">
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='0') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=0');?>"><i class="fa fa-info-circle"></i> 总&nbsp&nbsp&nbsp&nbsp&nbsp览 </a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='1') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=1');?>"><i class="fa fa-send"></i> 新报修</a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='2') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=2');?>"><i class="fa fa-spinner"></i> 维修中</a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='3') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=3');?>"><i class="fa fa-wrench"></i> 已维修</a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='4') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=4');?>"><i class="fa fa-check"></i> 已办结</a>         
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <form action="/index.php/Admin/Repair/search" method="GET">
-                                <div class="box-body">
-                                    <div class="input-group margin-bottom">
-                                        <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入搜索信息...">
-                                        <span class="input-group-btn">
-                                            <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                        </span>
-                                    </div>        
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">报修详情</h3>    
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('info',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+            </div>
+            <div class="box-body bg-info">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> 维修单号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-paste"></i>
                                 </div>
-                            </form>
+                                <input type="text" class="form-control" value="<?php echo $data['repair_order'];?>">
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label> 维修状态</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-cogs"></i>
+                                </div>
+                                <?php if($data['repair_status'] == 1):?>
+                                <input type="text" class="form-control" value="<?php echo '新报修';?>">
+                                <?php endif;?>
+                                <?php if($data['repair_status'] == 2):?>
+                                <input type="text" class="form-control" value="<?php echo '新报修';?>">
+                                <?php endif;?> 
+                                <?php if($data['repair_status'] == 3):?>
+                                <input type="text" class="form-control" value="<?php echo '新报修';?>">
+                                <?php endif;?> 
+                                <?php if($data['repair_status'] == 4):?>
+                                <input type="text" class="form-control" value="<?php echo '新报修';?>">
+                                <?php endif;?>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>报修标题</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-header"></i>
+                                </div>
+                                <input name="title" type="text" class="form-control" value="<?php echo $data['title'];?>" >
+                            </div> 
+                        </div>
+                        <!--选择所属项目-->
+                        <div class="form-group">
+                            <label>所属项目</label> 
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-flag"></i>
+                                </div>
+                                <input name="title" type="text" class="form-control" value="<?php echo $data['project_name'];?>">
+                            </div> 
+                        </div>
+                        <!--选择所属项目-->
+                        <div class="form-group">
+                            <label>设备编号</label> 
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-sort-numeric-asc"></i>
+                                </div>
+                                <input name="title" type="text" class="form-control" value="<?php echo $data['serial_number'];?>">
+                            </div> 
+                        </div>
+                        <!--报修人-->
+                        <div class="form-group">
+                            <label>报修时间</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['report_time'];?>" >
+                            </div> 
                         </div>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">维修单号</th>
-                                    <th class="text-center">状态</th>
-                                    <th class="text-center">标题</th>
-                                    <th class="text-center">维修项目</th>
-                                    <th class="text-center">设备编号</th>
-                                    <th class="text-center">报修单位</th>
-                                    <th class="text-center">联系人</th>
-                                    <th class="text-center">联系电话</th>
-                                    <th class="text-center">报修时间</th>
-                                    <th class="text-center">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['repair_order'];?></td>
-                                    <?php if($v['repair_status'] == 1):?>
-                                        <td><small class="label bg-red">新报修</small></td>
-                                    <?php endif;?>
-                                    <?php if($v['repair_status'] == 2):?>
-                                        <td><small class="label bg-yellow">维修中</small></td>
-                                    <?php endif;?> 
-                                    <?php if($v['repair_status'] == 3):?>
-                                        <td><small class="label bg-blue">已维修</small></td>
-                                    <?php endif;?> 
-                                    <?php if($v['repair_status'] == 4):?>
-                                        <td><small class="label bg-green">已办结</small></td>
-                                    <?php endif;?>
-                                    <td><?php echo $v['title'];?></td>
-                                    <td><?php echo $v['project_name'];?></td>
-                                    <td><?php echo $v['serial_number'];?></td>
-                                    <td><?php echo $v['company_name'];?></td>
-                                    <td><?php echo $v['contact'];?></td>
-                                    <td><?php echo $v['phone'];?></td>
-                                    <td><?php echo $v['report_time'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('info?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a> 
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>报修人</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-telegram"></i>
+                                </div>
+                                <input type="text" class="form-control"  value="<?php echo $data['real_name'];?>">
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label>报修单位</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <input type="text" class="form-control" value="<?php echo $data['company_name'];?>">
+                            </div> 
+                        </div>
+                        <!--维修地址-->
+                        <div class="form-group">
+                            <label>维修地址</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-map"></i>
+                                </div>
+                                <input type="text" class="form-control" name="address" value="<?php echo $data['address'];?>">
+                            </div> 
+                        </div>
+                        <!--联系人-->
+                        <div class="form-group">
+                            <label>联系人</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <input type="text" class="form-control" name="contact" value="<?php echo $data['contact'];?>">
+                            </div> 
+                        </div>
+                        <!--电话-->
+                        <div class="form-group">
+                            <label>电话</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" class="form-control" name="phone" value="<?php echo $data['phone'];?>">
+                            </div> 
+                        </div>
                     </div>
                 </div>
-            </div>    
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>故障描述</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box-body">   
+                        <div class="col-md-12">  
+                            <div class="text-center">
+                                <?php echo $data['descr'];?>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
@@ -857,9 +909,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
-
-
 
 
         </div>

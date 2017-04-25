@@ -52,7 +52,7 @@ class ProjectController extends BaseController {
             if ($model->create(I('post.'), 1)) {
                 $_POST['team'] = implode(',', $_POST['team']);
                 $_POST['descr'] = removeXSS($_POST['descr']); //防止xss攻击
-                if ($id = $model->add($_POST)) {
+                if ($id = $model->add($_POST)) {//add()需要加$_POST,否则添加的ueditor内容不能正常显示
                     $this->success('添加成功！', U('projectList', array('p' => I('get.p', 1))), 1);
                     exit();
                 }

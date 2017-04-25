@@ -1,0 +1,55 @@
+[ 2017-04-21T07:25:58+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000666s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001108s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0500s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0259s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2017-04-21T07:33:19+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000539s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000941s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000599s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000691s ]
+
+[ 2017-04-21T07:35:20+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000660s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001056s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000681s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000763s ]
+
+[ 2017-04-21T07:35:41+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000648s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001066s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000694s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000781s ]
+
+[ 2017-04-21T07:57:59+08:00 ] 127.0.0.1 /index.php/Repair/edit/id/11/p/1.html
+ERR: 模板不存在:./Application/Admin/View/Repair/edit.html
+
+[ 2017-04-21T17:10:27+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000724s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001207s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0076s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0031s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0027s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0492s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0011s ]
+

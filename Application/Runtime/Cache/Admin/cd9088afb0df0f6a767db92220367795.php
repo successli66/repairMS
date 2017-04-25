@@ -120,9 +120,10 @@
             
             
 
-
-<!-- page -->
-<link rel="stylesheet" href="/Public/plugins/jQueryPager/page.css">
+<!-- 编辑器配置文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
 
 <!--头部-->
 <header class="main-header">
@@ -631,102 +632,164 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            维修记录
-            <small>Repair List</small>
+            配件信息
+            <small>Equipment Information</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header bg-info">
-                        <h3 class="box-title">维修列表</h3> 
-                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Repair/report?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
-                    </div>
-                    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">配件修改</h3> 
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('equipmentList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+
+            </div>
+            <div class="box-body bg-info">
+                <form action="/index.php/Equipment/edit/id/1/project_id/001.html" method="POST">
+                    <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
+                    <div class="row">
                         <div class="col-md-6">
-                            <div class="box-body">
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='0') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=0');?>"><i class="fa fa-info-circle"></i> 总&nbsp&nbsp&nbsp&nbsp&nbsp览 </a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='1') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=1');?>"><i class="fa fa-send"></i> 新报修</a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='2') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=2');?>"><i class="fa fa-spinner"></i> 维修中</a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='3') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=3');?>"><i class="fa fa-wrench"></i> 已维修</a>
-                                <a type="button" class="btn btn-<?php if(I('get.repair_status')=='4') echo 'info';else echo 'default' ;?>" href="<?php echo U('search?repair_status=4');?>"><i class="fa fa-check"></i> 已办结</a>         
+                            <div class="form-group">
+                                <label> 设备名称</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <input type="text" name="equipment_name" class="form-control" value="<?php echo $data['equipment_name'];?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>所属部门</label> 
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sitemap"></i>
+                                    </div>
+                                    <input type="text" class="form-control" value="<?php echo $dpData['department_name']?>" disabled>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>所属项目</label> 
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bookmark"></i>
+                                    </div>
+                                    <input type="text" class="form-control" value="<?php echo $pjData['project_name']?>" disabled>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 厂家</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bank"></i>
+                                    </div>
+                                    <input type="text" name="manufacturer" class="form-control" value="<?php echo $data['manufacturer']?>">
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label> 设备型号</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sort-alpha-asc"></i>
+                                    </div>
+                                    <input type="text" name="model" class="form-control"  value="<?php echo $data['model'];?>">
+                                </div> 
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <form action="/index.php/Admin/Repair/search" method="GET">
-                                <div class="box-body">
-                                    <div class="input-group margin-bottom">
-                                        <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入搜索信息...">
-                                        <span class="input-group-btn">
-                                            <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                        </span>
-                                    </div>        
-                                </div>
-                            </form>
+                        <div class="col-md-6"> 
+
+                            <div class="form-group">
+                                <label> 设备编号</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-sort-numeric-asc"></i>
+                                    </div>
+                                    <input type="text" name="serial_number" class="form-control" value="<?php echo $data['serial_number'];?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 安放时间</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="install_date" class="form-control" id="datepicker" value="<?php echo $data['install_date'];?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>安放地点</label> 
+                                <select class="form-control" id='company_id' name="company_id" style="width: 100%;">   
+                                    <option value='0'>请选择安放地点</option>
+                                    <?php foreach($cpData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if($data['company_id']==$v['id']) echo 'selected';?>><?php echo $v['company_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label> 详细地址</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-map"></i>
+                                    </div>
+                                    <div id="address">
+                                        <input type="text" name="address" class="form-control" value="<?php echo $data['address'];?>">
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">维修单号</th>
-                                    <th class="text-center">状态</th>
-                                    <th class="text-center">标题</th>
-                                    <th class="text-center">维修项目</th>
-                                    <th class="text-center">设备编号</th>
-                                    <th class="text-center">报修单位</th>
-                                    <th class="text-center">联系人</th>
-                                    <th class="text-center">联系电话</th>
-                                    <th class="text-center">报修时间</th>
-                                    <th class="text-center">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['repair_order'];?></td>
-                                    <?php if($v['repair_status'] == 1):?>
-                                        <td><small class="label bg-red">新报修</small></td>
-                                    <?php endif;?>
-                                    <?php if($v['repair_status'] == 2):?>
-                                        <td><small class="label bg-yellow">维修中</small></td>
-                                    <?php endif;?> 
-                                    <?php if($v['repair_status'] == 3):?>
-                                        <td><small class="label bg-blue">已维修</small></td>
-                                    <?php endif;?> 
-                                    <?php if($v['repair_status'] == 4):?>
-                                        <td><small class="label bg-green">已办结</small></td>
-                                    <?php endif;?>
-                                    <td><?php echo $v['title'];?></td>
-                                    <td><?php echo $v['project_name'];?></td>
-                                    <td><?php echo $v['serial_number'];?></td>
-                                    <td><?php echo $v['company_name'];?></td>
-                                    <td><?php echo $v['contact'];?></td>
-                                    <td><?php echo $v['phone'];?></td>
-                                    <td><?php echo $v['report_time'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('info?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a> 
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>配件描述</label>
+                        </div>
                     </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?></div>
+                    <div class="row">
+                        <div class="box-body col-md-12">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <textarea id="descr" name="descr"><?php echo $data['descr'];?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
                     </div>
-                </div>
-            </div>    
-        </div>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('partList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取消修改</i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>        
     </section>
 </div>
 
+<script>
+<!-- 实例化编辑器 -->
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+    <!--Ajax获得公司地址-->
+    $("#company_id").change(function () {
+        var company_id = $(this).val();
+        if (company_id > 0) {
+            $.ajax({
+                type: "GET",
+                url: "<?php echo U('Admin/Company/ajaxGetCp', '', FALSE); ?>/company_id/" + company_id,
+                dataType: "json",
+                success: function (data) {
+                    $("#address").empty();
+                    var html = '<input type="text" id="address" name="address" class="form-control" value="' + data["address"] + '">';
+                    $("#address").html(html);
+                }
+            });
+        } else
+            $("#department_id").html("");
+    });
+<!--Date picker-->
+    $('#datepicker').datepicker({
+        autoclose: true,
+        language: 'zh-CN'
+    });
+</script>
 
 <div class="wrapper"></div>
         <footer class="main-footer">
@@ -857,9 +920,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
-
-
 
 
         </div>
