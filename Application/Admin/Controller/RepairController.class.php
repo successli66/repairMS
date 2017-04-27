@@ -47,12 +47,44 @@ class RepairController extends BaseController {
         }
         if ($data['repair_status'] == 2) {
             $data['next'] = 'repaired';
+            $evModel = M('event');
+            $startData = $evModel->where(array(
+                        'repair_id' => $id,
+                        'event_type' => 1,
+                    ))->find();
+            $evData = $evModel->alias('a')
+                            ->field('a.*,b.real_name')
+                            ->join('LEFT JOIN __USER__ b ON a.user_id=b.id')
+                            ->where(array(
+                                'a.repair_id' => $id,
+                                'a.event_type' => array('in', [1, 2]),
+                            ))->order('event_time asc')->select();
+            foreach ($evData as $k => &$v) {
+                if ($v['event_type'] == 1) {
+                    $uId = explode(',', $v['event_value']);
+                    foreach ($uId as $k1 => $v1) {
+                        $uModel = M('User');
+                        $uData = $uModel->find($v1);
+                        $v['repair_user'][] = $uData;
+                    }
+                }
+                if ($v['event_type'] == 2) {
+                    $modId = explode(',', $v['event_value']);
+                    foreach ($modId as $k1 => $v1) {
+                        $modModel = M('modify');
+                        $modData = $modModel->find($v1);
+                        $v['modify'][] = $modData;
+                    }
+                }
+            }
         }
         if ($data['repair_status'] == 3) {
             $data['next'] = 'end';
         }
         $this->assign(array(
             'data' => $data,
+            'startData' => $startData,
+            'evData' => $evData, //三维数组
         ));
         $this->display();
     }
@@ -103,11 +135,9 @@ class RepairController extends BaseController {
                         $this->success('保存成功！', U('info', array('id' => I('get.id'), 'p' => I('get.p'))), 0);
                         exit();
                     }
-                } else {
-                    $this->error($model->getError());
                 }
-                $this->error($evModel->getError());
             }
+            $this->error($model->getError());
         }
         $team = explode(',', $pjData['team']);
         $uModel = M('User');
@@ -133,7 +163,8 @@ class RepairController extends BaseController {
         if ($evModel->add($event)) {
             return TRUE;
         } else {
-            
+            $this->error($evModel->getError());
+            return FALSE;
         }
     }
 

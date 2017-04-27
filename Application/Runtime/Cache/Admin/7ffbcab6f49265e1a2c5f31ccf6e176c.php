@@ -685,7 +685,7 @@
                             <i class="fa fa-angle-double-right" style="color: green"></i>
                             <i class="fa fa-angle-double-right" style="color: green"></i>
                             <h5 class="text-green">维修中</h5>
-                            <h5 class="text-green"><?php echo $data['report_time'];?></h5>
+                            <h5 class="text-green"><?php echo $startData['event_time'];?></h5>
                         </div>
                         <?php endif;?>
                         <?php if(in_array($data['repair_status'],array(3,4))):?>
@@ -744,45 +744,55 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- END timeline item -->
-                            <!-- timeline time label -->
+
+                            
+                            <!--接报维修，安排维修人员-->
+                            <?php foreach($evData as $k=>$v):?>
+                            <?php if($v['event_type'] == 1):?>
                             <li class="time-label">
                                 <span class="bg-yellow">
-                                    <?php echo $data['report_time']?>
+                                    <?php echo $v['event_time']?>
                                 </span>
                             </li>
-                            <!-- /.timeline-label -->
-                            <!-- 接报维修中 -->
                             <li>
                                 <i class="fa fa-spinner bg-yellow"></i>
                                 <div class="timeline-item">
-                                    <h3 class="timeline-header"><a href="#"><?php echo $data['real_name']?></a> 接报，维修开始</h3>
+                                    <h3 class="timeline-header"><a href="#"><?php echo $v['real_name']?></a> 接报，维修开始</h3>
                                     <div class="timeline-body">
+                                        
+                                        <h5>预约维修时间：</h5>
+                                        <?php echo $data['appointment_time'];?>
                                         <h5>维修人员：</h5>
-                                        <a class="btn btn-default btn-sm" href="#"><?php echo $data['real_name']?></a>
-                                        <a class="btn btn-default btn-sm" href="#"><?php echo $data['real_name']?></a>
+                                        <?php foreach($v['repair_user'] as $k1=>$v1):?>
+                                        <a class="btn btn-default btn-sm" href="#"><?php echo $v1['real_name']?></a>
+                                        <?php endforeach;?>
                                     </div>
                                 </div>
                             </li>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <li>
-                                <i class="fa fa-pencil-square-o bg-yellow"></i>
-                                <div class="timeline-item">
-                                    <h3 class="timeline-header"><a href="#"><?php echo $data['real_name']?></a> 修改维修信息</h3>
-                                    <div class="timeline-body">
-                                        <h5>修改地方：</h5>
-                                        “报修单位”修改为：<?php echo $data['company_name'];?></br>
-                                        “维修地址”修改为：<?php echo $data['address'];?></br>
-                                    </div>
-                                </div>
-                            </li>
+                            <?php endif;?>
+                            <!--event_type=2方法较难实现，此方法不可取-->
+<!--                            <?php if($v['event_type'] == 2):?>
                             <li class="time-label">
-                                <span class="bg-blue">
-                                    <?php echo $data['report_time']?>
+                                <span class="bg-yellow">
+                                    <?php echo $v['event_time']?>
                                 </span>
                             </li>
-                            <!-- /.timeline-label -->
+                            <li>
+                                <i class="fa fa-spinner bg-yellow"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header"><a href="#"><?php echo $v['real_name']?></a> 接报，维修开始</h3>
+                                    <div class="timeline-body">
+                                        <h5>维修人员：</h5>
+                                        <?php foreach($v['repair_user'] as $k1=>$v1):?>
+                                        <a class="btn btn-default btn-sm" href="#"><?php echo $v1['real_name']?></a>
+                                        <?php endforeach;?>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php endif;?>-->
+                            <?php endforeach;?>
+                            
+                            
                             <!-- 维修完 -->
                             <li>
                                 <i class="fa fa-wrench bg-blue"></i>

@@ -21,3 +21,14 @@ SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
 SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0192s ]
 SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
 
+[ 2017-04-27T15:09:17+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.010001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.020002s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0000s ]
+
