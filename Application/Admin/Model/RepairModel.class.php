@@ -6,15 +6,17 @@ use Think\Model;
 
 class RepairModel extends Model {
 
-    protected $insertFields = array('project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone');
-    protected $updateFields = array('id', 'project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone');
+    protected $insertFields = array('project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone', 'appointment_time', 'repair_user_id', 'event_type', 'event_name', 'repair_id');
+    protected $updateFields = array('id', 'project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone', 'appointment_time', 'repair_user_id', 'event_type', 'event_name', 'repair_id');
     protected $_validate = array(
-        array('title', 'require', '报修标题不能为空！', 1, 'regex', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('project_id', 'require', '问题类别不能为空！', 1, 'regex', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('equipment_id', 'check_equipment_id', '设备编号不能为空！', 1, 'callback'), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('address', 'require', '维修地址不能为空！', 1, 'regex', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('contact', 'require', '联系人不能为空！', 1, 'regex', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('phone', 'require', '电话不能为空！', 1, 'regex', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('title', 'require', '报修标题不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('project_id', 'require', '问题类别不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('equipment_id', 'check_equipment_id', '设备编号不能为空！', 1, 'callback', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('address', 'require', '维修地址不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('contact', 'require', '联系人不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('phone', 'require', '电话不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('appointment_time', 'require', '预约时间不能为空！', 1, 'regex', 2), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('repair_user_id', 'check_repair_user_id', '维修人员不能为空！', 1, 'callback', 2), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
     );
 
     protected function check_equipment_id($equipment_id) {
@@ -23,6 +25,13 @@ class RepairModel extends Model {
         } else {
             return FALSE;
         }
+    }
+
+    protected function check_repair_user_id($repair_user_id) {
+        if (empty($repair_user_id)) {
+            return false;
+        }
+        return true;
     }
 
     public function search($pageSize = 15) {
@@ -78,6 +87,8 @@ class RepairModel extends Model {
     }
 
     protected function _before_insert(&$data, $options) {
+        var_dump($data);
+        die;
         $time = date('Y-m-d H:i:s', time());
         $order_time = date('YmdHis') . rand(10, 99);
         $company_id = session('company')['id'];
@@ -93,6 +104,16 @@ class RepairModel extends Model {
         $data['report_time'] = $time;
         $data['repair_order'] = $repair_order;
         $data['repair_status'] = 1;
+    }
+
+    protected function _before_update(&$data, $options) {
+        if (!empty($data['other_repair_user_id'])) {
+            $data['repair_user_id'] = array_merge($data['repair_user_id'], $data['other_repair_user_id']); //合并数组
+            $data['repair_user_id'] = array_unique($data['repair_user_id']);
+        }
+        $data['repair_user_id'] = implode(',', $data['repair_user_id']);
+        $data['repair_status'] = 2;
+        
     }
 
     public function findById($id) {

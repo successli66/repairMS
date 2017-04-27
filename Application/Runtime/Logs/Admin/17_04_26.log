@@ -1,0 +1,72 @@
+[ 2017-04-26T07:35:55+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000390s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000714s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.1213s ]
+
+[ 2017-04-26T07:36:05+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000400s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000730s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0012s ]
+
+[ 2017-04-26T07:36:17+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000761s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0393s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-04-26T07:36:42+08:00 ] 127.0.0.1 /index.php/Repair/projectList.html
+ERR: 非法操作:projectList
+
+[ 2017-04-26T07:41:18+08:00 ] 127.0.0.1 /index.php/Repair/repaired/id/12/project_id/3.html
+ERR: 非法操作:repaired
+
+[ 2017-04-26T08:10:00+08:00 ] 127.0.0.1 /index.php/Repair/select/id/11/project_id/1/p/11.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'event_type' cannot be null
+
+[ 2017-04-26T08:29:54+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000702s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001155s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000688s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000776s ]
+
+[ 2017-04-26T08:31:14+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000961s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000667s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000740s ]
+
+[ 2017-04-26T08:35:01+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/002
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000692s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001102s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '002'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000709s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000791s ]
+
+[ 2017-04-26T08:35:04+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000710s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001239s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000716s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000800s ]
+

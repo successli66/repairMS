@@ -638,7 +638,7 @@
     </section>
 
     <section class="content">
-        <form class="form" action="/index.php/admin/repair/report.html" method="POST">
+        <form class="form" action="/index.php/Repair/report.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
@@ -651,6 +651,10 @@
                                         <i class="fa fa-header"></i>
                                     </div>
                                     <input name="title" type="text" class="form-control" placeholder="请输入标题">
+                                    <input type="hidden" name="id" value="<?php echo I('get.id');?>">
+                                    <input type="hidden" name="event_type"  value="1">
+                                    <input type="hidden" name="evemt_name"  value="报修">
+                                    <input type="hidden" name="repair_id"  value="<?php echo I('get.id');?>">
                                 </div> 
                             </div>
                             <!--选择所属项目-->

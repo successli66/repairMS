@@ -711,7 +711,7 @@
                         <?php endif;?>
                         <?php if(in_array($data['repair_status'],array(1,2,3))):?>
                         <div class="col-md-1 ">
-                            <a class="btn btn-sm btn-default" href=""><i class="fa fa-arrow-circle-down"></i> 下 一 步 </a>
+                            <a class="btn btn-sm btn-default" href="<?php echo U($data['next'],array('id'=>I('get.id'),'project_id'=>$data['project_id'],'p'=>I('get.id')));?>"><i class="fa fa-arrow-circle-down"></i> 下 一 步 </a>
                         </div>
                         <?php endif;?>
                     </div>

@@ -1,0 +1,95 @@
+<layout name='common/layout' />
+
+<!--多选下拉框-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="__PUBLIC__/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+<include file='common/header' />
+<include file='common/nav' />
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            开始维修
+            <small>Start Repair</small>
+        </h1>
+    </section>
+    <section class="content">
+        <form class="form" action="__SELF__" method="POST">
+            <div class="box box-info">
+                <div class="box-body bg-info">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="id" value="<?php echo I('get.id');?>">
+                            <input type="hidden" name="event_type" class="form-control" value="1">
+                            <input type="hidden" name="event_name" class="form-control" value="报修">
+                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.id');?>">
+                            <div class="form-group">
+                                <label>预约维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="appointment_time" class="form-control" id="datetime" placeholder="请选择维修时间">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>选择项目维修人员</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <select class="form-control selectpicker" name="repair_user_id[]" multiple data-live-search="true">
+                                    <?php foreach($auData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$team)) echo 'selected';?>><?php echo $v['real_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>   
+                        </div>
+
+                    </div>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确 认 </button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>           
+    </section>
+</div>
+
+<!--添加时间插件插件-->
+<script type="text/javascript" src="__PUBLIC__/plugins/jeDate/jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/plugins/jeDate/skin/jedate.css">
+<script type="text/javascript">
+    var start = {
+        dateCell: '#datetime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+//        minDate: jeDate.now(0), //设定最小日期为当前日期
+        isinitVal: false,
+        festival: true,
+        ishmsVal: false,
+        maxDate: '2099-06-30 23:59:59', //最大日期
+        choosefun: function (elem, datas) {
+            //console.log(datas)
+            end.minDate = datas; //开始日选好后，重置结束日的最小日期
+        }
+    };
+    jeDate(start);
+
+    //多选下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto',
+
+        });
+    });
+</script>
+
+
+<include file='common/bottom' />

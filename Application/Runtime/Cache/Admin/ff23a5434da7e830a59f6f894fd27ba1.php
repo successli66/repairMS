@@ -633,87 +633,74 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            通讯录
-            <small>Address Book</small>
+            开始维修
+            <small>Start Repair</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header bg-info">
-                        <h3 class="box-title">用户列表</h3> 
-                    </div>
-                    <div class="col-md-12">
-                        <div class="box-body">
-                            <form action="/index.php/User/addressBook/p/3.html" method="GET">
-                                <div class="form-group col-md-6">    
-                                    <select class="form-control selectpicker" id="company_id" name="company_id" data-live-search="true" style="width: 100%;">
-                                        <option value="">请选择公司</option>
-                                        <?php foreach($cpData as $k=>$v):?>
-                                        <option value="<?php echo $v['id'];?>" <?php if(I('get.company_id')==$v['id']) echo "selected='selected'";?>><?php echo $v['company_name'];?></option>
-                                        <?php endforeach;?>
-                                    </select>
-                                </div>
-<!--                                <div class="form-group col-md-4">    
-                                    <select class="form-control" id="department_id" name="department_id" data-live-search="true" style="width: 100%;">
-                                        <option value="">请选择部门</option>
-                                    </select>
-                                </div>-->
-                                <div class="input-group  col-md-6">
-                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" value="<?php echo I('get.search_name');?>" placeholder="输入用户信息...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                    </span>
-                                </div>
-                            </form>        
+        <form class="form" action="/index.php/Repair/select/id/11/project_id/1/p/11.html" method="POST">
+            <div class="box box-info">
+                <div class="box-body bg-info">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="id" value="<?php echo I('get.id');?>">
+                            <input type="hidden" name="event_type" class="form-control" value="1">
+                            <input type="hidden" name="event_name" class="form-control" value="报修">
+                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.id');?>">
+                            <div class="form-group">
+                                <label>预约维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="appointment_time" class="form-control" id="datetime" placeholder="请选择维修时间">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>选择项目维修人员</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <select class="form-control selectpicker" name="repair_user_id[]" multiple data-live-search="true">
+                                    <?php foreach($auData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$team)) echo 'selected';?>><?php echo $v['real_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>   
                         </div>
-                    </div>
 
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">编 号</th>
-                                    <th class="text-center">姓 名</th>
-                                    <th class="text-center">电 话</th>
-                                    <th class="text-center">公 司</th>
-                                    <th class="text-center">部 门</th>
-                                    <th class="text-center">操 作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['id'];?></td>
-                                    <td><?php echo $v['real_name'];?></td>
-                                    <td><?php echo $v['telephone'];?></td>
-                                    <td><?php echo $v['company_name'];?></td>
-                                    <td><?php echo $v['department_name'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('addressBookInfo?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
                     </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确 认 </button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
                         </div>
                     </div>
                 </div>
-            </div>    
-        </div>
+            </div>
+        </form>           
     </section>
 </div>
 
-<script>
-    //下拉框JS
+<!--添加时间插件插件-->
+<script type="text/javascript" src="/Public/plugins/jeDate/jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="/Public/plugins/jeDate/skin/jedate.css">
+<script type="text/javascript">
+    var start = {
+        dateCell: '#datetime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+//        minDate: jeDate.now(0), //设定最小日期为当前日期
+        isinitVal: false,
+        festival: true,
+        ishmsVal: false,
+        maxDate: '2099-06-30 23:59:59', //最大日期
+        choosefun: function (elem, datas) {
+            //console.log(datas)
+            end.minDate = datas; //开始日选好后，重置结束日的最小日期
+        }
+    };
+    jeDate(start);
+
+    //多选下拉框JS
     $(window).on('load', function () {
         $('.selectpicker').selectpicker({
             style: 'btn-info',
@@ -722,29 +709,6 @@
 
         });
     });
-//    $("#company_id").change(function () {
-//        var company_id = $(this).val();
-//        if (company_id > 0) {
-//            $.ajax({
-//                type: "GET",
-//                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-//                dataType: "json",
-//                success: function (data) {
-//                    $("#department_id").empty();
-//                    var html = '<option value="">请选择部门</option>';
-//                    $(data).each(function (k, v) {
-//                        if (v.id == "<?php echo I('get.department_id');?>") {
-//                            html += '<option selected value="' + v.id + '">' + v.department_name + '</option>';
-//                        } else {
-//                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-//                        }
-//                    });
-//                    $("#department_id").html(html);
-//                }
-//            });
-//        } else
-//            $("#department_id").html("");
-//    });
 </script>
 
 
