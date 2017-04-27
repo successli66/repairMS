@@ -86,6 +86,7 @@ class RepairController extends BaseController {
         if ($data['repair_status'] == '0') {
             if ($model->delete($id)) {
                 $this->success('删除成功！', U('repairList'), 1);
+                exit;
             }
             $this->error($model->getError());
         } else {
@@ -97,23 +98,16 @@ class RepairController extends BaseController {
         if (IS_POST) {
             $model = D('Repair');
             if ($model->create(I('post.'), 2)) {
-                $time = date('Y-m-d H:i:s', time());
-                $evModel = M('Event');
-                $event['event_type'] = $_POST['event_type'];
-                $event['event_name'] = $_POST['event_name'];
-                $event['repair_id'] = $_POST['repair_id'];
-                $event['event_value'] = implode(',', $_POST['repair_user_id']);
-                $event['user_id'] = session('user')['id'];
-                $event['event_time'] = $time;
-                if ($evModel->add($event)) {
+                if ($this->eventAdd()) {
                     if ($model->save($_POST)) {//add()必须加$_POST,否则添加的ueditor内容不能正常显示
                         $this->success('保存成功！', U('info', array('id' => I('get.id'), 'p' => I('get.p'))), 0);
                         exit();
                     }
+                } else {
+                    $this->error($model->getError());
                 }
                 $this->error($evModel->getError());
             }
-            $this->error($model->getError());
         }
         $team = explode(',', $pjData['team']);
         $uModel = M('User');
@@ -139,7 +133,7 @@ class RepairController extends BaseController {
         if ($evModel->add($event)) {
             return TRUE;
         } else {
-            $this->error($evModel->getError());
+            
         }
     }
 
