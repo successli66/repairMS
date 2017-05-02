@@ -180,11 +180,11 @@ class RepairController extends BaseController {
     }
 
     public function ajaxGetPart(){
-        $part_id = I('post.part_id');//字符串
-        //$part_id = explode(',', $part_id);//字符串转换为数组
+        $part_id = I('get.part_id');//字符串
+        $part_id = explode(',', $part_id);//字符串转换为数组
         $paModel = M('part');
         $paData = $paModel->where(array(
-            'part_id'=>array('in',$part_id),
+            'id'=>array('in',$part_id),
         ))->select();
         echo json_encode($paData);
     }

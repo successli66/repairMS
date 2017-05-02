@@ -672,7 +672,7 @@
                                 </br>人工费：<input type="text" name="artificial_fee" class="form-control">
                                 配件费：
                                 <select class="form-control selectpicker" id="part_id" multiple name="part_id[]" data-live-search="true">
-                                     <option >111111111111</option>
+                                    <option>请选择</option>
                                     <?php foreach($paData as $k=>$v):?>
                                     <option value="<?php echo $v['id'];?>"><?php echo $v['part_name'];?></option>
                                     <?php endforeach;?>
@@ -724,36 +724,31 @@
         });
     });
 
-$("#sure").click(function(){
-    $("#part_id").val();
-    
-});
+    $("#sure").click(function () {
+        $("#part_id").val();
+
+    });
 
 
-    //ajax获得数据信息
+    //ajax获得选择配件信息
     $("#part_id").change(function () {
-        var part_id = $(this).val();
-        alert("<?php echo U('Admin/repair/ajaxGetPart', '', FALSE); ?>");
-        if (part_id.length != 0) { 
-            $('#1').html(part_id);
+        var part_id = $(this).val();//值为数组
+        part_id = part_id.join(',');//将数组转换为字符串 
+        $("#1").empty();
             $.ajax({
-                type: 'GET',
-                url: "<?php echo U('Admin/repair/ajaxGetPart', '', FALSE); ?>",
-                data:part_id,
-                dataType: "JSON",
-                success: function (data) {
-                   alert(11111);
-                   $("#1").empty();
-                    var sum = 0;
-                    var html = '';
-                    $(data).each(function (k, v) {
-                        html += v.part_name + ':' + '<inpute type="text" value="' + v.out_price + '">'+ v.out_price;
-                        sum += v.out_price;
-                    });
-                    //$("#1").html(html);
-                }
-            })
-        }
+            type: 'get',
+            url: "<?php echo U('Admin/repair/ajaxGetPart', '', FALSE); ?>?part_id=" + part_id,
+            dataType: "JSON",
+            success: function (data) {
+                var sum = 0;
+                var html = '';
+                $(data).each(function (k, v) {
+                    html += v.part_name + ':' + '<inpute type="text" value="' + v.out_price + '">' + v.out_price;
+                    sum += v.out_price;
+                });
+                $("#1").html(html);
+            }
+        });       
     })
 </script>
 
