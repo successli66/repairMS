@@ -48,27 +48,27 @@ class RepairController extends BaseController {
         if ($data['repair_status'] == 2) {
             $data['next'] = 'repaired';
             $evModel = M('event');
-            $startData = $evModel->where(array(
+            $startData = $evModel->where(array(                                  //获得事件类型为1（接报）且维修单号为$id的事件信息
                         'repair_id' => $id,
                         'event_type' => 1,
                     ))->find();
-            $evData = $evModel->alias('a')
+            $evData = $evModel->alias('a')                                      //获得事件类型为1或2的事件
                             ->field('a.*,b.real_name')
-                            ->join('LEFT JOIN __USER__ b ON a.user_id=b.id')
+                            ->join('LEFT JOIN __USER__ b ON a.user_id=b.id')    //获得处理人的信息
                             ->where(array(
                                 'a.repair_id' => $id,
                                 'a.event_type' => array('in', [1, 2]),
                             ))->order('event_time asc')->select();
             foreach ($evData as $k => &$v) {
-                if ($v['event_type'] == 1) {
+                if ($v['event_type'] == 1) {                                    //事件类型为1（接报），event_value中存储预约维修人员ID的字符串
                     $uId = explode(',', $v['event_value']);
-                    foreach ($uId as $k1 => $v1) {
+                    foreach ($uId as $k1 => $v1) {                              //循环每个iD获得维修人员信息
                         $uModel = M('User');
                         $uData = $uModel->find($v1);
                         $v['repair_user'][] = $uData;
                     }
                 }
-                if ($v['event_type'] == 2) {
+                if ($v['event_type'] == 2) {                                    //预留功能，待完善，查询出每个修改记录
                     $modId = explode(',', $v['event_value']);
                     foreach ($modId as $k1 => $v1) {
                         $modModel = M('modify');
@@ -167,5 +167,25 @@ class RepairController extends BaseController {
             return FALSE;
         }
     }
+    
+    public function repaired(){
+        var_dump($_POST);
+        $project_id = I('project_id');
+        $paModel = M('part');
+        $paData = $paModel->where(array(
+            'project_id'=>$project_id,
+        ))->select();
+        $this->assign('paData',$paData);
+        $this->display();
+    }
 
+    public function ajaxGetPart(){
+        $part_id = I('post.part_id');//字符串
+        //$part_id = explode(',', $part_id);//字符串转换为数组
+        $paModel = M('part');
+        $paData = $paModel->where(array(
+            'part_id'=>array('in',$part_id),
+        ))->select();
+        echo json_encode($paData);
+    }
 }

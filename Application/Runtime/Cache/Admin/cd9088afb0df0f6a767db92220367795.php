@@ -644,7 +644,7 @@
 
             </div>
             <div class="box-body bg-info">
-                <form action="/index.php/Equipment/edit/id/4/project_id/003/p/1.html" method="POST">
+                <form action="/index.php/Equipment/edit/project_id/001/id/1.html" method="POST">
                     <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
                     <div class="row">
                         <div class="col-md-6">

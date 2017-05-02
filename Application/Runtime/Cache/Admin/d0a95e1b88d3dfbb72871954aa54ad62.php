@@ -646,7 +646,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="box-body">
-                            <form action="/index.php/User/addressBook/p/3.html" method="GET">
+                            <form action="/index.php/Admin/User/addressBook.html" method="GET">
                                 <div class="form-group col-md-6">    
                                     <select class="form-control selectpicker" id="company_id" name="company_id" data-live-search="true" style="width: 100%;">
                                         <option value="">请选择公司</option>

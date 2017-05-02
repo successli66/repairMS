@@ -125,6 +125,10 @@
 <link rel="stylesheet" href="/Public/plugins/bootstrap-select/css/bootstrap-select.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="/Public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<!-- 编辑器配置文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
 
 <!--头部-->
 <header class="main-header">
@@ -629,126 +633,103 @@
 </aside>
 
 
+
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            故障报修
-            <small>Report Fault</small>
+            维修项目信息
+            <small>Project Information</small>
         </h1>
     </section>
-
     <section class="content">
-        <form class="form" action="/index.php/Repair/report.html" method="POST">
-            <div class="box box-info">
-                <div class="box-body bg-info">
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">项目修改</h3> 
+            </div>
+            <div class="box-body bg-info">
+                <form action="/index.php/Project/edit/id/001.html" method="POST">
+                    <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
                     <div class="row">
                         <div class="col-md-6">
-                            <!--标题-->
                             <div class="form-group">
-                                <label>报修标题</label>
+                                <label> 项目名</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input name="title" type="text" class="form-control" placeholder="请输入标题">
+                                    <input type="text" name='project_name' class="form-control" value="<?php echo $data['project_name']?>">
                                 </div> 
                             </div>
-                            <!--选择所属项目-->
                             <div class="form-group">
-                                <label>问题类别</label> 
-                                <select class="form-control selectpicker" id="project_id" name="project_id" data-live-search="true" style="width: 100%;" placeholder="请选择维修项目">
-                                    <option value=''>请选择维修项目</option>
-                                    <?php foreach($prData as $k=>$v):?>
-                                    <option value="<?php echo $v['id']?>"><?php echo $v['project_name']?></option>
+                                <label>所属部门</label>
+                                <select class="form-control selectpicker" id='department_id' name="department_id" data-live-search="true" style="width: 100%;">
+                                    <?php foreach($dpData as $k=>$v):?>
+                                    <option <?php if($data['department_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['department_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <!--选择所属项目-->
-                            <div class="form-group">
-                                <label>设备编号</label> 
-                                <select class="form-control selectpicker" id="equipment_id" name="equipment_id[]" multiple data-live-search="true" style="width: 100%;" placeholder="请选择设备编号">
-                                    <option value=''>请选择设备编号</option>
-                                </select>
-                            </div>
-                            <!--报修人-->
-                            <div class="form-group">
-                                <label>报修人</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-telegram"></i>
-                                    </div>
-                                    <input type="hidden" class="form-control" name="report_person_id" value="<?php echo session('user')['id'];?>">
-                                    <input type="text" class="form-control"  value="<?php echo session('user')['real_name'];?>" disabled>
-                                </div> 
-                            </div>
-
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>报修单位</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </div>
-                                    <input type="hidden" class="form-control" name="company_id" value="<?php echo session('company')['id'];?>">
-                                    <input type="text" class="form-control" value="<?php echo session('company')['company_name'];?>" disabled>
-                                </div> 
+                                <label>维修团队</label> 
+                                <select class="form-control selectpicker" name="team[]" multiple data-live-search="true">
+                                    <?php foreach($uData as $k=>$v):?>
+                                    <option  <?php if(in_array($v['id'],$data['team'])) echo "selected='selected'";?> value="<?php echo $v['id'];?>" ><?php echo $v['real_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
-                            <!--维修地址-->
                             <div class="form-group">
-                                <label>维修地址</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="address" value="<?php echo session('company')['address']?>">
-                                </div> 
-                            </div>
-                            <!--联系人-->
-                            <div class="form-group">
-                                <label>联系人</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="contact" value="<?php echo session('user')['real_name']?>">
-                                </div> 
-                            </div>
-                            <!--电话-->
-                            <div class="form-group">
-                                <label>电话</label>
+                                <label>维修电话</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" class="form-control" name="phone" value="<?php echo session('user')['telephone']?>">
+                                    <input type="text" name='phone' class="form-control" value="<?php echo $data['phone']?>">
                                 </div> 
-                            </div>
+                            </div> 
                         </div>
                     </div>
-                    <!--故障描述-->
                     <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>故障描述</label>
-                                <textarea id="descr" name="descr"></textarea>
+                        <div class="col-md-6">
+                            <label>项目描述</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="box-body">   
+                            <div class="form-group col-md-12">  
+                                <div class="text-center">
+                                    <textarea id="descr" name="descr" ><?php echo $data['descr'];?></textarea>
+
+                                </div>   
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
                     </div>
-                    <!--报修确认-->
+                    <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-send"></i>  确认报修</button>
-                            <a href="<?php echo U('Index/index');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消报修</a>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('projectList?p='.I('get.p'));?>"><i class="fa fa-times"> 取消修改</i></a>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form> 
+        </div>        
     </section>
 </div>
+
+<script>
+    //多选下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto'
+        });
+    });
+
+<!-- 实例化编辑器 -->
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+</script>
 
 <div class="wrapper"></div>
         <footer class="main-footer">
@@ -879,47 +860,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
-<!-- 配置文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
-<!-- 实例化编辑器 -->
-<script type="text/javascript">
-    //多选下拉框JS
-    $(window).on('load', function () {
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-            selectedText: 'cat',
-            size: 'auto'
-        });
-    });
-    //uEditor
-    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
-    //ajax获得设备编号
-    $("#project_id").change(function () {
-        var project_id = $(this).val();
-        if (project_id > 0) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo U('Admin/Equipment/ajaxGetEq', '', FALSE); ?>/project_id/" + project_id,
-                dataType: "json",
-                success: function (data) {
-                    $("#equipment_id").empty();
-                    var html = '';
-                    $(data).each(function (k, v) {
-                        html += '<option value="' + v.id + '">' + v.serial_number + '</option>';
-                    });
-                    $("#equipment_id").html(html);
-                    $("#equipment_id").selectpicker('refresh');
-                }
-            });
-        } else {
-            $("#equipment_id").html("");
-            $("#equipment_id").selectpicker('refresh');
-        }
-    });
-</script>
 
 
         </div>

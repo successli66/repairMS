@@ -629,126 +629,134 @@
 </aside>
 
 
+
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            故障报修
-            <small>Report Fault</small>
+            开始维修
+            <small>Start Repair</small>
         </h1>
     </section>
-
     <section class="content">
-        <form class="form" action="/index.php/Repair/report.html" method="POST">
+        <form class="form" action="/index.php/Repair/repaired/id/11/project_id/1/p/11.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
-                        <div class="col-md-6">
-                            <!--标题-->
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="id" value="<?php echo I('get.id');?>">
+                            <input type="hidden" name="event_type" class="form-control" value="1">
+                            <input type="hidden" name="event_name" class="form-control" value="报修">
+                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.id');?>">
                             <div class="form-group">
-                                <label>报修标题</label>
+                                <label>实际维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-header"></i>
+                                        <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input name="title" type="text" class="form-control" placeholder="请输入标题">
+                                    <input type="text" name="appointment_time" class="form-control" id="datetime" placeholder="请选择维修时间">
                                 </div> 
                             </div>
-                            <!--选择所属项目-->
                             <div class="form-group">
-                                <label>问题类别</label> 
-                                <select class="form-control selectpicker" id="project_id" name="project_id" data-live-search="true" style="width: 100%;" placeholder="请选择维修项目">
-                                    <option value=''>请选择维修项目</option>
-                                    <?php foreach($prData as $k=>$v):?>
-                                    <option value="<?php echo $v['id']?>"><?php echo $v['project_name']?></option>
+                                <label>实际维修人员</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <select class="form-control selectpicker" name="repair_user_id[]" multiple data-live-search="true">
+
+                                    <?php foreach($auData as $k=>$v):?>
+
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$team)) echo 'selected';?>><?php echo $v['real_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
-                            </div>
-                            <!--选择所属项目-->
+                            </div> 
                             <div class="form-group">
-                                <label>设备编号</label> 
-                                <select class="form-control selectpicker" id="equipment_id" name="equipment_id[]" multiple data-live-search="true" style="width: 100%;" placeholder="请选择设备编号">
-                                    <option value=''>请选择设备编号</option>
+                                <label>维修费用</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                </br>人工费：<input type="text" name="artificial_fee" class="form-control">
+                                配件费：
+                                <select class="form-control selectpicker" id="part_id" multiple name="part_id[]" data-live-search="true">
+                                     <option >111111111111</option>
+                                    <?php foreach($paData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>"><?php echo $v['part_name'];?></option>
+                                    <?php endforeach;?>
                                 </select>
-                            </div>
-                            <!--报修人-->
-                            <div class="form-group">
-                                <label>报修人</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-telegram"></i>
-                                    </div>
-                                    <input type="hidden" class="form-control" name="report_person_id" value="<?php echo session('user')['id'];?>">
-                                    <input type="text" class="form-control"  value="<?php echo session('user')['real_name'];?>" disabled>
-                                </div> 
-                            </div>
+                            </div>  
+                        </div>
 
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>报修单位</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </div>
-                                    <input type="hidden" class="form-control" name="company_id" value="<?php echo session('company')['id'];?>">
-                                    <input type="text" class="form-control" value="<?php echo session('company')['company_name'];?>" disabled>
-                                </div> 
-                            </div>
-                            <!--维修地址-->
-                            <div class="form-group">
-                                <label>维修地址</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="address" value="<?php echo session('company')['address']?>">
-                                </div> 
-                            </div>
-                            <!--联系人-->
-                            <div class="form-group">
-                                <label>联系人</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="contact" value="<?php echo session('user')['real_name']?>">
-                                </div> 
-                            </div>
-                            <!--电话-->
-                            <div class="form-group">
-                                <label>电话</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="phone" value="<?php echo session('user')['telephone']?>">
-                                </div> 
-                            </div>
-                        </div>
                     </div>
-                    <!--故障描述-->
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>故障描述</label>
-                                <textarea id="descr" name="descr"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-                    <!--报修确认-->
+                    <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-send"></i>  确认报修</button>
-                            <a href="<?php echo U('Index/index');?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消报修</a>
+                            <a class="btn btn-default" id="sure"><i class="fa fa-check"></i> 确 认 </a>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
                         </div>
                     </div>
+                    <div  id="1"></div>
                 </div>
             </div>
-        </form> 
+        </form>           
     </section>
 </div>
+
+<!--添加时间插件插件-->
+<script type="text/javascript" src="/Public/plugins/jeDate/jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="/Public/plugins/jeDate/skin/jedate.css">
+<script type="text/javascript">
+    var start = {
+        dateCell: '#datetime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+//        minDate: jeDate.now(0), //设定最小日期为当前日期
+        isinitVal: false,
+        festival: true,
+        ishmsVal: false,
+        maxDate: '2099-06-30 23:59:59', //最大日期
+        choosefun: function (elem, datas) {
+            //console.log(datas)
+            end.minDate = datas; //开始日选好后，重置结束日的最小日期
+        }
+    };
+    jeDate(start);
+
+    //多选下拉框JS
+    $(window).on('load', function () {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            selectedText: 'cat',
+            size: 'auto',
+
+        });
+    });
+
+$("#sure").click(function(){
+    $("#part_id").val();
+    
+});
+
+
+    //ajax获得数据信息
+    $("#part_id").change(function () {
+        var part_id = $(this).val();
+        alert("<?php echo U('Admin/repair/ajaxGetPart', '', FALSE); ?>");
+        if (part_id.length != 0) { 
+            $('#1').html(part_id);
+            $.ajax({
+                type: 'GET',
+                url: "<?php echo U('Admin/repair/ajaxGetPart', '', FALSE); ?>",
+                data:part_id,
+                dataType: "JSON",
+                success: function (data) {
+                   alert(11111);
+                   $("#1").empty();
+                    var sum = 0;
+                    var html = '';
+                    $(data).each(function (k, v) {
+                        html += v.part_name + ':' + '<inpute type="text" value="' + v.out_price + '">'+ v.out_price;
+                        sum += v.out_price;
+                    });
+                    //$("#1").html(html);
+                }
+            })
+        }
+    })
+</script>
+
 
 <div class="wrapper"></div>
         <footer class="main-footer">
@@ -880,46 +888,6 @@
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
 
-<!-- 配置文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
-<!-- 实例化编辑器 -->
-<script type="text/javascript">
-    //多选下拉框JS
-    $(window).on('load', function () {
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-            selectedText: 'cat',
-            size: 'auto'
-        });
-    });
-    //uEditor
-    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
-    //ajax获得设备编号
-    $("#project_id").change(function () {
-        var project_id = $(this).val();
-        if (project_id > 0) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo U('Admin/Equipment/ajaxGetEq', '', FALSE); ?>/project_id/" + project_id,
-                dataType: "json",
-                success: function (data) {
-                    $("#equipment_id").empty();
-                    var html = '';
-                    $(data).each(function (k, v) {
-                        html += '<option value="' + v.id + '">' + v.serial_number + '</option>';
-                    });
-                    $("#equipment_id").html(html);
-                    $("#equipment_id").selectpicker('refresh');
-                }
-            });
-        } else {
-            $("#equipment_id").html("");
-            $("#equipment_id").selectpicker('refresh');
-        }
-    });
-</script>
 
 
         </div>
