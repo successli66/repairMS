@@ -6,8 +6,8 @@ use Think\Model;
 
 class RepairModel extends Model {
 
-    protected $insertFields = array('project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone', 'appointment_time', 'repair_user_id', 'event_type', 'event_name', 'repair_id');
-    protected $updateFields = array('id', 'project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone', 'appointment_time', 'repair_user_id', 'event_type', 'event_name', 'repair_id');
+    protected $insertFields = array('project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone', 'repair_time', 'repair_user_id', 'event_type', 'event_name', 'repair_id');
+    protected $updateFields = array('id', 'project_id', 'title', 'equipment_id', 'descr', 'report_person_id', 'company_id', 'address', 'contact', 'phone', 'repair_time', 'repair_user_id', 'event_type', 'event_name', 'repair_id');
     protected $_validate = array(
         array('title', 'require', '报修标题不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
         array('project_id', 'require', '问题类别不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
@@ -15,7 +15,7 @@ class RepairModel extends Model {
         array('address', 'require', '维修地址不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
         array('contact', 'require', '联系人不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
         array('phone', 'require', '电话不能为空！', 1, 'regex', 1), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
-        array('appointment_time', 'require', '预约时间不能为空！', 1, 'regex', 2), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('repair_time', 'require', '预约时间不能为空！', 1, 'regex', 2), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
         array('repair_user_id', 'check_repair_user_id', '维修人员不能为空！', 1, 'callback', 2), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
     );
 

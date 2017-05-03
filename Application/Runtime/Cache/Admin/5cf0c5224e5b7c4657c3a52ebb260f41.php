@@ -638,7 +638,7 @@
     </section>
 
     <section class="content">
-        <form class="form" action="/index.php/Repair/report.html" method="POST">
+        <form class="form" action="/index.php/admin/repair/report.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">

@@ -1,0 +1,241 @@
+[ 2017-05-03T07:18:23+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000379s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000695s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.1133s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0387s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2017-05-03T07:18:52+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000634s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001123s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1')  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000531s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000620s ]
+
+[ 2017-05-03T07:18:54+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000490s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000921s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000527s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000619s ]
+
+[ 2017-05-03T07:18:55+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000492s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000865s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2','3')  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000491s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000570s ]
+
+[ 2017-05-03T07:30:19+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000455s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000889s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1')  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000559s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000661s ]
+
+[ 2017-05-03T07:30:19+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000558s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001116s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000516s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000596s ]
+
+[ 2017-05-03T07:30:20+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000913s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2','3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000559s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000644s ]
+
+[ 2017-05-03T07:32:52+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000446s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000829s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000574s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000659s ]
+
+[ 2017-05-03T07:32:52+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000434s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000826s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2')  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000544s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000621s ]
+
+[ 2017-05-03T07:34:58+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000529s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000935s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('2')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000657s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000746s ]
+
+[ 2017-05-03T07:34:58+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000823s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('2','3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000581s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000666s ]
+
+[ 2017-05-03T07:38:41+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000481s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000903s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('3')  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000562s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000649s ]
+
+[ 2017-05-03T07:38:41+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000522s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000955s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('2','3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000525s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000611s ]
+
+[ 2017-05-03T07:42:38+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000949s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000577s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000666s ]
+
+[ 2017-05-03T07:42:39+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000847s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000503s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000593s ]
+
+[ 2017-05-03T07:43:18+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000937s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1')  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000528s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000610s ]
+
+[ 2017-05-03T07:43:18+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000425s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000779s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000587s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000665s ]
+
+[ 2017-05-03T07:43:19+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000427s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000793s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','2','3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000651s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000730s ]
+
+[ 2017-05-03T07:43:32+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000466s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000849s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000544s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000633s ]
+
+[ 2017-05-03T07:43:32+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000436s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000812s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('2','3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000631s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000721s ]
+
+[ 2017-05-03T07:44:20+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000493s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000916s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('3')  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000494s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000580s ]
+
+[ 2017-05-03T07:44:20+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000426s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000780s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('2','3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000553s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000651s ]
+
+[ 2017-05-03T07:44:49+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000847s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000543s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000633s ]
+
+[ 2017-05-03T07:44:49+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=1,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000514s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000933s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('1','3')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000585s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000685s ]
+

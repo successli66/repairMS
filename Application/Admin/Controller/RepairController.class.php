@@ -48,7 +48,7 @@ class RepairController extends BaseController {
         if ($data['repair_status'] == 2) {
             $data['next'] = 'repaired';
             $evModel = M('event');
-            $startData = $evModel->where(array(                                  //获得事件类型为1（接报）且维修单号为$id的事件信息
+            $startData = $evModel->where(array(//获得事件类型为1（接报）且维修单号为$id的事件信息
                         'repair_id' => $id,
                         'event_type' => 1,
                     ))->find();
@@ -159,6 +159,7 @@ class RepairController extends BaseController {
         $event['event_value'] = implode(',', $_POST['repair_user_id']);
         $event['user_id'] = session('user')['id'];
         $event['event_time'] = $time;
+        $event['repair_time'] = $_POST['repair_time'];
         $evModel = M('Event');
         if ($evModel->add($event)) {
             return TRUE;
@@ -167,25 +168,52 @@ class RepairController extends BaseController {
             return FALSE;
         }
     }
-    
-    public function repaired(){
-        var_dump($_POST);
+
+    public function repaired() {
+        if(IS_POST){
+            if($this->add()){
+               
+            }
+        }
+        $uModel = M('user');
+        $uData = $uModel->select();
+        $evData = $this->getEvent(1);//获得type=1(办理)的事件信息
         $project_id = I('project_id');
         $paModel = M('part');
         $paData = $paModel->where(array(
-            'project_id'=>$project_id,
-        ))->select();
-        $this->assign('paData',$paData);
+                    'project_id' => $project_id,
+                ))->select();
+        $this->assign(array(
+            'uData' => $uData,
+            'evData' => $evData,
+            'paData' => $paData,
+        ));
         $this->display();
     }
 
-    public function ajaxGetPart(){
-        $part_id = I('get.part_id');//字符串
-        $part_id = explode(',', $part_id);//字符串转换为数组
+    public function getEvent($event_type) {//type=1（办理）的事件信息，event_value为预约维修人员ID;type=2（维修完）的事件信息，event_value为维修人员ID
+        $evModel = M('event');
+        $evData = $evModel->where(array(
+                    'repair_id' => I('get.id'),
+                    'event_type' => $event_type
+                ))->find();
+        $evData['event_value'] = explode(',', $evData['event_value']);
+        $evData['repair_user'] = array();
+        $uModel = M('user');
+        foreach ($evData['event_value'] as $k => $v) {
+            $evData['repair_user'][] = $uModel->field('id,real_name')->find($v);
+        }
+        return $evData;
+    }
+
+    public function ajaxGetPart() {
+        $part_id = I('get.part_id'); //字符串
+        $part_id = explode(',', $part_id); //字符串转换为数组
         $paModel = M('part');
         $paData = $paModel->where(array(
-            'id'=>array('in',$part_id),
-        ))->select();
+                    'id' => array('in', $part_id),
+                ))->select();
         echo json_encode($paData);
     }
+
 }

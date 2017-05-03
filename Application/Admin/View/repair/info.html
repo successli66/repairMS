@@ -137,9 +137,13 @@
                             <li>
                                 <i class="fa fa-spinner bg-yellow"></i>
                                 <div class="timeline-item">
-                                    <h3 class="timeline-header"><a href="#"><?php echo $v['real_name']?></a> 接报，维修开始</h3>
+                                    <h3 class="timeline-header">
+                                        <a href="#"><?php echo $v['real_name']?></a> 接报，维修开始 
+                                        <?php if($data['repair_status']==2):?>
+                                        <a class="pull-right" href="#"> 修改</a>
+                                        <?php endif;?>
+                                    </h3>
                                     <div class="timeline-body">
-                                        
                                         <h5>预约维修时间：</h5>
                                         <?php echo $data['appointment_time'];?>
                                         <h5>维修人员：</h5>

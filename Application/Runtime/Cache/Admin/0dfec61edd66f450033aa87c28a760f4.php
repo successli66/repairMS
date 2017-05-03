@@ -122,8 +122,8 @@
         <script src="/Public/other/layer/layer_zh-cn.js"></script>
         <!-- 如果为触屏,则引入jquery.mobile -->
         <script type="text/javascript">
-                                                                if ('ontouchstart' in document.documentElement)
-                                                                    document.write("<script src='/Public/others/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+            if ('ontouchstart' in document.documentElement)
+            document.write("<script src='/Public/others/jquery.mobile.custom.min.js'>" + "<" + "/script>");
         </script>
 
         <!--ajax登录验证-->
