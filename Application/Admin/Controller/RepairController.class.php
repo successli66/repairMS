@@ -42,48 +42,65 @@ class RepairController extends BaseController {
         $id = I('get.id');
         $model = D('Repair');
         $data = $model->findById($id);
-        if ($data['repair_status'] == 1) {
+        if ($data['repair_status'] == 1) {//新报送
             $data['next'] = 'select';
         }
-        if ($data['repair_status'] == 2) {
+        if ($data['repair_status'] == 2) {//接报状态（办理状态）
             $data['next'] = 'repaired';
             $evModel = M('event');
-            $startData = $evModel->where(array(//获得事件类型为1（接报）且维修单号为$id的事件信息
-                        'repair_id' => $id,
-                        'event_type' => 1,
-                    ))->find();
+
+//            $startData = $evModel->where(array(//获得事件类型为1（接报）且维修单号为$id的事件信息
+//                        'repair_id' => $id,
+//                        'event_type' => 1,
+//                    ))->find();
+//            $evData = $evModel->alias('a')                                      //获得事件类型为1或2的事件
+//                            ->field('a.*,b.real_name')
+//                            ->join('LEFT JOIN __USER__ b ON a.user_id=b.id')    //获得处理人的信息
+//                            ->where(array(
+//                                'a.repair_id' => $id,
+//                                'a.event_type' => array('in', [1, 2]),
+//                            ))->order('event_time asc')->select();
+//            foreach ($evData as $k => &$v) {
+//                if ($v['event_type'] == 1) {                                    //事件类型为1（接报），event_value中存储预约维修人员ID的字符串
+//                    $uId = explode(',', $v['event_value']);
+//                    foreach ($uId as $k1 => $v1) {                              //循环每个iD获得维修人员信息
+//                        $uModel = M('User');
+//                        $uData = $uModel->find($v1);
+//                        $v['repair_user'][] = $uData;
+//                    }
+//                }
+//                if ($v['event_type'] == 2) {                                    //预留功能，待完善，查询出每个修改记录
+//                    $modId = explode(',', $v['event_value']);
+//                    foreach ($modId as $k1 => $v1) {
+//                        $modModel = M('modify');
+//                        $modData = $modModel->find($v1);
+//                        $v['modify'][] = $modData;
+//                    }
+//                }
+//            }
+
             $evData = $evModel->alias('a')                                      //获得事件类型为1或2的事件
                             ->field('a.*,b.real_name')
                             ->join('LEFT JOIN __USER__ b ON a.user_id=b.id')    //获得处理人的信息
                             ->where(array(
                                 'a.repair_id' => $id,
-                                'a.event_type' => array('in', [1, 2]),
-                            ))->order('event_time asc')->select();
-            foreach ($evData as $k => &$v) {
-                if ($v['event_type'] == 1) {                                    //事件类型为1（接报），event_value中存储预约维修人员ID的字符串
-                    $uId = explode(',', $v['event_value']);
-                    foreach ($uId as $k1 => $v1) {                              //循环每个iD获得维修人员信息
-                        $uModel = M('User');
-                        $uData = $uModel->find($v1);
-                        $v['repair_user'][] = $uData;
-                    }
-                }
-                if ($v['event_type'] == 2) {                                    //预留功能，待完善，查询出每个修改记录
-                    $modId = explode(',', $v['event_value']);
-                    foreach ($modId as $k1 => $v1) {
-                        $modModel = M('modify');
-                        $modData = $modModel->find($v1);
-                        $v['modify'][] = $modData;
-                    }
-                }
+                                'a.event_type' => 1,
+                            ))->find();
+            $uId = explode(',', $evData['event_value']);
+            var_dump($uId);
+            foreach ($uId as $k => $v) {                              //循环每个iD获得维修人员信息
+                $uModel = M('User');
+                $uData = $uModel->find($v);
+                $evData['repair_user'][] = $uData;
+                var_dump($uData);
+            }
+            if ($data['repair_status'] == 3) {//维修完状态
+                $data['next'] = 'end';
             }
         }
-        if ($data['repair_status'] == 3) {
-            $data['next'] = 'end';
-        }
+        var_dump($evData);
         $this->assign(array(
             'data' => $data,
-            'startData' => $startData,
             'evData' => $evData, //三维数组
         ));
         $this->display();
@@ -126,16 +143,15 @@ class RepairController extends BaseController {
         }
     }
 
-    public function select() {
+    public function select() { //选择预约维修时间和维修人
         if (IS_POST) {
-            $model = D('Repair');
-            if ($model->create(I('post.'), 2)) {
-                if ($this->eventAdd()) {
-                    if ($model->save($_POST)) {//add()必须加$_POST,否则添加的ueditor内容不能正常显示
-                        $this->success('保存成功！', U('info', array('id' => I('get.id'), 'p' => I('get.p'))), 0);
-                        exit();
-                    }
-                }
+            $model = M('repair');
+            $repair['repair_status'] = 2;
+            $repair['id'] = $_POST['repair_id'];
+            $model->save($repair);
+            if ($this->eventAdd()) {
+                $this->success('保存成功！', U('info', array('id' => I('get.id'), 'p' => I('get.p'))), 0);
+                exit();
             }
             $this->error($model->getError());
         }
@@ -151,7 +167,7 @@ class RepairController extends BaseController {
         $this->display();
     }
 
-    public function eventAdd() {
+    public function eventAdd() { //添加事件
         $time = date('Y-m-d H:i:s', time());
         $event['event_type'] = $_POST['event_type'];
         $event['event_name'] = $_POST['event_name'];
@@ -169,15 +185,21 @@ class RepairController extends BaseController {
         }
     }
 
-    public function repaired() {
-        if(IS_POST){
-            if($this->add()){
-               
+    public function repaired() { //维修完成
+        if (IS_POST) {
+            if ($this->eventAdd()) {//添加事件  
+                $this->addFee();   //添加费用
+                $model = M('repair');
+                $repair['repair_status'] = 3;
+                $repair['id'] = $_POST['repair_id'];
+                $model->save($repair);
+                $this->success('提交完成！', U('info', array('id' => I('get.id'), 'p' => I('get.p'))), 0);
+                exit();
             }
         }
         $uModel = M('user');
         $uData = $uModel->select();
-        $evData = $this->getEvent(1);//获得type=1(办理)的事件信息
+        $evData = $this->getEvent(1); //获得type=1(办理)的事件信息
         $project_id = I('project_id');
         $paModel = M('part');
         $paData = $paModel->where(array(
@@ -189,6 +211,25 @@ class RepairController extends BaseController {
             'paData' => $paData,
         ));
         $this->display();
+    }
+
+    public function addFee() { //添加费用
+        $fModel = M('fee');
+        $fee['repair_id'] = $_POST['repair_id'];
+        if (!empty($_POST['artificial_fee'])) {
+            $fee['fee_item'] = 0;
+            $fee['price'] = $_POST['artificial_fee'];
+            $fee['number'] = 1;
+            $fModel->add($fee);
+        }
+        if (!empty($_POST['part_id'])) {
+            foreach ($_POST['part_id'] as $k => $v) {
+                $fee['fee_item'] = $v;
+                $fee['price'] = $_POST['part_fee'][$k];
+                $fee['number'] = $_POST['part_number'][$k];
+                $fModel->add($fee);
+            }
+        }
     }
 
     public function getEvent($event_type) {//type=1（办理）的事件信息，event_value为预约维修人员ID;type=2（维修完）的事件信息，event_value为维修人员ID

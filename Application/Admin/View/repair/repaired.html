@@ -33,7 +33,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" name="appointment_time" class="form-control" id="datetime" value="<?php echo $evData['repair_time'];?>">
+                                    <input type="text" name="repair_time" class="form-control" id="datetime" value="<?php echo $evData['repair_time'];?>">
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -114,7 +114,7 @@
                 var sum = 0;
                 var html = '<table>';
                 $(data).each(function (k, v) {
-                    html += '<tr><th>' + v.part_name + '：</th>' + '<th><input type="text"  name="part_fee['+ v.id +']" value="' + v.out_price + '"></th><th>*<input type="text" name="part_number[]" value="1"></input></th></tr>';
+                    html += '<tr><th>' + v.part_name + '：</th>' + '<th><input type="text"  name="part_fee[]" value="' + v.out_price + '"></th><th>*<input type="text" name="part_number[]" value="1"></input></th></tr>';
                 });
                 $("#part").html(html);
             }

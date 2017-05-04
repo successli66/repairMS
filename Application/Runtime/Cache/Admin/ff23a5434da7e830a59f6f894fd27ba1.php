@@ -638,13 +638,12 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Repair/select/id/11/project_id/1/p/11.html" method="POST">
+        <form class="form" action="/index.php/Repair/select/id/12/project_id/3/p/12.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
-                            <input type="hidden" name="id" value="<?php echo I('get.id');?>">
                             <input type="hidden" name="event_type" class="form-control" value="1">
                             <input type="hidden" name="event_name" class="form-control" value="报修">
                             <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.id');?>">
@@ -654,7 +653,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" name="appointment_time" class="form-control" id="datetime" placeholder="请选择维修时间">
+                                    <input type="text" name="repair_time" class="form-control" id="datetime" placeholder="请选择维修时间">
                                 </div> 
                             </div>
                             <div class="form-group">

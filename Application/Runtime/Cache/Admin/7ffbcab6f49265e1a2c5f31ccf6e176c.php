@@ -685,7 +685,7 @@
                             <i class="fa fa-angle-double-right" style="color: green"></i>
                             <i class="fa fa-angle-double-right" style="color: green"></i>
                             <h5 class="text-green">维修中</h5>
-                            <h5 class="text-green"><?php echo $startData['event_time'];?></h5>
+                            <h5 class="text-green"><?php echo $evData['event_time'];?></h5>
                         </div>
                         <?php endif;?>
                         <?php if(in_array($data['repair_status'],array(3,4))):?>
