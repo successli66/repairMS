@@ -13,8 +13,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            开始维修
-            <small>Start Repair</small>
+            修改预约
+            <small>Edit repair</small>
         </h1>
     </section>
     <section class="content">
@@ -24,40 +24,26 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
-                            <input type="hidden" name="event_type" class="form-control" value="2">
-                            <input type="hidden" name="event_name" class="form-control" value="维修完">
-                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.repair_id');?>">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo $evData['id'];?>"><!--事件event的id-->
                             <div class="form-group">
-                                <label>实际维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <label>预约维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" name="repair_time" class="form-control" id="datetime" value="<?php echo $evData['repair_time'];?>">
+                                    <input type="text" name="repair_time" class="form-control" id="datetime" value="<?php echo $evData['repair_time']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
-                                <label>实际维修人员</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <label>选择项目维修人员</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <select class="form-control selectpicker" name="repair_user_id[]" multiple data-live-search="true">
-                                    <?php foreach($uData as $k=>$v):?>
+                                    <?php foreach($auData as $k=>$v):?>
                                     <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$evData['event_value'])) echo 'selected';?>><?php echo $v['real_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
-                            </div> 
-                            <div class="form-group">
-                                <label>维修费用</label>
-                                </br>人工费：<input type="text" name="artificial_fee" class="form-control">
-                                配件费：
-                                <select class="form-control selectpicker" id="part_id" multiple name="part_id[]" data-live-search="true">
-                                    <option>请选择</option>
-                                    <?php foreach($paData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['part_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div> 
-                            <div class="form-group" id='part'>    
-                            </div> 
+                            </div>   
                         </div>
+
                     </div>
                     <!--确认-->
                     <div class="row">
@@ -100,26 +86,6 @@
 
         });
     });
-
-    //ajax获得选择配件信息
-    $("#part_id").change(function () {
-        var part_id = $(this).val();//值为数组
-        part_id = part_id.join(',');//将数组转换为字符串 
-        $("#part").empty();
-        $.ajax({
-            type: 'get',
-            url: "<?php echo U('Admin/repair/ajaxGetPart', '', FALSE); ?>?part_id=" + part_id,
-            dataType: "JSON",
-            success: function (data) {
-                var sum = 0;
-                var html = '<table>';
-                $(data).each(function (k, v) {
-                    html += '<tr><th>' + v.part_name + '：</th>' + '<th><input type="text"  name="part_fee[]" value="' + v.out_price + '"></th><th>*<input type="text" name="part_number[]" value="1"></input></th></tr>';
-                });
-                $("#part").html(html);
-            }
-        });
-    })
 </script>
 
 

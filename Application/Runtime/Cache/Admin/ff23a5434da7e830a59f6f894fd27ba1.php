@@ -638,15 +638,15 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Repair/select/id/12/project_id/3/p/12.html" method="POST">
+        <form class="form" action="/index.php/Repair/select/repair_id/15/project_id/1.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
                             <input type="hidden" name="event_type" class="form-control" value="1">
-                            <input type="hidden" name="event_name" class="form-control" value="报修">
-                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.id');?>">
+                            <input type="hidden" name="event_name" class="form-control" value="办理">
+                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.repair_id');?>">
                             <div class="form-group">
                                 <label>预约维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <div class="input-group">
@@ -671,7 +671,7 @@
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确 认 </button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
                         </div>
                     </div>
                 </div>

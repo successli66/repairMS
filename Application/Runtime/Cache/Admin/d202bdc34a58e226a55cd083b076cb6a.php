@@ -593,272 +593,53 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            报修信息
-            <small>Report Information</small>
+            办结
+            <small>End</small>
         </h1>
     </section>
     <section class="content">
-        <div class="box box-info">
-            <div class="box-header bg-info">
-                <h3 class="box-title">报修详情</h3>    
-                <a type="button" class="btn btn-default pull-right" href="<?php echo U('repairList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
-            </div>
-            <div class="box-body bg-info">
-                <div class="row">
-                    <div class="col-md-3" style="height: 100px">
-                        <h5 class="text-center">维修单号：<?php echo $data['repair_order'];?></h5>
-                        <div class="text-center">
-                            <?php if($data['repair_status'] == 1):?>
-                            <h4 class="text-center label bg-red">新报修</h4>
-                            <?php endif;?>
-                            <?php if($data['repair_status'] == 2):?>
-                            <h4 class="text-center label bg-yellow">维修中</h4>
-                            <?php endif;?> 
-                            <?php if($data['repair_status'] == 3):?>
-                            <h4 class="text-center label bg-blue">已维修</h4>
-                            <?php endif;?> 
-                            <?php if($data['repair_status'] == 4):?>
-                            <h4 class="text-center label bg-green">已办结</h4>
-                            <?php endif;?>
+        <form class="form" action="/index.php/Repair/end/repair_id/16/project_id/1.html" method="POST">
+            <div class="box box-info">
+                <div class="box-header bg-info">
+                    <h3 class="box-title">办结说明</h3>    
+                    <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回详情</i></a>
+                </div>
+                <div class="box-body bg-info">
+                    <input type="hidden" name="event_type" class="form-control" value="3">
+                    <input type="hidden" name="event_name" class="form-control" value="办结">
+                    <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.repair_id');?>">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>办结详情</label>
+                                <textarea id="descr" name="descr"></textarea>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <h5><a type="button" class="btn btn-sm btn-default" href="<?php echo U('detail',array('id'=>I('get.id'),'p'=>I('get.p')));?>">报修详情...</a></h5>
-                        </div>
+                        <div class="col-md-2"></div>
                     </div>
-                    <div class="col-md-9">
-                        <?php if(in_array($data['repair_status'],array(1,2,3,4))):?>
-                        <div class="col-md-2">
-                            <i class="fa fa-paper-plane-o fa-2x" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <h5 class="text-green">新报修</h5>
-                            <h5 class="text-green"><?php echo $data['report_time'];?></h5>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-send"></i>  确认办结</button>
+                            <a href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>" type="button" class="btn btn-default"><i class="fa fa-times"></i> 取消办结</a>
                         </div>
-                        <?php endif;?>
-                        <?php if(in_array($data['repair_status'],array(2,3,4))):?>
-                        <div class="col-md-2">
-                            <i class="fa fa-spinner fa-2x" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <h5 class="text-green">开始维修</h5>
-                            <h5 class="text-green"><?php echo $evData[0]['event_time'];?></h5>
-                        </div>
-                        <?php endif;?>
-                        <?php if(in_array($data['repair_status'],array(3,4))):?>
-                        <div class="col-md-2">
-                            <i class="fa fa-wrench fa-2x" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <i class="fa fa-angle-double-right" style="color: green"></i>
-                            <h5 class="text-green">已维修</h5>
-                            <h5 class="text-green"><?php echo $evData[1]['event_time'];?></h5>
-                        </div>
-                        <?php endif;?>
-                        <?php if(in_array($data['repair_status'],array(4))):?>
-                        <div class="col-md-2">
-                            <i class="fa fa-check fa-2x" style="color: green"></i>
-                            <h5 class="text-green">已办结</h5>
-                            <h5 class="text-green"><?php echo $evData[2]['event_time'];?></h5>
-                        </div>
-                        <?php endif;?>
-                        <?php if(in_array($data['repair_status'],array(1,2,3))):?>
-                        <div class="col-md-1 ">
-                            <a class="btn btn-sm btn-default" href="<?php echo U($data['next'],array('repair_id'=>I('get.id'),'project_id'=>$data['project_id'],'p'=>I('get.p')));?>"><i class="fa fa-arrow-circle-down"></i> 下 一 步 </a>
-                        </div>
-                        <?php endif;?>
                     </div>
                 </div>
-                <div style="height: 20px"></div>
-
-                <!--时间轴开始-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- The time line -->
-                        <ul class="timeline">
-
-                            <!-- 报送信息 -->
-                            <!-- 时间轴标签 -->
-                            <li class="time-label">
-                                <span class="bg-red">
-                                    <?php echo $data['report_time']?>
-                                </span>
-                            </li>
-                            <!-- 时间轴内容 -->
-                            <li>
-                                <i class="fa fa-paper-plane-o bg-red"></i>
-                                <div class="timeline-item">
-                                    <h3 class="timeline-header"><a href="#"><?php echo $data['real_name']?></a> 报送维修信息</h3>
-                                    <div class="timeline-body">
-                                        <table>
-                                            <tr>
-                                                <td>报修人 ： </td>
-                                                <td> <?php echo $data['real_name'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>报修单位 ：</td>
-                                                <td> <?php echo $data['company_name'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>联系人 ： </td>
-                                                <td> <?php echo $data['contact'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>联系电话 ： </td>
-                                                <td> <?php echo $data['phone'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>维修地址 ： </td>
-                                                <td> <?php echo $data['address'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>设备编号 ： </td>
-                                                <td> <?php echo $data['serial_number'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <td> 故障描述 ： </td>   
-                                            </tr>
-                                        </table>
-                                        <?php echo $data['descr'];?>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <!--接报办理，安排维修人员、预约时间-->
-                            <?php if(in_array($data['repair_status'],array(2,3,4))):?>
-                            <li class="time-label">
-                                <span class="bg-yellow">
-                                    <?php echo $evData[0]['event_time']?>
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-spinner bg-yellow"></i>
-                                <div class="timeline-item">
-                                    <h3 class="timeline-header">
-                                        <a href="#"><?php echo $evData[0]['real_name'];?></a> 接报，维修开始 
-                                        <?php if($data['repair_status'] == 2):?>
-                                        <a class="pull-right" href="<?php echo U('edit_select',array('repair_id'=>I('get.id'),'p'=>I('get.p')));?>"> 修改</a>
-                                        <?php endif;?>
-                                    </h3>
-                                    <div class="timeline-body">
-                                        <h5>预约维修时间：</h5>
-                                        <?php echo $evData[0]['repair_time'];?>
-                                        <h5>预约维修人员：</h5>
-                                        <?php foreach($evData[0]['repair_user'] as $k=>$v):?>
-                                        <a class="btn btn-default btn-sm" href="#"><?php echo $v['real_name']?></a>
-                                        <?php endforeach;?>
-                                    </div>
-                                </div>
-                            </li>
-                            <?php endif;?>
-
-                            <!--维修完成，显示维修信息和费用-->
-                            <?php if(in_array($data['repair_status'],array(3,4))):?>
-                            <li class="time-label">
-                                <span class="bg-blue">
-                                    <?php echo $evData[1]['event_time']?>
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-wrench bg-blue"></i>
-                                <div class="timeline-item">
-                                    <h3 class="timeline-header">
-                                        <a href="#"><?php echo $evData[1]['real_name'];?></a> 维修完毕 
-                                        <?php if($data['repair_status'] == 3):?>
-                                        <a class="pull-right" href="<?php echo U('edit_repaired',array('repair_id'=>I('get.id'),'project_id'=>$data['project_id'],'p'=>I('get.p')));?>"> 修改</a>
-                                        <?php endif;?>
-                                    </h3>
-                                    <div class="timeline-body">
-                                        <h5>实际维修时间：</h5>
-                                        <?php echo $evData[1]['repair_time'];?>
-                                        <h5>实际维修人员：</h5>
-                                        <?php foreach($evData[1]['repair_user'] as $k=>$v):?>
-                                        <a class="btn btn-default btn-sm" href="#"><?php echo $v['real_name']?></a>
-                                        <?php endforeach;?>
-                                        <h5>费用明细：</h5>
-                                        <table border="1" class="text-center">  
-                                            <tr>
-                                                <td> 收 费 项 </td>
-                                                <td> 价 格(元) </td>
-                                                <td> 数 量 </td>
-                                                <td> 总 价(元)</td>
-                                            </tr>
-                                            <?php $sum = 0;?>
-                                            <?php foreach($fData as $k=>$v):?>
-                                            <tr>
-                                                <?php if($v['fee_item'] == 0):?>
-                                                <td>人工费</td>
-                                                <td><?php echo $v['price'];?></td>
-                                                <td><?php echo $v['number'];?></td>
-                                                <td><?php echo $v['price']*$v['number'];?></td>
-                                                <?php else:?>
-                                                <td><?php echo $v['part']['part_name'];?></td>
-                                                <td><?php echo $v['price'];?></td>
-                                                <td> <?php echo $v['number'];?></td>
-                                                <td> <?php echo $v['price']*$v['number'];?></td>
-                                                <?php endif;?>
-                                                <?php $sum += $v['price']*$v['number']?>
-                                            </tr>
-                                            <?php endforeach;?>
-                                        </table>
-                                        <h5>总费用：<?php echo $sum;?> 元</h5>
-                                    </div>
-                                </div>
-                            </li>
-                            <?php endif;?>
-
-
-                            <!-- 办结 -->
-                            <?php if(in_array($data['repair_status'],array(4))):?>
-                            <li class="time-label">
-                                <span class="bg-green">
-                                    <?php echo $evData[2]['event_time'];?>
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-check bg-green"></i>
-                                <div class="timeline-item">
-                                    <h3 class="timeline-header">
-                                        <a href="#"><?php echo $evData[2]['real_name'];?></a> 维修办结
-                                        <?php if($data['repair_status'] == 4):?>
-                                        <a class="pull-right" href="#"> 修改</a>
-                                        <?php endif;?>
-                                    </h3>
-
-                                    <div class="timeline-body">
-                                        <h5>办结说明：</h5>
-                                        <?php echo $evData[2]['descr'];?>
-                                    </div>
-                                </div>
-                            </li>
-                            <?php endif;?>
-
-                            <!-- END timeline item -->
-                            <li>
-                                <i class="fa fa-clock-o bg-gray"></i>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
             </div>
-        </div>
+        </form>
     </section>
 </div>
+
+<!-- 配置文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    //uEditor
+    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+</script>
 
 
 <div class="wrapper"></div>

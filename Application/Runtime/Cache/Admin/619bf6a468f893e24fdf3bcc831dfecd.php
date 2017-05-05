@@ -659,13 +659,13 @@
                                 <input type="text" class="form-control" value="<?php echo '新报修';?>">
                                 <?php endif;?>
                                 <?php if($data['repair_status'] == 2):?>
-                                <input type="text" class="form-control" value="<?php echo '新报修';?>">
+                                <input type="text" class="form-control" value="<?php echo '维修中';?>">
                                 <?php endif;?> 
                                 <?php if($data['repair_status'] == 3):?>
-                                <input type="text" class="form-control" value="<?php echo '新报修';?>">
+                                <input type="text" class="form-control" value="<?php echo '已维修';?>">
                                 <?php endif;?> 
                                 <?php if($data['repair_status'] == 4):?>
-                                <input type="text" class="form-control" value="<?php echo '新报修';?>">
+                                <input type="text" class="form-control" value="<?php echo '已办结';?>">
                                 <?php endif;?>
                             </div> 
                         </div>
