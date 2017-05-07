@@ -148,7 +148,7 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-danger">6</span>
+                        <span class="label label-danger"><?php echo session('newRepairCount');?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
@@ -425,8 +425,8 @@
                     <i class="fa fa-wrench"></i>
                     <span>维护维修</span>
                     <span class="pull-right-container">
-                        <small class="label pull-right bg-yellow">12</small>
-                        <small class="label pull-right bg-red"><?php echo $newRepairCount;?></small>
+                        <small class="label pull-right bg-yellow"><?php echo session('repairingCount');?></small>
+                        <small class="label pull-right bg-red"><?php echo session('newRepairCount');?></small>
                     </span>
                 </a>
             </li>

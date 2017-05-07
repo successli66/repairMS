@@ -1,0 +1,54 @@
+[ 2017-05-08T07:10:08+08:00 ] 127.0.0.1 /index.php/Login/ajaxLogin.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000839s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001281s ]
+SQL: SHOW COLUMNS FROM `rm_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `rm_user` WHERE `username` = 'lishen' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `rm_company` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_company` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rm_department` [ RunTime:0.0720s ]
+SQL: SELECT * FROM `rm_department` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+
+[ 2017-05-08T07:28:14+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000738s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001163s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000762s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000848s ]
+
+[ 2017-05-08T07:28:27+08:00 ] 127.0.0.1 /index.php/Admin/Equipment/ajaxGetEq/project_id/001
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001024s ]
+SQL: SHOW COLUMNS FROM `rm_equipment` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `rm_equipment` WHERE `project_id` = '001'  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000705s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000794s ]
+
+[ 2017-05-08T07:34:52+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000621s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001057s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('2')  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000790s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000879s ]
+
+[ 2017-05-08T07:34:53+08:00 ] 127.0.0.1 /index.php/Admin/repair/ajaxGetPart?part_id=2,3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000592s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000985s ]
+SQL: SHOW COLUMNS FROM `rm_part` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `rm_part` WHERE `id` IN ('2','3')  [ RunTime:0.0466s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002673s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003030s ]
+
+[ 2017-05-08T07:43:22+08:00 ] 127.0.0.1 /index.php/admin/repair/index.html
+ERR: 非法操作:index
+

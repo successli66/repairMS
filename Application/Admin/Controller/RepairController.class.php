@@ -25,6 +25,18 @@ class RepairController extends BaseController {
     public function repairList() {
         $model = D('Repair');
         $data = $model->search(2);
+        $newRepairCount = $model->where(array(
+                    'repair_status' => 1
+                ))->count();
+        $repairingCount = $model->where(array(
+                    'repair_status' => 2
+                ))->count();
+        $repairedCount = $model->where(array(
+                    'repair_status' => 3
+                ))->count();
+        session('newRepairCount', $newRepairCount);//重新存储新报修的数目
+        session('repairingCount', $repairingCount);//重新存储维修中的数目
+        session('repairedCount', $repairedCount);//重新存储已维修的数目
         $this->assign(data, $data['data']);
         $this->assign(page, $data['page']);
         $this->display();
@@ -189,8 +201,8 @@ class RepairController extends BaseController {
             $_POST['event_time'] = date('Y-m-d H:i:s', time());
             if ($evModel->save($_POST)) {//修改event表数据
                 $fModel = M('fee');
-                $fModel->where(array('repair_id' => $repair_id))->delete();//删除费用表对应的repair_id数据
-                $this->addFee($repair_id);//重新添加fee表的数据
+                $fModel->where(array('repair_id' => $repair_id))->delete(); //删除费用表对应的repair_id数据
+                $this->addFee($repair_id); //重新添加fee表的数据
                 $this->success('保存成功！', U('info', array('id' => I('get.repair_id'), 'p' => I('get.p'))), 0);
                 exit();
                 $this->error($fModel->getError());
@@ -234,6 +246,45 @@ class RepairController extends BaseController {
             }
         }
         $this->display();
+    }
+
+    public function edit_end() {
+        $repair_id = I('get.repair_id');
+        if (IS_POST) {
+            if ($this->eventAdd()) {
+                $model = M('repair');
+                $repair['repair_status'] = 4;
+                $repair['id'] = $_POST['repair_id'];
+                $model->save($repair);
+                $this->success('办结成功！', U('info', array('id' => I('get.repair_id'), 'p' => I('get.p'))), 1);
+                exit();
+            }
+        }
+        $evModel = M('event');
+        $evData = $evModel->where(array(
+                    'repair_id' => $repair_id,
+                    'event_type' => 3
+                ))->find();
+        $this->assign('evData', $evData);
+        $this->display();
+    }
+
+    public function cancel() {
+        $repair_id = I('get.repair_id');
+        $model = M('repair');
+        $repair['repair_status'] = 3;
+        $repair['id'] = $repair_id;
+        if ($model->save($repair)) {
+            $evModel = M('event');
+            $ev = $evModel->where(array(
+                        'repair_id' => $repair_id,
+                        'event_type' => 3
+                    ))->delete();
+            if ($ev) {
+                $this->success('修改成功！', U('Info', array('id' => I('get.repair_id'), 'p' => I('get.p'))), 1);
+                exit;
+            }
+        }
     }
 
     public function eventAdd() { //添加事件

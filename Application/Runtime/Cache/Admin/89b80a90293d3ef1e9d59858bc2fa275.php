@@ -604,7 +604,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Repair/repaired/repair_id/14/project_id/1/p/2.html" method="POST">
+        <form class="form" action="/index.php/Repair/repaired/repair_id/18/project_id/1/p/index.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">

@@ -604,7 +604,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Repair/edit_select/repair_id/14/p/2.html" method="POST">
+        <form class="form" action="/index.php/Repair/edit_select/repair_id/18/p/index.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
@@ -634,8 +634,8 @@
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确 认 </button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改 </button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消修改 </a>
                         </div>
                     </div>
                 </div>

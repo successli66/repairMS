@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-05-02 00:19:12
+-- Generation Time: 2017-05-07 23:44:50
 -- 服务器版本： 5.7.14
 -- PHP Version: 5.6.25
 
@@ -119,15 +119,24 @@ CREATE TABLE `rm_event` (
   `event_value` varchar(50) DEFAULT NULL COMMENT '事件值',
   `user_id` smallint(5) UNSIGNED NOT NULL COMMENT '操作人ID',
   `event_time` datetime NOT NULL COMMENT '发生时间',
-  `descr` text COMMENT '事件描述'
+  `descr` text COMMENT '事件描述',
+  `repair_time` datetime DEFAULT NULL COMMENT '维修时间',
+  `repair_id_event_type` int(10) UNSIGNED NOT NULL COMMENT '防止重复提交数据'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='事件表';
 
 --
 -- 转存表中的数据 `rm_event`
 --
 
-INSERT INTO `rm_event` (`id`, `repair_id`, `event_type`, `event_name`, `event_value`, `user_id`, `event_time`, `descr`) VALUES
-(1, 11, '1', '报修', '4,10', 1, '2017-04-27 07:43:47', NULL);
+INSERT INTO `rm_event` (`id`, `repair_id`, `event_type`, `event_name`, `event_value`, `user_id`, `event_time`, `descr`, `repair_time`, `repair_id_event_type`) VALUES
+(17, 13, '1', '办理', '10', 1, '2017-05-05 17:55:37', NULL, '2017-05-06 17:55:32', 131),
+(18, 13, '2', '维修完', '10', 1, '2017-05-05 17:56:43', NULL, '2017-05-06 17:55:32', 132),
+(22, 13, '3', '办结', NULL, 1, '2017-05-05 18:53:26', '<p>办结！</p><p><img src="/ueditor/php/upload/image/20170505/1493981601951776.png" title="1493981601951776.png" alt="QQ截图20170303125713.png" width="634" height="359"/></p>', NULL, 133),
+(23, 16, '1', '办理', '4', 1, '2017-05-05 19:05:45', NULL, '2017-05-09 10:05:29', 161),
+(25, 16, '2', '维修完', '4,10', 1, '2017-05-07 15:47:18', NULL, '2017-05-10 10:05:29', 162),
+(26, 14, '1', '办理', '1,9,10', 1, '2017-05-08 07:34:18', NULL, '2017-05-13 11:08:01', 141),
+(27, 18, '1', '办理', '9,10', 1, '2017-05-08 07:34:38', NULL, '2017-05-11 07:28:37', 181),
+(28, 18, '2', '维修完', '4,10', 1, '2017-05-08 07:35:57', NULL, '2017-05-12 07:28:37', 182);
 
 -- --------------------------------------------------------
 
@@ -139,8 +148,26 @@ CREATE TABLE `rm_fee` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
   `repair_id` int(10) UNSIGNED NOT NULL COMMENT '报修表ID',
   `fee_item` varchar(20) NOT NULL COMMENT '收费项',
-  `fee` smallint(5) UNSIGNED NOT NULL COMMENT '实际费用'
+  `price` mediumint(8) UNSIGNED NOT NULL COMMENT '单价',
+  `number` tinyint(4) DEFAULT NULL COMMENT '数量',
+  `repair_id_fee_item` int(10) UNSIGNED NOT NULL COMMENT '防止重复添加数据'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='费用表';
+
+--
+-- 转存表中的数据 `rm_fee`
+--
+
+INSERT INTO `rm_fee` (`id`, `repair_id`, `fee_item`, `price`, `number`, `repair_id_fee_item`) VALUES
+(21, 13, '0', 500, 1, 130),
+(22, 13, '2', 1000, 2, 132),
+(23, 13, '3', 1500, 1, 133),
+(43, 16, '0', 1000, 1, 160),
+(44, 16, '1', 2500, 1, 161),
+(45, 16, '2', 2500, 1, 162),
+(46, 16, '3', 1500, 1, 163),
+(50, 18, '0', 500, 1, 180),
+(51, 18, '2', 1600, 1, 182),
+(52, 18, '3', 1500, 1, 183);
 
 -- --------------------------------------------------------
 
@@ -179,7 +206,9 @@ CREATE TABLE `rm_part` (
 --
 
 INSERT INTO `rm_part` (`id`, `part_name`, `model`, `in_price`, `out_price`, `project_id`, `descr`, `image`, `manufacturer`) VALUES
-(1, '进钞机芯', 'asdfasfd', '2000', '2500', 1, '<p style="text-align:center;"><img src="/ueditor/php/upload/image/20170309/1489017010124482.png" alt="QQ截图20170303125713.png" width="680" height="361" /></p>', NULL, '广电运通');
+(1, '进钞机芯', 'asdfasfd', '2000', '2500', 1, '<p style="text-align:center;"><img src="/ueditor/php/upload/image/20170309/1489017010124482.png" alt="QQ截图20170303125713.png" width="680" height="361" /></p>', NULL, '广电运通'),
+(2, '摄像头', '阿斯顿发斯蒂芬12231233', '2000', '2500', 1, '', NULL, '通天塔'),
+(3, '打印机', '55545887212-14415456', '1000', '1500', 1, '', NULL, '广电运通');
 
 -- --------------------------------------------------------
 
@@ -233,31 +262,20 @@ CREATE TABLE `rm_repair` (
   `repair_status` tinyint(3) UNSIGNED NOT NULL COMMENT '维修状态',
   `repair_order` varchar(30) NOT NULL COMMENT '维修单号',
   `company_id` smallint(6) DEFAULT NULL COMMENT '公司ID',
-  `serial_number` varchar(200) DEFAULT NULL COMMENT '设备序列号',
-  `appointment_time` datetime DEFAULT NULL COMMENT '预约维修时间',
-  `repair_time` datetime DEFAULT NULL COMMENT '维修时间',
-  `repaired_time` datetime DEFAULT NULL COMMENT '维修完时间',
-  `end_time` datetime DEFAULT NULL COMMENT '办结时间',
-  `repair_user_id` varchar(20) DEFAULT NULL COMMENT '维修人员ID'
+  `serial_number` varchar(200) DEFAULT NULL COMMENT '设备序列号'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='报修表';
 
 --
 -- 转存表中的数据 `rm_repair`
 --
 
-INSERT INTO `rm_repair` (`id`, `title`, `project_id`, `descr`, `image`, `equipment_id`, `report_person_id`, `report_time`, `address`, `contact`, `phone`, `repair_status`, `repair_order`, `company_id`, `serial_number`, `appointment_time`, `repair_time`, `repaired_time`, `end_time`, `repair_user_id`) VALUES
-(1, '售票机维修', 1, '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/ueditor/php/upload/image/20170418/1492515847307763.png&quot; title=&quot;1492515847307763.png&quot; alt=&quot;QQ截图20170303125713.png&quot; width=&quot;483&quot; height=&quot;406&quot;/&gt;&lt;/p&gt;', NULL, '1,3', NULL, '2017-04-18 19:49:27', '崂山区香港东路155号', '李绅', '18554870865', 4, '0022017041819492772', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '售票机维修', 1, '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20170418/1492520385113053.png&quot; title=&quot;1492520385113053.png&quot; alt=&quot;QQ截图20170303125713.png&quot;/&gt;&lt;/p&gt;', NULL, '1', NULL, '2017-04-18 20:59:52', '崂山区香港东路155号', '李绅', '18554870865', 1, '0022017041820595257', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, '售票机维修1', 1, '', NULL, '3', NULL, '2017-04-18 21:00:18', '崂山区香港东路155号', '李绅', '18554870865', 2, '0022017041821001887', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, '售票机维修2', 1, '', NULL, '1,3', NULL, '2017-04-18 21:00:32', '崂山区香港东路155号', '李绅', '18554870865', 3, '0022017041821003213', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'ANJIANYI', 1, '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20170419/1492559802114718.png&quot; title=&quot;1492559802114718.png&quot; alt=&quot;QQ截图20170303125713.png&quot;/&gt;&lt;/p&gt;', NULL, '1,3', NULL, '2017-04-19 07:56:45', '青岛市崂山区香港东路155号', '张三', '123456', 1, '0022017041907564573', NULL, 'sdfwe4,123', NULL, NULL, NULL, NULL, NULL),
-(6, '安检仪', 1, '', NULL, '3', NULL, '2017-04-19 07:58:42', '崂山区香港东路155号', '李绅', '18554870865', 1, '0022017041907584253', NULL, '123', NULL, NULL, NULL, NULL, NULL),
-(7, 'anjiany', 1, '', NULL, '1,3', 1, '2017-04-19 08:02:35', '崂山区香港东路155号', '李绅', '18554870865', 1, '0022017041908023516', 2, 'sdfwe4,123', NULL, NULL, NULL, NULL, NULL),
-(8, '售票机维修', 1, '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20170420/1492700975117907.png&quot; title=&quot;1492700975117907.png&quot; alt=&quot;QQ截图20170303125713.png&quot;/&gt;&lt;/p&gt;', NULL, '1', 1, '2017-04-20 23:09:37', '崂山区香港东路155号', '李绅', '18554870865', 1, '0022017042023093773', 2, 'sdfwe4', NULL, NULL, NULL, NULL, NULL),
-(9, '售票机维修', 1, '&lt;p&gt;sadfasdfzxssdghjkkll&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/ueditor/php/upload/image/20170421/1492731221113892.png&quot; title=&quot;1492731221113892.png&quot; alt=&quot;QQ截图20170303125713.png&quot; width=&quot;639&quot; height=&quot;376&quot;/&gt;&lt;/p&gt;', NULL, '1', 1, '2017-04-21 07:33:56', '崂山区香港东路155号', '李绅', '18554870865', 1, '0022017042107335613', 2, 'sdfwe4', NULL, NULL, NULL, NULL, NULL),
-(10, '售票机维修', 1, '<p>1213123</p>', NULL, '3', 1, '2017-04-21 07:35:27', '崂山区香港东路155号', '李绅', '18554870865', 1, '0022017042107352718', 2, '123', NULL, NULL, NULL, NULL, NULL),
-(11, '售票机维修', 1, '<p><img src="/ueditor/php/upload/image/20170421/1492731359108397.png" alt="QQ截图20170303125713.png" /></p>', NULL, '1,3', 1, '2017-04-21 07:36:01', '崂山区香港东路155号', '李绅', '18554870865', 2, '0022017042107360192', 2, 'sdfwe4,123', '2017-04-28 07:34:22', NULL, NULL, NULL, '4,10'),
-(12, '售票机维修', 3, '', NULL, '4', 1, '2017-04-25 22:42:56', '崂山区香港东路155号', '李绅', '18554870865', 2, '0022017042522425623', 2, '1225448875', '2017-04-28 07:41:10', NULL, NULL, NULL, '1,4,10');
+INSERT INTO `rm_repair` (`id`, `title`, `project_id`, `descr`, `image`, `equipment_id`, `report_person_id`, `report_time`, `address`, `contact`, `phone`, `repair_status`, `repair_order`, `company_id`, `serial_number`) VALUES
+(13, '售票机维修', 1, '<p style="text-align:center;"><img src="/ueditor/php/upload/image/20170505/1493977480377560.png" alt="QQ截图20170303125713.png" width="648" height="425" /></p>', NULL, '3', 1, '2017-05-05 17:47:11', '崂山区香港东路155号', '李绅', '18554870865', 4, '0022017050517471162', 2, '123'),
+(14, '售票机维修', 1, '<p>坏了</p>', NULL, '1', 1, '2017-05-05 18:59:29', '崂山区香港东路155号', '李绅', '18554870865', 2, '0022017050518592934', 2, 'sdfwe4'),
+(15, '售票机维修', 1, '<p><img src="http://img.baidu.com/hi/jx2/j_0015.gif" alt="j_0015.gif" /><img src="http://img.baidu.com/hi/jx2/j_0003.gif" alt="j_0003.gif" /><img src="http://img.baidu.com/hi/jx2/j_0081.gif" alt="j_0081.gif" /></p>', NULL, '1,3', 1, '2017-05-05 19:02:45', '四方长途站', '王五', '65599877', 1, '0022017050519024549', 2, 'sdfwe4,123'),
+(16, '售票机维修aa', 1, '<p>2017-05-0519:04:04</p><br />12<br /><br /><br /><br /><br />W<br /><br /><br /><br /><br /><br /><br />AE<br /><br /><br /><br /><br />2 w<br /><br /><br /><br /><br /><p><br /></p>', NULL, '3', 1, '2017-05-05 19:05:12', '东站', '张三', '999999', 3, '0022017050519051229', 2, '123'),
+(17, '售票机维修', 1, '', NULL, '3', 1, '2017-05-08 07:28:18', '崂山区香港东路155号', '李绅', '18554870865', 1, '0022017050807281866', 2, '123'),
+(18, '售票机维修', 1, '', NULL, '3', 1, '2017-05-08 07:28:31', '崂山区香港东路155号', '李绅', '18554870865', 3, '0022017050807283126', 2, '123');
 
 -- --------------------------------------------------------
 
@@ -341,6 +359,7 @@ ALTER TABLE `rm_equipment`
 --
 ALTER TABLE `rm_event`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `repair_id_event_type` (`repair_id_event_type`),
   ADD KEY `repair_id` (`repair_id`);
 
 --
@@ -348,6 +367,7 @@ ALTER TABLE `rm_event`
 --
 ALTER TABLE `rm_fee`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `repair_id_fee_item` (`repair_id_fee_item`),
   ADD KEY `repair_id` (`repair_id`);
 
 --
@@ -434,12 +454,12 @@ ALTER TABLE `rm_equipment`
 -- 使用表AUTO_INCREMENT `rm_event`
 --
 ALTER TABLE `rm_event`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=30;
 --
 -- 使用表AUTO_INCREMENT `rm_fee`
 --
 ALTER TABLE `rm_fee`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=53;
 --
 -- 使用表AUTO_INCREMENT `rm_modify`
 --
@@ -449,7 +469,7 @@ ALTER TABLE `rm_modify`
 -- 使用表AUTO_INCREMENT `rm_part`
 --
 ALTER TABLE `rm_part`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=4;
 --
 -- 使用表AUTO_INCREMENT `rm_project`
 --
@@ -459,7 +479,7 @@ ALTER TABLE `rm_project`
 -- 使用表AUTO_INCREMENT `rm_repair`
 --
 ALTER TABLE `rm_repair`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=19;
 --
 -- 使用表AUTO_INCREMENT `rm_user`
 --

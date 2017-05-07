@@ -15,7 +15,7 @@
         <div class="box box-info">
             <div class="box-header bg-info">
                 <h3 class="box-title">报修详情</h3>    
-                <a type="button" class="btn btn-default pull-right" href="<?php echo U('repairList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('repairList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
             </div>
             <div class="box-body bg-info">
                 <div class="row">
@@ -248,7 +248,7 @@
                                     <h3 class="timeline-header">
                                         <a href="#"><?php echo $evData[2]['real_name'];?></a> 维修办结
                                         <?php if($data['repair_status'] == 4):?>
-                                        <a class="pull-right" href="#"> 修改</a>
+                                        <a class="pull-right" href="<?php echo U('edit_end',array('repair_id'=>I('get.id'),'p'=>I('get.p')));?>"> 修改</a>
                                         <?php endif;?>
                                     </h3>
 

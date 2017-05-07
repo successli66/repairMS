@@ -598,7 +598,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Repair/end/repair_id/16/project_id/1.html" method="POST">
+        <form class="form" action="/index.php/Repair/end/repair_id/18/project_id/1/p/index.html" method="POST">
             <div class="box box-info">
                 <div class="box-header bg-info">
                     <h3 class="box-title">办结说明</h3>    
