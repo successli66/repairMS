@@ -105,6 +105,25 @@ class RepairController extends BaseController {
         ));
         $this->display();
     }
+    
+    public function getTimeLine($repair_status){
+        $evModel = M('event');
+        $evData = $evModel->alias('a')                                      //获得事件类型为1或2的事件
+                            ->field('a.*,b.real_name')
+                            ->join('LEFT JOIN __USER__ b ON a.user_id=b.id')    //获得处理人的信息
+                            ->where(array(
+                                'a.repair_id' => $id,
+                                'a.event_type' => 1,
+                            ))->find();
+            $uId = explode(',', $evData['event_value']);
+            var_dump($uId);
+            foreach ($uId as $k => $v) {                              //循环每个iD获得维修人员信息
+                $uModel = M('User');
+                $uData = $uModel->find($v);
+                $evData['repair_user'][] = $uData;
+                var_dump($uData);
+            }
+    }
 
     public function detail() {
         $id = I('get.id');
