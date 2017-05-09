@@ -13,8 +13,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            开始维修
-            <small>Start Repair</small>
+            修改维修结果
+            <small>Edit Repaired</small>
         </h1>
     </section>
     <section class="content">
@@ -23,10 +23,8 @@
                 <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <input type="hidden" name="event_type" class="form-control" value="2">
-                            <input type="hidden" name="event_name" class="form-control" value="维修完">
-                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.repair_id');?>">
+                        <div class="col-md-5">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo $evData['id'];?>">
                             <div class="form-group">
                                 <label>实际维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <div class="input-group">
@@ -46,24 +44,35 @@
                             </div> 
                             <div class="form-group">
                                 <label>维修费用</label>
-                                </br>人工费：<input type="text" name="artificial_fee" class="form-control">
+                                </br>人工费：<input type="text" name="artificial_fee" class="form-control" value="<?php if($fData[0]['fee_item'] == 0) echo $fData[0]['price']?>">
                                 配件费：
                                 <select class="form-control selectpicker" id="part_id" multiple name="part_id[]" data-live-search="true">
                                     <option>请选择</option>
                                     <?php foreach($paData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['part_name'];?></option>
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$part_id)) echo 'selected';?>><?php echo $v['part_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div> 
-                            <div class="form-group" id='part'>    
+                            <div class="form-group" id='part'>
+                                <table>
+                                    <?php foreach($fData as $k=>$v):?>
+                                    <?php if($v['fee_item'] !=0):?>
+                                    <tr>
+                                    <td><?php echo $v['part']['part_name'];?>:</td>
+                                    <td><input type='text' name='part_fee[]' value="<?php echo $v['price'];?>"></td>
+                                    <td>*<input type="text" name="part_number[]" value="<?php echo $v['number'];?>"></td>
+                                    </tr>
+                                    <?php endif;?>
+                                    <?php endforeach;?>
+                                </table>
                             </div> 
                         </div>
                     </div>
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确 认 </button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取消修改</i></a>
                         </div>
                     </div>
                 </div>

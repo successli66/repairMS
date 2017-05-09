@@ -166,4 +166,32 @@ key part_id(part_id),
 key fee_id(fee_id)
 )engine=InnoDB comment '配件用量表';
 
+create table rm_group(
+id int unsigned not null auto_increment comment 'ID',
+group_name varchar(30) not null comment '分组名称',
+operation tinyint unsigned not null default 0 comment '是否允许操作与自己无关内容',
+superior_id int unsigned not null default 0 comment '上级组id',
+primary key (id),
+key superior_id(superior_id)
+)engine=InnoDB comment '用户分组表';
+
+create table rm_privilege(
+id int unsigned not null auto_increment comment 'ID',
+privilege_name varchar(30) not null comment '权限名称',
+module_name varchar(30) not null comment '模块名称',
+controller_name varchar(30) not null comment '控制器名称',
+action_name varchar(30) not null comment '方法名称',
+superior_id int unsigned not null default 0 comment '上级权限id',
+primary key (id),
+key superior_id(superior_id)
+)engine=InnoDB comment '权限表';
+
+create table rm_group_privilege(
+id int unsigned not null auto_increment comment 'ID',
+group_id int unsigned not null comment '分组ID',
+privilege_id int unsigned not null comment '权限ID',
+primary key (id),
+key group_id (group_id),
+key privilege_id (privilege_id)
+)engine=InnoDB comment '组权限表';
 

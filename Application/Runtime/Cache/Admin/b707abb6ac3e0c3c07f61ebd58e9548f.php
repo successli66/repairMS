@@ -148,7 +148,7 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-danger">6</span>
+                        <span class="label label-danger"><?php echo session('newRepairCount');?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
@@ -401,15 +401,15 @@
             </div>
         </div>
         <!-- search form（搜索） -->
-<!--        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="搜索...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </form>-->
+        <!--        <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="搜索...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>-->
         <!-- /.search form -->
         <!-- sidebar menu（左侧主菜单）: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -419,50 +419,16 @@
                 <a href="<?php echo U('Admin/Index/index'); ?>">
                     <i class="fa fa-th-large"></i> <span>首页</span>
                 </a>
-            </li>
+            </li>           
             <li class="treeview">
-                <a href="#">
+                <a href="<?php echo U('admin/repair/repairList'); ?>">
                     <i class="fa fa-wrench"></i>
                     <span>维护维修</span>
                     <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        <small class="label pull-right bg-yellow">12</small>
-                        <small class="label pull-right bg-red">5</small>      
+                        <small class="label pull-right bg-yellow"><?php echo session('repairingCount');?></small>
+                        <small class="label pull-right bg-red"><?php echo session('newRepairCount');?></small>
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?php echo U('admin/repair/repairList'); ?>">
-                            <i class="fa fa-info-circle"></i>维修总览
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo U('admin/repair/report'); ?>">
-                            <i class="fa fa-info-circle"></i>报修
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-envelope"></i>新报修
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-spinner"></i>维修中
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-yellow">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/collapsed-sidebar.html">
-                            <i class="fa fa-check"></i>已维修
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li class="treeview">
                 <a href="index.html">
@@ -606,7 +572,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
+                        <a href="<?php echo U('Admin/Group/GroupList');?>">
                             <i class="fa fa-users"></i>组管理
                         </a>
                     </li>
@@ -633,87 +599,94 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            通讯录
-            <small>Address Book</small>
+            修改维修结果
+            <small>Edit Repaired</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header bg-info">
-                        <h3 class="box-title">用户列表</h3> 
-                    </div>
-                    <div class="col-md-12">
-                        <div class="box-body">
-                            <form action="/index.php/User/addressBook/p/3.html" method="GET">
-                                <div class="form-group col-md-6">    
-                                    <select class="form-control selectpicker" id="company_id" name="company_id" data-live-search="true" style="width: 100%;">
-                                        <option value="">请选择公司</option>
-                                        <?php foreach($cpData as $k=>$v):?>
-                                        <option value="<?php echo $v['id'];?>" <?php if(I('get.company_id')==$v['id']) echo "selected='selected'";?>><?php echo $v['company_name'];?></option>
-                                        <?php endforeach;?>
-                                    </select>
-                                </div>
-<!--                                <div class="form-group col-md-4">    
-                                    <select class="form-control" id="department_id" name="department_id" data-live-search="true" style="width: 100%;">
-                                        <option value="">请选择部门</option>
-                                    </select>
-                                </div>-->
-                                <div class="input-group  col-md-6">
-                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" value="<?php echo I('get.search_name');?>" placeholder="输入用户信息...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                    </span>
-                                </div>
-                            </form>        
+        <form class="form" action="/index.php/Repair/edit_repaired/repair_id/16/project_id/1/p/2.html" method="POST">
+            <div class="box box-info">
+                <div class="box-body bg-info">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo $evData['id'];?>">
+                            <div class="form-group">
+                                <label>实际维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="repair_time" class="form-control" id="datetime" value="<?php echo $evData['repair_time'];?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>实际维修人员</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
+                                <select class="form-control selectpicker" name="repair_user_id[]" multiple data-live-search="true">
+                                    <?php foreach($uData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$evData['event_value'])) echo 'selected';?>><?php echo $v['real_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div> 
+                            <div class="form-group">
+                                <label>维修费用</label>
+                                </br>人工费：<input type="text" name="artificial_fee" class="form-control" value="<?php if($fData[0]['fee_item'] == 0) echo $fData[0]['price']?>">
+                                配件费：
+                                <select class="form-control selectpicker" id="part_id" multiple name="part_id[]" data-live-search="true">
+                                    <option>请选择</option>
+                                    <?php foreach($paData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$part_id)) echo 'selected';?>><?php echo $v['part_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div> 
+                            <div class="form-group" id='part'>
+                                <table>
+                                    <?php foreach($fData as $k=>$v):?>
+                                    <?php if($v['fee_item'] !=0):?>
+                                    <tr>
+                                    <td><?php echo $v['part']['part_name'];?>:</td>
+                                    <td><input type='text' name='part_fee[]' value="<?php echo $v['price'];?>"></td>
+                                    <td>*<input type="text" name="part_number[]" value="<?php echo $v['number'];?>"></td>
+                                    </tr>
+                                    <?php endif;?>
+                                    <?php endforeach;?>
+                                </table>
+                            </div> 
                         </div>
                     </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">编 号</th>
-                                    <th class="text-center">姓 名</th>
-                                    <th class="text-center">电 话</th>
-                                    <th class="text-center">公 司</th>
-                                    <th class="text-center">部 门</th>
-                                    <th class="text-center">操 作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['id'];?></td>
-                                    <td><?php echo $v['real_name'];?></td>
-                                    <td><?php echo $v['telephone'];?></td>
-                                    <td><?php echo $v['company_name'];?></td>
-                                    <td><?php echo $v['department_name'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('addressBookInfo?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?>
+                    <!--确认-->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取消修改</i></a>
                         </div>
                     </div>
                 </div>
-            </div>    
-        </div>
+            </div>
+        </form>           
     </section>
 </div>
 
-<script>
-    //下拉框JS
+<!--添加时间插件插件-->
+<script type="text/javascript" src="/Public/plugins/jeDate/jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="/Public/plugins/jeDate/skin/jedate.css">
+<script type="text/javascript">
+    var start = {
+        dateCell: '#datetime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+//        minDate: jeDate.now(0), //设定最小日期为当前日期
+        isinitVal: false,
+        festival: true,
+        ishmsVal: false,
+        maxDate: '2099-06-30 23:59:59', //最大日期
+        choosefun: function (elem, datas) {
+            //console.log(datas)
+            end.minDate = datas; //开始日选好后，重置结束日的最小日期
+        }
+    };
+    jeDate(start);
+
+    //多选下拉框JS
     $(window).on('load', function () {
         $('.selectpicker').selectpicker({
             style: 'btn-info',
@@ -722,29 +695,26 @@
 
         });
     });
-//    $("#company_id").change(function () {
-//        var company_id = $(this).val();
-//        if (company_id > 0) {
-//            $.ajax({
-//                type: "GET",
-//                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-//                dataType: "json",
-//                success: function (data) {
-//                    $("#department_id").empty();
-//                    var html = '<option value="">请选择部门</option>';
-//                    $(data).each(function (k, v) {
-//                        if (v.id == "<?php echo I('get.department_id');?>") {
-//                            html += '<option selected value="' + v.id + '">' + v.department_name + '</option>';
-//                        } else {
-//                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-//                        }
-//                    });
-//                    $("#department_id").html(html);
-//                }
-//            });
-//        } else
-//            $("#department_id").html("");
-//    });
+
+    //ajax获得选择配件信息
+    $("#part_id").change(function () {
+        var part_id = $(this).val();//值为数组
+        part_id = part_id.join(',');//将数组转换为字符串 
+        $("#part").empty();
+        $.ajax({
+            type: 'get',
+            url: "<?php echo U('Admin/repair/ajaxGetPart', '', FALSE); ?>?part_id=" + part_id,
+            dataType: "JSON",
+            success: function (data) {
+                var sum = 0;
+                var html = '<table>';
+                $(data).each(function (k, v) {
+                    html += '<tr><th>' + v.part_name + '：</th>' + '<th><input type="text"  name="part_fee[]" value="' + v.out_price + '"></th><th>*<input type="text" name="part_number[]" value="1"></input></th></tr>';
+                });
+                $("#part").html(html);
+            }
+        });
+    })
 </script>
 
 

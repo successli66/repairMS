@@ -148,7 +148,7 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-danger">6</span>
+                        <span class="label label-danger"><?php echo session('newRepairCount');?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
@@ -401,15 +401,15 @@
             </div>
         </div>
         <!-- search form（搜索） -->
-<!--        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="搜索...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </form>-->
+        <!--        <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="搜索...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>-->
         <!-- /.search form -->
         <!-- sidebar menu（左侧主菜单）: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -419,50 +419,16 @@
                 <a href="<?php echo U('Admin/Index/index'); ?>">
                     <i class="fa fa-th-large"></i> <span>首页</span>
                 </a>
-            </li>
+            </li>           
             <li class="treeview">
-                <a href="#">
+                <a href="<?php echo U('admin/repair/repairList'); ?>">
                     <i class="fa fa-wrench"></i>
                     <span>维护维修</span>
                     <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        <small class="label pull-right bg-yellow">12</small>
-                        <small class="label pull-right bg-red">5</small>      
+                        <small class="label pull-right bg-yellow"><?php echo session('repairingCount');?></small>
+                        <small class="label pull-right bg-red"><?php echo session('newRepairCount');?></small>
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?php echo U('admin/repair/repairList'); ?>">
-                            <i class="fa fa-info-circle"></i>维修总览
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo U('admin/repair/report'); ?>">
-                            <i class="fa fa-info-circle"></i>报修
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-envelope"></i>新报修
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-spinner"></i>维修中
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-yellow">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/collapsed-sidebar.html">
-                            <i class="fa fa-check"></i>已维修
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li class="treeview">
                 <a href="index.html">
@@ -638,15 +604,15 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Repair/repaired/id/11/project_id/1/p/11.html" method="POST">
+        <form class="form" action="/index.php/Repair/repaired/repair_id/14/project_id/1/p/3.html" method="POST">
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
                             <input type="hidden" name="event_type" class="form-control" value="2">
                             <input type="hidden" name="event_name" class="form-control" value="维修完">
-                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.id');?>">
+                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.repair_id');?>">
                             <div class="form-group">
                                 <label>实际维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <div class="input-group">
@@ -683,7 +649,7 @@
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确 认 </button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
                         </div>
                     </div>
                 </div>

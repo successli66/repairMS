@@ -87,8 +87,6 @@ class RepairModel extends Model {
     }
 
     protected function _before_insert(&$data, $options) {
-        var_dump($data);
-        die;
         $time = date('Y-m-d H:i:s', time());
         $order_time = date('YmdHis') . rand(10, 99);
         $company_id = session('company')['id'];

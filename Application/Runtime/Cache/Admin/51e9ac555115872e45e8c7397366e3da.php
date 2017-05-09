@@ -120,12 +120,6 @@
             
             
 
-<!--多选下拉框-->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="/Public/plugins/bootstrap-select/css/bootstrap-select.min.css">
-<!-- Latest compiled and minified JavaScript -->
-<script src="/Public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
-
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -148,7 +142,7 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-danger">6</span>
+                        <span class="label label-danger"><?php echo session('newRepairCount');?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
@@ -401,15 +395,15 @@
             </div>
         </div>
         <!-- search form（搜索） -->
-<!--        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="搜索...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </form>-->
+        <!--        <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="搜索...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>-->
         <!-- /.search form -->
         <!-- sidebar menu（左侧主菜单）: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -419,50 +413,16 @@
                 <a href="<?php echo U('Admin/Index/index'); ?>">
                     <i class="fa fa-th-large"></i> <span>首页</span>
                 </a>
-            </li>
+            </li>           
             <li class="treeview">
-                <a href="#">
+                <a href="<?php echo U('admin/repair/repairList'); ?>">
                     <i class="fa fa-wrench"></i>
                     <span>维护维修</span>
                     <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        <small class="label pull-right bg-yellow">12</small>
-                        <small class="label pull-right bg-red">5</small>      
+                        <small class="label pull-right bg-yellow"><?php echo session('repairingCount');?></small>
+                        <small class="label pull-right bg-red"><?php echo session('newRepairCount');?></small>
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?php echo U('admin/repair/repairList'); ?>">
-                            <i class="fa fa-info-circle"></i>维修总览
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo U('admin/repair/report'); ?>">
-                            <i class="fa fa-info-circle"></i>报修
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-envelope"></i>新报修
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-spinner"></i>维修中
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-yellow">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/collapsed-sidebar.html">
-                            <i class="fa fa-check"></i>已维修
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li class="treeview">
                 <a href="index.html">
@@ -633,119 +593,272 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            通讯录
-            <small>Address Book</small>
+            报修信息
+            <small>Report Information</small>
         </h1>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header bg-info">
-                        <h3 class="box-title">用户列表</h3> 
-                    </div>
-                    <div class="col-md-12">
-                        <div class="box-body">
-                            <form action="/index.php/User/addressBook/p/3.html" method="GET">
-                                <div class="form-group col-md-6">    
-                                    <select class="form-control selectpicker" id="company_id" name="company_id" data-live-search="true" style="width: 100%;">
-                                        <option value="">请选择公司</option>
-                                        <?php foreach($cpData as $k=>$v):?>
-                                        <option value="<?php echo $v['id'];?>" <?php if(I('get.company_id')==$v['id']) echo "selected='selected'";?>><?php echo $v['company_name'];?></option>
-                                        <?php endforeach;?>
-                                    </select>
-                                </div>
-<!--                                <div class="form-group col-md-4">    
-                                    <select class="form-control" id="department_id" name="department_id" data-live-search="true" style="width: 100%;">
-                                        <option value="">请选择部门</option>
-                                    </select>
-                                </div>-->
-                                <div class="input-group  col-md-6">
-                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" value="<?php echo I('get.search_name');?>" placeholder="输入用户信息...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
-                                    </span>
-                                </div>
-                            </form>        
+        <div class="box box-info">
+            <div class="box-header bg-info">
+                <h3 class="box-title">报修详情</h3>    
+                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('repairList?p='.I('get.p'));?>"><i class="fa fa-reply"> 返回列表</i></a>
+            </div>
+            <div class="box-body bg-info">
+                <div class="row">
+                    <div class="col-md-3" style="height: 100px">
+                        <h5 class="text-center">维修单号：<?php echo $data['repair_order'];?></h5>
+                        <div class="text-center">
+                            <?php if($data['repair_status'] == 1):?>
+                            <h4 class="text-center label bg-red">新报修</h4>
+                            <?php endif;?>
+                            <?php if($data['repair_status'] == 2):?>
+                            <h4 class="text-center label bg-yellow">维修中</h4>
+                            <?php endif;?> 
+                            <?php if($data['repair_status'] == 3):?>
+                            <h4 class="text-center label bg-blue">已维修</h4>
+                            <?php endif;?> 
+                            <?php if($data['repair_status'] == 4):?>
+                            <h4 class="text-center label bg-green">已办结</h4>
+                            <?php endif;?>
+                        </div>
+                        <div class="text-center">
+                            <h5><a type="button" class="btn btn-sm btn-default" href="<?php echo U('detail',array('id'=>I('get.id'),'p'=>I('get.p')));?>">报修详情...</a></h5>
                         </div>
                     </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <table class="table table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">编 号</th>
-                                    <th class="text-center">姓 名</th>
-                                    <th class="text-center">电 话</th>
-                                    <th class="text-center">公 司</th>
-                                    <th class="text-center">部 门</th>
-                                    <th class="text-center">操 作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data as $k => $v):?>
-                                <tr>
-                                    <td><?php echo $v['id'];?></td>
-                                    <td><?php echo $v['real_name'];?></td>
-                                    <td><?php echo $v['telephone'];?></td>
-                                    <td><?php echo $v['company_name'];?></td>
-                                    <td><?php echo $v['department_name'];?></td>
-                                    <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="<?php echo U('addressBookInfo?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
-                                    </td>
-                                </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class='box-body '> 
-                        <div class='pages pull-right'>
-                            <?php if(preg_match('/\d/', $page)): ?>  
-                            <?php echo $page; ?>
-                            <?php endif; ?>
+                    <div class="col-md-9">
+                        <?php if(in_array($data['repair_status'],array(1,2,3,4))):?>
+                        <div class="col-md-2">
+                            <i class="fa fa-paper-plane-o fa-2x" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <h5 class="text-green">新报修</h5>
+                            <h5 class="text-green"><?php echo $data['report_time'];?></h5>
                         </div>
+                        <?php endif;?>
+                        <?php if(in_array($data['repair_status'],array(2,3,4))):?>
+                        <div class="col-md-2">
+                            <i class="fa fa-spinner fa-2x" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <h5 class="text-green">开始维修</h5>
+                            <h5 class="text-green"><?php echo $evData[0]['event_time'];?></h5>
+                        </div>
+                        <?php endif;?>
+                        <?php if(in_array($data['repair_status'],array(3,4))):?>
+                        <div class="col-md-2">
+                            <i class="fa fa-wrench fa-2x" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <i class="fa fa-angle-double-right" style="color: green"></i>
+                            <h5 class="text-green">已维修</h5>
+                            <h5 class="text-green"><?php echo $evData[1]['event_time'];?></h5>
+                        </div>
+                        <?php endif;?>
+                        <?php if(in_array($data['repair_status'],array(4))):?>
+                        <div class="col-md-2">
+                            <i class="fa fa-check fa-2x" style="color: green"></i>
+                            <h5 class="text-green">已办结</h5>
+                            <h5 class="text-green"><?php echo $evData[2]['event_time'];?></h5>
+                        </div>
+                        <?php endif;?>
+                        <?php if(in_array($data['repair_status'],array(1,2,3))):?>
+                        <div class="col-md-1 ">
+                            <a class="btn btn-sm btn-default" href="<?php echo U($data['next'],array('repair_id'=>I('get.id'),'project_id'=>$data['project_id'],'p'=>I('get.p')));?>"><i class="fa fa-arrow-circle-down"></i> 下 一 步 </a>
+                        </div>
+                        <?php endif;?>
                     </div>
                 </div>
-            </div>    
+                <div style="height: 20px"></div>
+
+                <!--时间轴开始-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- The time line -->
+                        <ul class="timeline">
+
+                            <!-- 报送信息 -->
+                            <!-- 时间轴标签 -->
+                            <li class="time-label">
+                                <span class="bg-red">
+                                    <?php echo $data['report_time']?>
+                                </span>
+                            </li>
+                            <!-- 时间轴内容 -->
+                            <li>
+                                <i class="fa fa-paper-plane-o bg-red"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header"><a href="#"><?php echo $data['real_name']?></a> 报送维修信息</h3>
+                                    <div class="timeline-body">
+                                        <table>
+                                            <tr>
+                                                <td>报修人 ： </td>
+                                                <td> <?php echo $data['real_name'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>报修单位 ：</td>
+                                                <td> <?php echo $data['company_name'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系人 ： </td>
+                                                <td> <?php echo $data['contact'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系电话 ： </td>
+                                                <td> <?php echo $data['phone'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>维修地址 ： </td>
+                                                <td> <?php echo $data['address'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>设备编号 ： </td>
+                                                <td> <?php echo $data['serial_number'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> 故障描述 ： </td>   
+                                            </tr>
+                                        </table>
+                                        <?php echo $data['descr'];?>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!--接报办理，安排维修人员、预约时间-->
+                            <?php if(in_array($data['repair_status'],array(2,3,4))):?>
+                            <li class="time-label">
+                                <span class="bg-yellow">
+                                    <?php echo $evData[0]['event_time']?>
+                                </span>
+                            </li>
+                            <li>
+                                <i class="fa fa-spinner bg-yellow"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">
+                                        <a href="#"><?php echo $evData[0]['real_name'];?></a> 接报，维修开始 
+                                        <?php if($data['repair_status'] == 2):?>
+                                        <a class="pull-right" href="<?php echo U('edit_select',array('repair_id'=>I('get.id'),'p'=>I('get.p')));?>"> 修改</a>
+                                        <?php endif;?>
+                                    </h3>
+                                    <div class="timeline-body">
+                                        <h5>预约维修时间：</h5>
+                                        <?php echo $evData[0]['repair_time'];?>
+                                        <h5>预约维修人员：</h5>
+                                        <?php foreach($evData[0]['repair_user'] as $k=>$v):?>
+                                        <a class="btn btn-default btn-sm" href="#"><?php echo $v['real_name']?></a>
+                                        <?php endforeach;?>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php endif;?>
+
+                            <!--维修完成，显示维修信息和费用-->
+                            <?php if(in_array($data['repair_status'],array(3,4))):?>
+                            <li class="time-label">
+                                <span class="bg-blue">
+                                    <?php echo $evData[1]['event_time']?>
+                                </span>
+                            </li>
+                            <li>
+                                <i class="fa fa-wrench bg-blue"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">
+                                        <a href="#"><?php echo $evData[1]['real_name'];?></a> 维修完毕 
+                                        <?php if($data['repair_status'] == 3):?>
+                                        <a class="pull-right" href="<?php echo U('edit_repaired',array('repair_id'=>I('get.id'),'project_id'=>$data['project_id'],'p'=>I('get.p')));?>"> 修改</a>
+                                        <?php endif;?>
+                                    </h3>
+                                    <div class="timeline-body">
+                                        <h5>实际维修时间：</h5>
+                                        <?php echo $evData[1]['repair_time'];?>
+                                        <h5>实际维修人员：</h5>
+                                        <?php foreach($evData[1]['repair_user'] as $k=>$v):?>
+                                        <a class="btn btn-default btn-sm" href="#"><?php echo $v['real_name']?></a>
+                                        <?php endforeach;?>
+                                        <h5>费用明细：</h5>
+                                        <table border="1" class="text-center">  
+                                            <tr>
+                                                <td> 收 费 项 </td>
+                                                <td> 价 格(元) </td>
+                                                <td> 数 量 </td>
+                                                <td> 总 价(元)</td>
+                                            </tr>
+                                            <?php $sum = 0;?>
+                                            <?php foreach($fData as $k=>$v):?>
+                                            <tr>
+                                                <?php if($v['fee_item'] == 0):?>
+                                                <td>人工费</td>
+                                                <td><?php echo $v['price'];?></td>
+                                                <td><?php echo $v['number'];?></td>
+                                                <td><?php echo $v['price']*$v['number'];?></td>
+                                                <?php else:?>
+                                                <td><?php echo $v['part']['part_name'];?></td>
+                                                <td><?php echo $v['price'];?></td>
+                                                <td> <?php echo $v['number'];?></td>
+                                                <td> <?php echo $v['price']*$v['number'];?></td>
+                                                <?php endif;?>
+                                                <?php $sum += $v['price']*$v['number']?>
+                                            </tr>
+                                            <?php endforeach;?>
+                                        </table>
+                                        <h5>总费用：<?php echo $sum;?> 元</h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php endif;?>
+
+
+                            <!-- 办结 -->
+                            <?php if(in_array($data['repair_status'],array(4))):?>
+                            <li class="time-label">
+                                <span class="bg-green">
+                                    <?php echo $evData[2]['event_time'];?>
+                                </span>
+                            </li>
+                            <li>
+                                <i class="fa fa-check bg-green"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">
+                                        <a href="#"><?php echo $evData[2]['real_name'];?></a> 维修办结
+                                        <?php if($data['repair_status'] == 4):?>
+                                        <a class="pull-right" href="<?php echo U('edit_end',array('repair_id'=>I('get.id'),'p'=>I('get.p')));?>"> 修改</a>
+                                        <?php endif;?>
+                                    </h3>
+
+                                    <div class="timeline-body">
+                                        <h5>办结说明：</h5>
+                                        <?php echo $evData[2]['descr'];?>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php endif;?>
+
+                            <!-- END timeline item -->
+                            <li>
+                                <i class="fa fa-clock-o bg-gray"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
         </div>
     </section>
 </div>
-
-<script>
-    //下拉框JS
-    $(window).on('load', function () {
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-            selectedText: 'cat',
-            size: 'auto',
-
-        });
-    });
-//    $("#company_id").change(function () {
-//        var company_id = $(this).val();
-//        if (company_id > 0) {
-//            $.ajax({
-//                type: "GET",
-//                url: "<?php echo U('Admin/Department/ajaxGetDep', '', FALSE); ?>/company_id/" + company_id,
-//                dataType: "json",
-//                success: function (data) {
-//                    $("#department_id").empty();
-//                    var html = '<option value="">请选择部门</option>';
-//                    $(data).each(function (k, v) {
-//                        if (v.id == "<?php echo I('get.department_id');?>") {
-//                            html += '<option selected value="' + v.id + '">' + v.department_name + '</option>';
-//                        } else {
-//                            html += '<option value="' + v.id + '">' + v.department_name + '</option>';
-//                        }
-//                    });
-//                    $("#department_id").html(html);
-//                }
-//            });
-//        } else
-//            $("#department_id").html("");
-//    });
-</script>
 
 
 <div class="wrapper"></div>
@@ -877,7 +990,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
 
 
         </div>

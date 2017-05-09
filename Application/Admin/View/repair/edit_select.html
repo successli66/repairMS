@@ -13,8 +13,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            开始维修
-            <small>Start Repair</small>
+            修改预约
+            <small>Edit repair</small>
         </h1>
     </section>
     <section class="content">
@@ -22,25 +22,23 @@
             <div class="box box-info">
                 <div class="box-body bg-info">
                     <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-6">
-                            <input type="hidden" name="event_type" class="form-control" value="1">
-                            <input type="hidden" name="event_name" class="form-control" value="办理">
-                            <input type="hidden" name="repair_id" class="form-control" value="<?php echo I('get.repair_id');?>">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-5">
+                            <input type="hidden" name="id" class="form-control" value="<?php echo $evData['id'];?>"><!--事件event的id-->
                             <div class="form-group">
                                 <label>预约维修时间</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" name="repair_time" class="form-control" id="datetime" placeholder="请选择维修时间">
+                                    <input type="text" name="repair_time" class="form-control" id="datetime" value="<?php echo $evData['repair_time']?>">
                                 </div> 
                             </div>
                             <div class="form-group">
                                 <label>选择项目维修人员</label>&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-red"> *必选</small>
                                 <select class="form-control selectpicker" name="repair_user_id[]" multiple data-live-search="true">
                                     <?php foreach($auData as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$team)) echo 'selected';?>><?php echo $v['real_name'];?></option>
+                                    <option value="<?php echo $v['id'];?>" <?php if(in_array($v['id'],$evData['event_value'])) echo 'selected';?>><?php echo $v['real_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>   
@@ -50,8 +48,8 @@
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确 认 </button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取 消 </i></a>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改 </button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('info',array('id'=>I('get.repair_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消修改 </a>
                         </div>
                     </div>
                 </div>
