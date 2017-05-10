@@ -6,15 +6,15 @@ use Think\Model;
 
 class GroupModel extends Model {
 
-    protected $insertFields = array('superior_id', 'group_name');
-    protected $updateFields = array('id', 'superior_id', 'group_name');
+    protected $insertFields = array('parent_id', 'group_name');
+    protected $updateFields = array('id', 'parent_id', 'group_name');
     protected $_validate = array(
         array('group_name', 'require', '分组名称不能为空！', 1, 'regex', 3),
         array('group_name', '', '分组名称不能重复', 1, 'unique', 3),
-        array('superior_id', 'check_superior_id', '上级组不能为空！', 1, 'callback', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
+        array('parent_id', 'check_parent_id', '上级组不能为空！', 1, 'callback', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
     );
 
-    protected function check_superior_id($equipment_id) {
+    protected function check_parent_id($equipment_id) {
         if ($equipment_id >= 0) {
             return TRUE;
         } else {

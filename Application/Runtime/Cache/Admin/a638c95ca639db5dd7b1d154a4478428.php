@@ -636,7 +636,7 @@
                                             <td><?php echo $v['group_name'];?></td>
                                             <td class="text-center">
                                                 <a class="btn btn-success btn-sm" href="<?php echo U('edit',array('id'=>$v['id'],'p'=>I('get.p')));?>">修改</a>
-                                                <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('delet',array('id'=>$v['id'],'p'=>I('get.p')));?>" <?php if($v['id']==1) echo 'disabled';?> >删除</a> 
+                                                <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('delet',array('id'=>$v['id'],'p'=>I('get.p')));?>">删除</a> 
                                                 <a class="btn btn-info btn-sm" href="<?php echo U('distribute_privilege',array('id'=>$v['id'],'p'=>I('get.p')));?>">分配权限</a>
                                                 <a class="btn btn-warning btn-sm" href="<?php echo U('distribute_user',array('id'=>$v['id'],'p'=>I('get.p')));?>">分配成员</a>
                                             </td>
@@ -662,7 +662,7 @@
 
 <script>
     $('#deleteBtn').click(function () {
-        if (confirm('确定删除该配件吗？')) {
+        if (confirm('确定删除该分组吗？')) {
             return true;
         } else {
             return false;

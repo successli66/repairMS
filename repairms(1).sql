@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-05-09 09:48:25
--- 服务器版本： 5.5.27
+-- Generation Time: 2017-05-10 00:30:10
+-- 服务器版本： 5.7.14
 -- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -183,15 +183,22 @@ CREATE TABLE `rm_group` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
   `group_name` varchar(30) NOT NULL COMMENT '分组名称',
   `operation` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否允许操作与自己无关内容',
-  `superior_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上级组id'
+  `parent_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上级组id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户分组表';
 
 --
 -- 转存表中的数据 `rm_group`
 --
 
-INSERT INTO `rm_group` (`id`, `group_name`, `operation`, `superior_id`) VALUES
-(1, '超级管理员组', 0, 0);
+INSERT INTO `rm_group` (`id`, `group_name`, `operation`, `parent_id`) VALUES
+(1, '超级管理员组', 0, 0),
+(4, '电子', 0, 0),
+(5, '车载', 0, 0),
+(6, '软件', 0, 0),
+(7, '电子管理', 0, 4),
+(8, '电子成员', 0, 4),
+(9, '车载管理', 0, 5),
+(10, '车载成员', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -426,7 +433,7 @@ ALTER TABLE `rm_fee`
 --
 ALTER TABLE `rm_group`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `superior_id` (`superior_id`);
+  ADD KEY `superior_id` (`parent_id`);
 
 --
 -- Indexes for table `rm_group_privilege`
@@ -537,7 +544,7 @@ ALTER TABLE `rm_fee`
 -- 使用表AUTO_INCREMENT `rm_group`
 --
 ALTER TABLE `rm_group`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=11;
 --
 -- 使用表AUTO_INCREMENT `rm_group_privilege`
 --

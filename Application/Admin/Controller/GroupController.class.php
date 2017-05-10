@@ -54,6 +54,13 @@ class GroupController extends BaseController {
             $this->error('超级管理员组不允许删除！', U('groupList'), 1);
             exit;
         }
+        $grData = $model->select();
+        foreach ($grData as $k => $v) {
+            if ($v['parent_id'] == $id) {
+                $this->error('您要删除的分组中有子分组，请先删除所有子分组，再删除该组！', U('groupList'), 3);
+                exit;
+            }
+        }
         if ($model->delete($id)) {
             $this->success('删除成功！', U('groupList'), 1);
             exit;

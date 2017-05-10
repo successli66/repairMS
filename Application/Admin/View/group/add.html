@@ -30,7 +30,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label> 上级分组</label>
-                                <select class="form-control selectpicker" name="superior_id" data-live-search="true">
+                                <select class="form-control selectpicker" name="parent_id" data-live-search="true">
                                     <option value="0">顶层组</option>
                                     <?php foreach($data as $k=>$v):?>
                                     <option value="<?php echo $v['id'];?>"><?php echo $v['group_name'];?></option>
@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-times"> 取消添加</i></a>
+                            <a type="button" class="btn btn-default" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消添加</a>
                         </div>
                     </div>
                 </div>

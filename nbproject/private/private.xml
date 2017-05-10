@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/PHP/www/repairMS/Application/Admin/View/group/groupList.html</file>
-            <file>file:/E:/PHP/www/repairMS/Application/Admin/Model/GroupModel.class.php</file>
-            <file>file:/E:/PHP/www/repairMS/Application/Admin/Controller/GroupController.class.php</file>
+            <file>file:/D:/www/repairMS/Application/Admin/Controller/GroupController.class.php</file>
+            <file>file:/D:/www/repairMS/Application/Admin/Model/GroupModel.class.php</file>
+            <file>file:/D:/www/repairMS/Application/Admin/View/group/groupList.html</file>
+            <file>file:/D:/www/repairMS/Application/Admin/View/group/add.html</file>
         </group>
     </open-files>
 </project-private>
