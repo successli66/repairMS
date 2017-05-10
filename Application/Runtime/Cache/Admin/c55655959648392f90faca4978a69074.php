@@ -611,7 +611,6 @@
                             <div class="col-md-6">
                                 <form action="/index.php/Admin/Group/search" method="GET">
                                     <div class="input-group margin-bottom">
-                                        <input type="hidden" name="project_id" class="form-control" value="<?php echo I('get.project_id');?>"> 
                                         <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入项目名称搜索...">
                                         <span class="input-group-btn">
                                             <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
@@ -623,7 +622,7 @@
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6">
-                                <table class="table table-striped table-hover table-bordered table-condensed">
+                                <table class="table table-hover table-condensed">
                                     <thead>
                                         <tr>
                                             <th class="text-center">分组名称</th>
@@ -633,7 +632,7 @@
                                     <tbody>
                                         <?php foreach($data as $k => $v):?>
                                         <tr>
-                                            <td><?php echo $v['group_name'];?></td>
+                                            <td><?php echo str_repeat('-',6*$v['level']).$v['group_name'];?></td>
                                             <td class="text-center">
                                                 <a class="btn btn-success btn-sm" href="<?php echo U('edit',array('id'=>$v['id'],'p'=>I('get.p')));?>">修改</a>
                                                 <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('delet',array('id'=>$v['id'],'p'=>I('get.p')));?>">删除</a> 

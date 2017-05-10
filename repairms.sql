@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-05-10 00:30:10
--- 服务器版本： 5.7.14
+-- Generation Time: 2017-05-10 09:57:30
+-- 服务器版本： 5.5.27
 -- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -265,7 +265,7 @@ CREATE TABLE `rm_privilege` (
   `module_name` varchar(30) NOT NULL COMMENT '模块名称',
   `controller_name` varchar(30) NOT NULL COMMENT '控制器名称',
   `action_name` varchar(30) NOT NULL COMMENT '方法名称',
-  `superior_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上级权限id'
+  `parent_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上级权限id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 -- --------------------------------------------------------
@@ -464,7 +464,7 @@ ALTER TABLE `rm_part`
 --
 ALTER TABLE `rm_privilege`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `superior_id` (`superior_id`);
+  ADD KEY `superior_id` (`parent_id`);
 
 --
 -- Indexes for table `rm_project`

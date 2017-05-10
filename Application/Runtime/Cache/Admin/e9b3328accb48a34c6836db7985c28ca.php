@@ -120,6 +120,7 @@
             
             
 
+
 <!-- 编辑器配置文件 -->
 <script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
@@ -598,114 +599,51 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            配件信息
-            <small>Part Information</small>
+            添加分组
+            <small>Add Group</small>
         </h1>
     </section>
     <section class="content">
-        <div class="box box-info">
-            <div class="box-header bg-info">
-                <h3 class="box-title">配件修改</h3> 
-                <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('partList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
-
-            </div>
-            <div class="box-body bg-info">
-                <form action="/index.php/Group/edit/id/2.html" method="POST">
-                    <input type="hidden" name='id' class="form-control" value="<?php echo I('get.id');?>">            
+        <form class="form" action="/index.php/Group/edit/id/6.html" method="POST">
+            <div class="box box-info">
+                <div class="box-header bg-info">
+                    <h3 class="box-title">分组</h3>    
+                    <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+                </div>
+                <div class="box-body bg-info">
                     <div class="row">
+                        <div class="col-md-3"></div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label> 配件名称</label>
+                                <label> 上级分组</label>
+                                <select class="form-control selectpicker" name="parent_id" data-live-search="true">
+                                    <option value="0">顶层组</option>
+                                    <?php foreach($groupData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if($v['id'] == $data['id']) echo 'selected';?>><?php echo str_repeat('-',4*$v['level']).$v['group_name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label> 分组名称</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="part_name" class="form-control" value="<?php echo $data['part_name']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>所属部门</label> 
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-sitemap"></i>
-                                    </div>
-                                    <input type="text" class="form-control" value="<?php echo $dpData['department_name']?>" disabled>
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label>所属项目</label> 
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-bookmark"></i>
-                                    </div>
-                                    <input type="text" class="form-control" value="<?php echo $pjData['project_name']?>" disabled>
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label> 厂家</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-bank"></i>
-                                    </div>
-                                    <input type="text" name="manufacturer" class="form-control" value="<?php echo $data['manufacturer']?>">
-                                </div>
-                            </div>   
-                        </div>
-                        <div class="col-md-6"> 
-                            <div class="form-group">
-                                <label> 型号</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-sort-alpha-asc"></i>
-                                    </div>
-                                    <input type="text" name="model" class="form-control" value="<?php echo $data['model']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label> 进价</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </div>
-                                    <input type="text" name="in_price" class="form-control" value="<?php echo $data['in_price']?>">
-                                </div> 
-                            </div>
-                            <div class="form-group">
-                                <label> 出价</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-arrow-left"></i>
-                                    </div>
-                                    <input type="text" name="out_price" class="form-control" value="<?php echo $data['out_price']?>">
+                                    <input type="text" name="group_name" class="form-control" value="<?php echo $data['group_name'];?>">
                                 </div> 
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>配件描述</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="box-body col-md-12">
-                            <div class="col-md-12">
-                                <div class="text-center">
-                                    <textarea id="descr" name="descr"><?php echo $data['descr'];?></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2"></div>
                     </div>
                     <!--确认-->
                     <div class="row">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('partList',array('project_id'=>I('get.project_id'),'p'=>I('get.p')));?>"><i class="fa fa-times"> 取消添加</i></a>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认修改</button>
+                            <a type="button" class="btn btn-default" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消修改</a>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>        
+        </form>           
     </section>
 </div>
 
@@ -713,6 +651,7 @@
 <!-- 实例化编辑器 -->
     var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
 </script>
+
 
 <div class="wrapper"></div>
         <footer class="main-footer">
@@ -843,6 +782,7 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
+
 
 
         </div>

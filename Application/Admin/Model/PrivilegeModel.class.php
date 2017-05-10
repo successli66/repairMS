@@ -4,13 +4,15 @@ namespace Admin\Model;
 
 use Think\Model;
 
-class GroupModel extends Model {
+class PrivilegeModel extends Model {
 
-    protected $insertFields = array('parent_id', 'group_name');
-    protected $updateFields = array('id', 'parent_id', 'group_name');
+    protected $insertFields = array('parent_id', 'privilege_name', 'module_name', 'controller_name', 'action_name');
+    protected $updateFields = array('id', 'parent_id', 'privilege_name', 'module_name', 'controller_name', 'action_name');
     protected $_validate = array(
-        array('group_name', 'require', '分组名称不能为空！', 1, 'regex', 3),
-        array('group_name', '', '分组名称不能重复', 1, 'unique', 3),
+        array('privilege_name', 'require', '分组名称不能为空！', 1, 'regex', 3),
+        array('privilege_name', '', '分组名称不能重复', 1, 'unique', 3),
+        array('module_name', 'require', '模块名称不能为空！', 1, 'regex', 3),
+        array('controller_name', 'require', '控制器名称不能为空！', 1, 'regex', 3),
         array('parent_id', 'check_parent_id', '上级组不能为空！', 1, 'callback', 3), //1表示不管字段存不存在都验证，3表示新增、编辑都验证
     );
 
