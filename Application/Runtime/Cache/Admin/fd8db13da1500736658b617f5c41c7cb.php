@@ -566,12 +566,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
+                        <a href="<?php echo U('Admin/Group/groupList');?>">
                             <i class="fa fa-users"></i>组管理
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/fixed.html">
+                        <a href="<?php echo U('Admin/Privilege/privilegeList');?>">
                             <i class="fa fa-toggle-on"></i>权限管理
                         </a>
                     </li>

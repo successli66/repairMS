@@ -120,12 +120,6 @@
             
             
 
-
-<!-- 编辑器配置文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
-
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -599,58 +593,75 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            添加分组
-            <small>Add Group</small>
+            权限管理
+            <small>Privilege Management</small>
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Group/add.html" method="POST">
-            <div class="box box-info">
-                <div class="box-header bg-info">
-                    <h3 class="box-title">分组</h3>    
-                    <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
-                </div>
-                <div class="box-body bg-info">
-                    <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label> 上级分组</label>
-                                <select class="form-control selectpicker" name="parent_id" data-live-search="true">
-                                    <option value="0">顶层组</option>
-                                    <?php foreach($data as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo str_repeat('-',6*$v['level']).$v['group_name'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label> 分组名称</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-header"></i>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header bg-info">
+                        <h3 class="box-title">权限列表</h3> 
+                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('add',array('p'=>I('get.p')));?>"><i class="fa fa-plus-square"></i> 添加权限</a>
+                    </div>
+                    <div class="box-body bg-info">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <form action="/index.php/Admin/Privilege/search" method="GET">
+                                    <div class="input-group margin-bottom">
+                                        <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入搜索信息...">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
+                                        </span>
                                     </div>
-                                    <input type="text" name="group_name" class="form-control" placeholder="请输入名称">
-                                </div> 
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <table class="table table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">分组名称</th>
+                                            <th class="text-center">模块名称</th>
+                                            <th class="text-center">控制器名称</th>
+                                            <th class="text-center">方法名称</th>
+                                            <th class="text-center">操 作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($data as $k => $v):?>
+                                        <tr>
+                                            <td><?php echo str_repeat('-',6*$v['level']).$v['privilege_name'];?></td>
+                                            <td><?php echo $v['module_name'];?></td>
+                                            <td><?php echo $v['controller_name'];?></td>
+                                            <td><?php echo $v['action_name'];?></td>
+                                            <td class="text-center">
+                                                <a class="btn btn-success btn-sm" href="<?php echo U('edit',array('id'=>$v['id'],'p'=>I('get.p')));?>">修改</a>
+                                                <a class="btn btn-danger btn-sm" onclick="return confirm('确定要删除吗？');" href="<?php echo U('delet',array('id'=>$v['id'],'p'=>I('get.p')));?>">删除</a> 
+                                            </td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <!--确认-->
-                    <div class="row">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消添加</a>
-                        </div>
-                    </div>
+                </div>
+                <div class='box-body '> 
+                    <div class='pages pull-right'>
+                        <?php if(preg_match('/\d/', $page)): ?>  
+                        <?php echo $page; ?>
+                        <?php endif; ?></div>
                 </div>
             </div>
-        </form>           
-    </section>
+        </div>    
 </div>
-
-<script>
-<!-- 实例化编辑器 -->
-    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
-</script>
+</section>
+</div>
 
 
 <div class="wrapper"></div>
@@ -782,7 +793,6 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
-
 
 
         </div>

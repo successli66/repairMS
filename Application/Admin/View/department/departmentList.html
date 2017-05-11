@@ -95,7 +95,7 @@
                                     <td><?php echo $v['phone'];?></td>
                                     <td class="text-center">
                                         <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
+                                        <a class="btn btn-danger btn-sm" onclick="return confirm('确定要删除吗？');" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
                                     </td>
                                 </tr>
                                 <?php endforeach;?>

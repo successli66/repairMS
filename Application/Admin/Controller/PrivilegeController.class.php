@@ -10,7 +10,7 @@ class PrivilegeController extends BaseController {
         $this->assign('data', $data);
         $this->display();
     }
-    
+
     public function search() {
         $model = D('privilege');
         $data = $model->search();
@@ -57,14 +57,10 @@ class PrivilegeController extends BaseController {
     public function delet() {
         $id = I('get.id');
         $model = D('privilege');
-        if ($id == 1) {
-            $this->error('超级管理员组不允许删除！', U('privilegeList'), 1);
-            exit;
-        }
-        $grData = $model->select();
-        foreach ($grData as $k => $v) {
+        $plData = $model->select();
+        foreach ($plData as $k => $v) {
             if ($v['parent_id'] == $id) {
-                $this->error('该组中有子分组，请先删除所有子分组，再删除该组！', U('privilegeList'), 3);
+                $this->error('该组中有子权限，请先删除所有子权限，再删除该权限！', U('privilegeList'), 3);
                 exit;
             }
         }
@@ -75,36 +71,11 @@ class PrivilegeController extends BaseController {
         $this->error($model->getError());
     }
 
-    public function distribute_privilege() {
-        $uModel = M('user');
-        if (IS_POST) {
-            foreach ($_POST['user_id'] as $k => $v) {
-                $user['id'] = $v;
-                $user['privilege_id'] = $_POST['privilege_id'];
-                $uModel->save($user);
-            }
-            $this->success('分配成功！', U('privilegeList'), 1);
-            exit;
-        }
-        $uData = $uModel->select();
-        $this->assign('uData', $uData);
-        $this->display();
-    }
-
-    public function distribute_user() {
-        $uModel = M('user');
-        if (IS_POST) {
-            foreach ($_POST['user_id'] as $k => $v) {
-                $user['id'] = $v;
-                $user['privilege_id'] = $_POST['privilege_id'];
-                $uModel->save($user);
-            }
-            $this->success('分配成功！', U('privilegeList'), 1);
-            exit;
-        }
-        $uData = $uModel->select();
-        $this->assign('uData', $uData);
-        $this->display();
+    public function ajaxGetParent() {
+        $id = I('get.parent_id');
+        $model = M('privilege');
+        $data = $model->find($id);
+        echo json_encode($data);
     }
 
 }

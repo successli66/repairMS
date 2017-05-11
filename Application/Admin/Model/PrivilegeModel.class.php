@@ -28,9 +28,14 @@ class PrivilegeModel extends Model {
         /*         * ************************************** 搜索 *************************************** */
         $where = array();
         if ($search_name = I('get.search_name'))
-            $where['group_name'] = array('like', "%$search_name%");
+            $where['privilege_name'] = array('like', "%$search_name%");
+            $where['module_name'] = array('like', "%$search_name%");
+            $where['controller_name'] = array('like', "%$search_name%");
+            $where['action_name'] = array('like', "%$search_name%");
+            $where['_logic'] = 'or';
+            $map['_complex'] = $where;
         /*         * *********************************** 翻页 *************************************** */
-        $count = $this->where($where)->count();
+        $count = $this->where($map)->count();
         $page = getpage($count, $pageSize);
         $data['page'] = $page->show();
         /*         * ************************************ 取数据 ***************************************** */

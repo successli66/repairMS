@@ -23,49 +23,54 @@
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <div class="form-privilege">
+                            <div class="form-group">
                                 <label> 上级权限</label>
-                                <select class="form-control selectpicker" name="parent_id" data-live-search="true">
+                                <select class="form-control selectpicker"  id="parent_id" name="parent_id" data-live-search="true">
                                     <option value="0">顶层权限</option>
                                     <?php foreach($data as $k=>$v):?>
                                     <option value="<?php echo $v['id'];?>"><?php echo str_repeat('-',6*$v['level']).$v['privilege_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <div class="form-privilege">
+
+                            <div class="form-group">
                                 <label> 权限名称</label>
-                                <div class="input-privilege">
-                                    <div class="input-privilege-addon">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="privilege_name" class="form-control" placeholder="请输入...">
+                                    <input type="text" name="privilege_name" class="form-control" placeholder="请输入名称">
                                 </div> 
                             </div>
-                            <div class="form-privilege">
+                            <div class="form-group">
                                 <label> 模块名称</label>
-                                <div class="input-privilege">
-                                    <div class="input-privilege-addon">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="module_name" class="form-control" placeholder="请输入...">
+                                    <div id="module_name">
+                                        <input type="text" name="module_name" class="form-control" placeholder="请输入名称">
+                                    </div>
                                 </div> 
                             </div>
-                            <div class="form-privilege">
+                            <div class="form-group">
                                 <label> 控制器名称</label>
-                                <div class="input-privilege">
-                                    <div class="input-privilege-addon">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="controller_name" class="form-control" placeholder="请输入...">
+                                    <div id="controller_name">
+                                        <input type="text"  name="controller_name" class="form-control" placeholder="请输入名称">
+                                    </div>
                                 </div> 
                             </div>
-                            <div class="form-privilege">
+                            <div class="form-group">
                                 <label> 方法名称</label>
-                                <div class="input-privilege">
-                                    <div class="input-privilege-addon">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="action_name" class="form-control" placeholder="请输入...">
+                                    <input type="text" name="action_name" class="form-control" placeholder="请输入名称">
                                 </div> 
                             </div>
                         </div>
@@ -83,6 +88,25 @@
     </section>
 </div>
 
+<script>
+    //ajax获得选择配件信息
+    $("#parent_id").change(function () {
+        var parent_id = $(this).val();//值为数组
+        $.ajax({
+            type: 'get',
+            url: "<?php echo U('Admin/privilege/ajaxGetParent', '', FALSE); ?>?parent_id=" + parent_id,
+            dataType: "JSON",
+            success: function (data) {
+                $("#module_name").empty();
+                html = '<input type="text" name="module_name" class="form-control" value='+data['module_name']+'>';
+                $("#module_name").html(html);
+                $("#controller_name").empty();
+                html1 = '<input type="text" name="controller_name" class="form-control" value='+data['controller_name']+'>';
+                $("#controller_name").html(html1);
+            }
+        });
+    })
+</script>
 
 
 <include file='common/bottom' />

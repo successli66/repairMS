@@ -121,11 +121,6 @@
             
 
 
-<!-- 编辑器配置文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/Public/plugins/ueditor/ueditor.all.js"></script>
-
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -599,37 +594,69 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            添加分组
-            <small>Add Group</small>
+            添加权限
+            <small>Add Privilege</small>
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Group/add.html" method="POST">
+        <form class="form" action="/index.php/Privilege/edit/id/4.html" method="POST">
             <div class="box box-info">
                 <div class="box-header bg-info">
-                    <h3 class="box-title">分组</h3>    
-                    <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+                    <h3 class="box-title">权限添加</h3>    
+                    <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('privilegeList',array('p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
                 </div>
                 <div class="box-body bg-info">
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label> 上级分组</label>
-                                <select class="form-control selectpicker" name="parent_id" data-live-search="true">
-                                    <option value="0">顶层组</option>
-                                    <?php foreach($data as $k=>$v):?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo str_repeat('-',6*$v['level']).$v['group_name'];?></option>
+                                <label> 上级权限</label>
+                                <select class="form-control selectpicker"  id="parent_id" name="parent_id" data-live-search="true">
+                                    <option value="0">顶层权限</option>
+                                    <?php foreach($privilegeData as $k=>$v):?>
+                                    <option value="<?php echo $v['id'];?>" <?php if($data['parent_id'] == $v['id']) echo 'selected';?>><?php echo str_repeat('-',6*$v['level']).$v['privilege_name'];?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
+
                             <div class="form-group">
-                                <label> 分组名称</label>
+                                <label> 权限名称</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-header"></i>
                                     </div>
-                                    <input type="text" name="group_name" class="form-control" placeholder="请输入名称">
+                                    <input type="text" name="privilege_name" class="form-control" value="<?php echo $data['privilege_name'];?>">
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 模块名称</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <div id="module_name">
+                                        <input type="text" name="module_name" class="form-control" value="<?php echo $data['module_name'];?>">
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 控制器名称</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <div id="controller_name">
+                                        <input type="text"  name="controller_name" class="form-control" value="<?php echo $data['controller_name'];?>">
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label> 方法名称</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-header"></i>
+                                    </div>
+                                    <input type="text" name="action_name" class="form-control" value="<?php echo $data['action_name'];?>">
                                 </div> 
                             </div>
                         </div>
@@ -638,7 +665,7 @@
                     <div class="row">
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认添加</button>
-                            <a type="button" class="btn btn-default" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消添加</a>
+                            <a type="button" class="btn btn-default" href="<?php echo U('privilegeList',array('p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消添加</a>
                         </div>
                     </div>
                 </div>
@@ -648,8 +675,23 @@
 </div>
 
 <script>
-<!-- 实例化编辑器 -->
-    var ue = UE.getEditor('descr', {initialFrameWidth: "100%", initialFrameHeight: 400});
+    //ajax获得选择配件信息
+    $("#parent_id").change(function () {
+        var parent_id = $(this).val();//值为数组
+        $.ajax({
+            type: 'get',
+            url: "<?php echo U('Admin/privilege/ajaxGetParent', '', FALSE); ?>?parent_id=" + parent_id,
+            dataType: "JSON",
+            success: function (data) {
+                $("#module_name").empty();
+                html = '<input type="text" name="module_name" class="form-control" value='+data['module_name']+'>';
+                $("#module_name").html(html);
+                $("#controller_name").empty();
+                html1 = '<input type="text" name="controller_name" class="form-control" value='+data['controller_name']+'>';
+                $("#controller_name").html(html1);
+            }
+        });
+    })
 </script>
 
 
