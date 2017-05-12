@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-05-10 09:57:30
--- 服务器版本： 5.5.27
+-- Generation Time: 2017-05-12 00:06:17
+-- 服务器版本： 5.7.14
 -- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -197,8 +197,7 @@ INSERT INTO `rm_group` (`id`, `group_name`, `operation`, `parent_id`) VALUES
 (6, '软件', 0, 0),
 (7, '电子管理', 0, 4),
 (8, '电子成员', 0, 4),
-(9, '车载管理', 0, 5),
-(10, '车载成员', 0, 5);
+(9, '车载管理', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -211,6 +210,18 @@ CREATE TABLE `rm_group_privilege` (
   `group_id` int(10) UNSIGNED NOT NULL COMMENT '分组ID',
   `privilege_id` int(10) UNSIGNED NOT NULL COMMENT '权限ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='组权限表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `rm_group_user`
+--
+
+CREATE TABLE `rm_group_user` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
+  `group_id` int(10) UNSIGNED NOT NULL COMMENT '分组ID',
+  `user_id` int(10) UNSIGNED NOT NULL COMMENT '用户ID'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='组成员表';
 
 -- --------------------------------------------------------
 
@@ -267,6 +278,13 @@ CREATE TABLE `rm_privilege` (
   `action_name` varchar(30) NOT NULL COMMENT '方法名称',
   `parent_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上级权限id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限表';
+
+--
+-- 转存表中的数据 `rm_privilege`
+--
+
+INSERT INTO `rm_privilege` (`id`, `privilege_name`, `module_name`, `controller_name`, `action_name`, `parent_id`) VALUES
+(1, '维护维修', 'Admin', 'Repair', '', 0);
 
 -- --------------------------------------------------------
 
@@ -444,6 +462,14 @@ ALTER TABLE `rm_group_privilege`
   ADD KEY `privilege_id` (`privilege_id`);
 
 --
+-- Indexes for table `rm_group_user`
+--
+ALTER TABLE `rm_group_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `rm_modify`
 --
 ALTER TABLE `rm_modify`
@@ -551,6 +577,11 @@ ALTER TABLE `rm_group`
 ALTER TABLE `rm_group_privilege`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 --
+-- 使用表AUTO_INCREMENT `rm_group_user`
+--
+ALTER TABLE `rm_group_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+--
 -- 使用表AUTO_INCREMENT `rm_modify`
 --
 ALTER TABLE `rm_modify`
@@ -564,7 +595,7 @@ ALTER TABLE `rm_part`
 -- 使用表AUTO_INCREMENT `rm_privilege`
 --
 ALTER TABLE `rm_privilege`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=9;
 --
 -- 使用表AUTO_INCREMENT `rm_project`
 --

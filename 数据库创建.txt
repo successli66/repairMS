@@ -186,6 +186,15 @@ primary key (id),
 key superior_id(superior_id)
 )engine=InnoDB comment '权限表';
 
+create table rm_group_user(
+id int unsigned not null auto_increment comment 'ID',
+group_id int unsigned not null comment '分组ID',
+privilege_id int unsigned not null comment '权限ID',
+primary key (id),
+key group_id (group_id),
+key privilege_id (privilege_id)
+)engine=InnoDB comment '组权限表';
+
 create table rm_group_privilege(
 id int unsigned not null auto_increment comment 'ID',
 group_id int unsigned not null comment '分组ID',

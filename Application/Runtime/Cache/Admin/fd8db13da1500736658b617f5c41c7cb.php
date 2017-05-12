@@ -656,7 +656,7 @@
                                     <td class="text-center">
                                         <a class="btn btn-info btn-sm" href="<?php echo U('userInfo?id='.$v['id'].'&p='.I('get.p'));?>">详情</a>
                                         <a class="btn btn-success btn-sm" href="<?php echo U('userEdit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
-                                        <a class="btn btn-danger btn-sm" id='deleteBtn' href="<?php echo U('userDelet?id='.$v['id']);?>">删除</a>
+                                        <a class="btn btn-danger btn-sm" onclick="return confirm('确定要删除吗？');" href="<?php echo U('userDelet?id='.$v['id']);?>">删除</a>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -675,15 +675,6 @@
     </section>
 </div>
 
-<script>
-    $('#deleteBtn').click(function () {
-        if (confirm('确定删除该用户吗？')) {
-            return true;
-        } else {
-            return false;
-        }
-    });
-</script>
 
 
 <div class="wrapper"></div>
