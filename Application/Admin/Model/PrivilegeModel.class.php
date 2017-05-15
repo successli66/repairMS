@@ -29,11 +29,11 @@ class PrivilegeModel extends Model {
         $where = array();
         if ($search_name = I('get.search_name'))
             $where['privilege_name'] = array('like', "%$search_name%");
-            $where['module_name'] = array('like', "%$search_name%");
-            $where['controller_name'] = array('like', "%$search_name%");
-            $where['action_name'] = array('like', "%$search_name%");
-            $where['_logic'] = 'or';
-            $map['_complex'] = $where;
+        $where['module_name'] = array('like', "%$search_name%");
+        $where['controller_name'] = array('like', "%$search_name%");
+        $where['action_name'] = array('like', "%$search_name%");
+        $where['_logic'] = 'or';
+        $map['_complex'] = $where;
         /*         * *********************************** 翻页 *************************************** */
         $count = $this->where($map)->count();
         $page = getpage($count, $pageSize);
@@ -60,6 +60,32 @@ class PrivilegeModel extends Model {
             }
         }
         return $_ret;
+    }
+
+    //检查权限
+    public function checkPrivilege() {
+        // 获取当前管理员正要访问的模型名称、控制器名称、方法名称
+        // tP中正带三个常量
+        //MODULE_NAME , CONTROLLER_NAME , ACTION_NAME
+        $userId = session('id');
+        $gModel = M('group');
+        $gData = $gModel->where(array(
+            'user_id'=>$userId
+        ))->find();
+        // 如果是超级管理员直接返回 TRUE
+        if ($gData['id'] == 1) {
+            return TRUE;
+        }
+        $gpModel = D('group_privilege');
+        $has = $gpModel->alias('a')
+                        ->join('LEFT JOIN __PRIVILEGE__ b ON a.privilege_id=b.id')
+                        ->where(array(
+                            'a.group_id' => array('eq', $gData['group_id']),
+                            'b.module_name' => array('eq', MODULE_NAME),
+                            'b.controller_name' => array('eq', CONTROLLER_NAME),
+                            'b.action_name' => array('eq', ACTION_NAME),
+                        ))->count();
+        return ($has > 0);
     }
 
 }

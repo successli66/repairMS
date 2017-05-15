@@ -120,6 +120,10 @@
             
             
 
+
+<!-- page -->
+<link rel="stylesheet" href="/Public/plugins/jQueryPager/page.css">
+
 <!--头部-->
 <header class="main-header">
     <!-- Logo -->
@@ -590,11 +594,12 @@
 
 
 
+
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            分配成员
-            <small>Distribute User</small>
+            公司划分
+            <small>Company List</small>
         </h1>
     </section>
     <section class="content">
@@ -602,62 +607,63 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header bg-info">
-                        <h3 class="box-title">成员列表</h3> 
-                        <a type="button" class="btn btn-default pull-right btn-sm" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-reply"> 返回列表</i></a>
+                        <h3 class="box-title">公司列表</h3> 
+                        <a class="btn btn-info pull-right btn-sm" href="<?php echo U('Company/add?p='.I('get.p'));?>"><i class="fa fa-plus-square"></i> 添 加</a>
                     </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body bg-info">
-                        <form action="/index.php/Group/distribute_user/id/4.html" method="POST">
-                            <table class="table table-striped table-hover table-bordered table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">选 项</th>
-                                        <th class="text-center">姓 名</th>
-                                        <th class="text-center">工 号</th>
-                                        <th class="text-center">电 话</th>
-                                        <th class="text-center">公 司</th>
-                                        <th class="text-center">部 门</th>  
-                                        <th class="text-center">职 务</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach($uData['data'] as $k => $v):?>
-                                    <tr>
-                                        <td class="text-center"><input type="checkbox" name="user_id[]" class="flat-red" <?php if(in_array($v['id'],$user_ids)) echo 'checked'?> value="<?php echo $v['id'];?>"></td> 
-                                        <td><?php echo $v['real_name'];?></td>
-                                        <td><?php echo $v['work_number'];?></td>
-                                        <td><?php echo $v['telephone'];?></td>
-                                        <td><?php echo $v['company_name'];?></td>
-                                        <td><?php echo $v['department_name'];?></td>
-                                        <td><?php echo $v['post'];?></td>
-                                    </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                                <input type="hidden" name="group_id" value="<?php echo I('get.id');?>">
-                            </table>
-                            <div class="row">
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> 确认分配</button>
-                                    <a type="button" class="btn btn-default" href="<?php echo U('groupList',array('p'=>I('get.p')));?>"><i class="fa fa-times"></i> 取消分配</a>
-                                </div>
+                    
+                    <div class="col-md-6">
+                        <form action="/index.php/Admin/Company/search" method="GET">
+                            <div class="box-body">
+                                <div class="input-group margin-bottom">
+                                    <input type="text" name="search_name" class="form-control" value="<?php echo I('get.search_name');?>" placeholder="输入公司名称搜索...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i> 搜 索</button>
+                                    </span>
+                                </div>        
                             </div>
                         </form>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body bg-info">
+                        <table class="table table-striped table-hover table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="center">编 号</th>
+                                    <th class="center">公 司 名 称</th>
+                                    <th class="center">公 司 地 址</th>
+                                    <th class="center">主 营 业 务</th>
+                                    <th class="center">联 系 电 话</th>
+                                    <th class="center">操 作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($data as $k => $v):?>
+                                <tr>
+                                    <td><?php echo $v['id'];?></td>
+                                    <td><?php echo $v['company_name'];?></td>
+                                    <td><?php echo $v['address'];?></td>
+                                    <td><?php echo $v['business'];?></td>
+                                    <td><?php echo $v['phone'];?></td>
+                                    <td class="text-center">
+                                        <a class="btn btn-success btn-sm" href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'));?>">修改</a>
+                                        <a class="btn btn-danger btn-sm" onclick="return confirm('确定要删除吗？');" href="<?php echo U('delet?id='.$v['id'].'&p='.I('get.p'));?>">删除</a> 
+                                    </td>
+                                </tr>
+                                <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='box-body '> 
+                        <div class='pages pull-right'>
+                            <?php if(preg_match('/\d/', $page)): ?>  
+                            <?php echo $page; ?>
+                            <?php endif; ?></div>
                     </div>
                 </div>
             </div>    
         </div>
     </section>
 </div>
-
-<script src="/Public/plugins/iCheck/icheck.min.js"></script>
-<script>
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-        checkboxClass: 'icheckbox_flat-green',
-        radioClass: 'iradio_flat-green'
-    });
-</script>
 
 
 <div class="wrapper"></div>
@@ -789,6 +795,8 @@
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     <!-- ./wrapper -->
+
+
 
 
 

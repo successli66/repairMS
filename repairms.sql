@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-05-12 00:06:17
+-- Generation Time: 2017-05-15 23:43:24
 -- 服务器版本： 5.7.14
 -- PHP Version: 5.6.25
 
@@ -211,6 +211,18 @@ CREATE TABLE `rm_group_privilege` (
   `privilege_id` int(10) UNSIGNED NOT NULL COMMENT '权限ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='组权限表';
 
+--
+-- 转存表中的数据 `rm_group_privilege`
+--
+
+INSERT INTO `rm_group_privilege` (`id`, `group_id`, `privilege_id`) VALUES
+(1, 4, 3),
+(2, 4, 4),
+(3, 4, 5),
+(4, 1, 3),
+(5, 1, 4),
+(6, 1, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -222,6 +234,17 @@ CREATE TABLE `rm_group_user` (
   `group_id` int(10) UNSIGNED NOT NULL COMMENT '分组ID',
   `user_id` int(10) UNSIGNED NOT NULL COMMENT '用户ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='组成员表';
+
+--
+-- 转存表中的数据 `rm_group_user`
+--
+
+INSERT INTO `rm_group_user` (`id`, `group_id`, `user_id`) VALUES
+(3, 4, 10),
+(4, 4, 4),
+(5, 4, 9),
+(6, 1, 1),
+(7, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -284,7 +307,11 @@ CREATE TABLE `rm_privilege` (
 --
 
 INSERT INTO `rm_privilege` (`id`, `privilege_name`, `module_name`, `controller_name`, `action_name`, `parent_id`) VALUES
-(1, '维护维修', 'Admin', 'Repair', '', 0);
+(1, '维护维修', 'Admin', 'Repair', '', 0),
+(2, '通讯录', 'Admin', 'User', '', 0),
+(3, '报送', 'Admin', 'Repair', 'report', 1),
+(4, '修改', 'Admin', 'Repair', 'edit', 1),
+(5, '查看通讯录', 'Admin', 'User', 'addressBook', 2);
 
 -- --------------------------------------------------------
 
@@ -570,17 +597,17 @@ ALTER TABLE `rm_fee`
 -- 使用表AUTO_INCREMENT `rm_group`
 --
 ALTER TABLE `rm_group`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=10;
 --
 -- 使用表AUTO_INCREMENT `rm_group_privilege`
 --
 ALTER TABLE `rm_group_privilege`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=7;
 --
 -- 使用表AUTO_INCREMENT `rm_group_user`
 --
 ALTER TABLE `rm_group_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=8;
 --
 -- 使用表AUTO_INCREMENT `rm_modify`
 --
@@ -595,7 +622,7 @@ ALTER TABLE `rm_part`
 -- 使用表AUTO_INCREMENT `rm_privilege`
 --
 ALTER TABLE `rm_privilege`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=6;
 --
 -- 使用表AUTO_INCREMENT `rm_project`
 --

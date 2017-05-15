@@ -148,7 +148,7 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-danger">6</span>
+                        <span class="label label-danger"><?php echo session('newRepairCount');?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
@@ -401,15 +401,15 @@
             </div>
         </div>
         <!-- search form（搜索） -->
-<!--        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="搜索...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </form>-->
+        <!--        <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="搜索...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>-->
         <!-- /.search form -->
         <!-- sidebar menu（左侧主菜单）: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -419,50 +419,16 @@
                 <a href="<?php echo U('Admin/Index/index'); ?>">
                     <i class="fa fa-th-large"></i> <span>首页</span>
                 </a>
-            </li>
+            </li>           
             <li class="treeview">
-                <a href="#">
+                <a href="<?php echo U('admin/repair/repairList'); ?>">
                     <i class="fa fa-wrench"></i>
                     <span>维护维修</span>
                     <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        <small class="label pull-right bg-yellow">12</small>
-                        <small class="label pull-right bg-red">5</small>      
+                        <small class="label pull-right bg-yellow"><?php echo session('repairingCount');?></small>
+                        <small class="label pull-right bg-red"><?php echo session('newRepairCount');?></small>
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?php echo U('admin/repair/repairList'); ?>">
-                            <i class="fa fa-info-circle"></i>维修总览
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo U('admin/repair/report'); ?>">
-                            <i class="fa fa-info-circle"></i>报修
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/boxed.html">
-                            <i class="fa fa-envelope"></i>新报修
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/fixed.html">
-                            <i class="fa fa-spinner"></i>维修中
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-yellow">5</small>      
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/layout/collapsed-sidebar.html">
-                            <i class="fa fa-check"></i>已维修
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li class="treeview">
                 <a href="index.html">
@@ -606,12 +572,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/boxed.html">
+                        <a href="<?php echo U('Admin/Group/groupList');?>">
                             <i class="fa fa-users"></i>组管理
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/fixed.html">
+                        <a href="<?php echo U('Admin/Privilege/privilegeList');?>">
                             <i class="fa fa-toggle-on"></i>权限管理
                         </a>
                     </li>
@@ -646,7 +612,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="box-body">
-                            <form action="/index.php/User/addressBook/p/3.html" method="GET">
+                            <form action="/index.php/User/addressBook/p/1/company_id/002.html" method="GET">
                                 <div class="form-group col-md-6">    
                                     <select class="form-control selectpicker" id="company_id" name="company_id" data-live-search="true" style="width: 100%;">
                                         <option value="">请选择公司</option>

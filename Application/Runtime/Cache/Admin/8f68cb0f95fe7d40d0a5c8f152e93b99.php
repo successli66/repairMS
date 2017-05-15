@@ -599,7 +599,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Privilege/add/p/1.html" method="POST">
+        <form class="form" action="/index.php/Privilege/add.html" method="POST">
             <div class="box box-info">
                 <div class="box-header bg-info">
                     <h3 class="box-title">权限添加</h3>    

@@ -38,7 +38,7 @@
                                 <tbody>
                                     <?php foreach($uData['data'] as $k => $v):?>
                                     <tr>
-                                        <td class="text-center"><input type="checkbox" name="user_id[]" class="flat-red" <?php if(in_array($v['id'],$group_ids)) echo 'checked'?> value="<?php echo $v['id'];?>"></td> 
+                                        <td class="text-center"><input type="checkbox" name="user_id[]" class="flat-red" <?php if(in_array($v['id'],$user_ids)) echo 'checked'?> value="<?php echo $v['id'];?>"></td> 
                                         <td><?php echo $v['real_name'];?></td>
                                         <td><?php echo $v['work_number'];?></td>
                                         <td><?php echo $v['telephone'];?></td>

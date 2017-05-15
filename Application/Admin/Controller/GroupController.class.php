@@ -92,18 +92,20 @@ class GroupController extends BaseController {
             }
             $this->error('必须选择至少一个成员！', U('groupList'), 2);
         }
+        //查询group_user表中group_id为$group_id的数据
         $group_id = I('get.id');
         $guData = $guModel->where(array(
                     'group_id' => $group_id
                 ))->select();
         $uModel = D('user');
+        //获得所有用户数据
         $uData = $uModel->search(10000);
-        foreach ($guData as $k => $v) {//
-            $group_ids[] = $v['id'];
+        foreach ($guData as $k => $v) {
+            $user_ids[] = $v['user_id'];
         }
         $this->assign('uData', $uData);
         $this->assign('guData', $guData);
-        $this->assign('group_ids', $group_ids);
+        $this->assign('user_ids', $user_ids);
         $this->display();
     }
 
