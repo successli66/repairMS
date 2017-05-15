@@ -93,6 +93,7 @@ class UserModel extends Model {
                 ->join('LEFT JOIN __DEPARTMENT__ c ON a.department_id=c.id')
                 ->where($map)
                 ->group('a.id')
+                ->order('a.department_id')
                 ->limit($page->firstRow . ',' . $page->listRows)
                 ->select();
         return $data;
