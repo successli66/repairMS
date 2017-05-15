@@ -572,12 +572,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo U('Admin/Group/GroupList');?>">
+                        <a href="<?php echo U('Admin/Group/groupList');?>">
                             <i class="fa fa-users"></i>组管理
                         </a>
                     </li>
                     <li>
-                        <a href="pages/layout/fixed.html">
+                        <a href="<?php echo U('Admin/Privilege/privilegeList');?>">
                             <i class="fa fa-toggle-on"></i>权限管理
                         </a>
                     </li>
@@ -604,7 +604,7 @@
         </h1>
     </section>
     <section class="content">
-        <form class="form" action="/index.php/Group/edit/id/6.html" method="POST">
+        <form class="form" action="/index.php/Group/edit/id/1.html" method="POST">
             <div class="box box-info">
                 <div class="box-header bg-info">
                     <h3 class="box-title">分组</h3>    

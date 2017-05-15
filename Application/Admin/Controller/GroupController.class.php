@@ -80,7 +80,7 @@ class GroupController extends BaseController {
         if (IS_POST) {
             if (!empty($_POST['user_id'])) {
                 $guModel->where(array(
-                    'group_id'=>$_POST['group_id']
+                    'group_id' => $_POST['group_id']
                 ))->delete();
                 foreach ($_POST['user_id'] as $k => $v) {
                     $group_user['user_id'] = $v;
@@ -90,7 +90,7 @@ class GroupController extends BaseController {
                 $this->success('分配成功！', U('groupList'), 1);
                 exit;
             }
-            $this->error('必须选择至少一个成员！',U('groupList'), 2);
+            $this->error('必须选择至少一个成员！', U('groupList'), 2);
         }
         $group_id = I('get.id');
         $guData = $guModel->where(array(
@@ -98,7 +98,7 @@ class GroupController extends BaseController {
                 ))->select();
         $uModel = D('user');
         $uData = $uModel->search(10000);
-        foreach($guData as $k=>$v){
+        foreach ($guData as $k => $v) {//
             $group_ids[] = $v['id'];
         }
         $this->assign('uData', $uData);
@@ -108,19 +108,42 @@ class GroupController extends BaseController {
     }
 
     public function distribute_privilege() {
-        $uModel = M('user');
+        $gpModel = M('group_privilege');
+        $group_id = I('get.id');
         if (IS_POST) {
-
-            foreach ($_POST['user_id'] as $k => $v) {
-                $user['id'] = $v;
-                $user['group_id'] = $_POST['group_id'];
-                $uModel->save($user);
+            if (!empty($_POST['privilege_id'])) {
+                $gpModel->where(array(
+                    'group_id' => $_POST['group_id']
+                ))->delete(); //先删除原权限
+                foreach ($_POST['privilege_id'] as $k => $v) {//再添加新权限
+                    $group_privilege['privilege_id'] = $v;
+                    $group_privilege['group_id'] = $_POST['group_id'];
+                    $gpModel->add($group_privilege);
+                }
+                $this->success('分配成功！', U('groupList'), 1);
+                exit;
             }
-            $this->success('分配成功！', U('groupList'), 1);
-            exit;
+            $this->error('必须选择至少一个权限！', U('groupList'), 2);
         }
-        $uData = $uModel->select();
-        $this->assign('uData', $uData);
+        $gpData = $gpModel->where(array(
+                    'group_id' => $group_id,
+                ))->select(); //获得此组的所有权限
+        foreach ($gpData as $k => $v) {
+            $privilege_ids[] = $v['privilege_id'];
+        }//获得此组权限的所有id，组成一个以为数组
+        $pModel = D('privilege');
+        $pData = $pModel->get_tree();
+        $i = 0;
+        $level = array();
+        foreach ($pData as $k => $v) { //对权限数据进行分层处理，同一控制器下方法放到一层中
+            if ($v['level'] == 0) {
+                $i++;
+            }
+            $level[$i][] = $v;
+        }
+        $this->assign('gpData', $gpData);
+        $this->assign('level', $level);
+        $this->assign('privilege_ids', $privilege_ids);
         $this->display();
     }
 
