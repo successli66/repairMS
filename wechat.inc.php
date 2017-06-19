@@ -210,7 +210,7 @@ class WeChat {
             <Content><![CDATA[%s]]></Content>
         </xml>';
         if (!empty($keyword)) {
-//            $data = "chat=" . $keyword;调用外部回复，问答
+//            $data = "chat=" . $keyword;调用外部回复，实现问答
 //            $contentStr = $this->_request("http://www.xiaodoubi.com/bot/chat.php", false, "post", $data);
             if ($keyword == "hello")
                 $contentStr = "Welcome to wechat  PHP 39 world!";
@@ -223,5 +223,22 @@ class WeChat {
             echo $textStr;
         }
     }
+    
+    public function _queryMenu(){
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/get?access_token='.$this->_getAccesstoken();
+        $menue = $this->_request($url);
+        return $menue;
+    }
+    
+    public function _deleteMenu(){
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/delete?access_token='.$this->_getAccesstoken();
+        $result = $this->_request($url);
+        $result = json_decode($result);
+        if($result->errcode == 0){
+            echo '删除菜单成功！';
+        }
+    }
+    
+    
 
 }
