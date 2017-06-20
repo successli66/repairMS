@@ -230,12 +230,24 @@ class WeChat {
         return $menue;
     }
     
+    /**
+     * 会删除所有自定义菜单
+     */
     public function _deleteMenu(){
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/delete?access_token='.$this->_getAccesstoken();
         $result = $this->_request($url);
         $result = json_decode($result);
         if($result->errcode == 0){
             echo '删除菜单成功！';
+        }
+    }
+    
+    public function _createmMenu(){
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->_getAccesstoken();
+        $result = $this->_request($url,TRUE,'post',$menu);
+        $result = json_decode($result);
+        if($result->errcode == 0){
+            echo '菜单创建成功！';
         }
     }
     
