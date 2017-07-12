@@ -296,7 +296,7 @@ class WeChat {
         }
     }
 
-    public function _createmMenu() {
+    public function _createMenu() {
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . $this->_getAccesstoken();
         $result = $this->_request($url, TRUE, 'post', $menu);
         $result = json_decode($result);
@@ -311,6 +311,38 @@ class WeChat {
         $content = json_decode($content);
         $user = $content->data->openid;
         return $user;
+    }
+
+    public function _sendAll($content) {
+        $tpl = '{
+            "touser":[
+            %s
+            ],
+            "msgtype": "text",
+            "text": { "content": "%s"}
+        }';
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=' . $this->_getAccesstoken();
+        $users = $this->_getUserList();
+        foreach ($users as $k => $v) {
+            $user .= '"' . $v . '"';
+            if ($k < count($users) - 1) {
+                $user .= ',';
+            }
+        }
+        $data = sprintf($tpl, $user, $content);
+        $result = $this->_request($url, TRUE, 'post', $data);
+        $result = json_decode($result);
+        if ($result->errcode == 0) {
+            echo '发送成功！';
+        }
+    }
+
+    public function _addMedia($type,$file) {
+        $url = 'https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' . $this->_getAccesstoken() . '&type=' . $type;
+        $data['type'] = $type;
+        $data['media'] = '@' . $file;
+        $result = $this->_request($url, true, "post", $data);
+        echo $result;
     }
 
 }
