@@ -200,6 +200,10 @@ class WeChat {
         ; //把用户从数据库中删除
     }
 
+    /**
+     * 私有方法文本响应
+     * @param type $postObj
+     */
     private function _doText($postObj) {
         $fromUserName = $postObj->FromUserName;
         $toUserName = $postObj->ToUserName;
@@ -227,7 +231,11 @@ class WeChat {
         }
     }
 
-    public function _doClick($postObj) {
+    /**
+     * 私有方法点击响应
+     * @param type $postObj
+     */
+    private function _doClick($postObj) {
         $list = '<xml>
         <ToUserName><![CDATA[%s]]></ToUserName>
         <FromUserName><![CDATA[%s]]></FromUserName>
@@ -266,6 +274,10 @@ class WeChat {
         echo $content;
     }
 
+    /**
+     * 私有方法位置响应
+     * @param type $postObj
+     */
     private function _doLocation($postObj) {
         $textTpl = '<xml>
             <ToUserName><![CDATA[%s]]></ToUserName>
@@ -278,6 +290,10 @@ class WeChat {
         echo $str;
     }
 
+    /**
+     * 查询菜单
+     * @return type
+     */
     public function _queryMenu() {
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/get?access_token=' . $this->_getAccesstoken();
         $menue = $this->_request($url);
@@ -285,6 +301,7 @@ class WeChat {
     }
 
     /**
+     * 删除菜单
      * 会删除所有自定义菜单
      */
     public function _deleteMenu() {
@@ -296,6 +313,9 @@ class WeChat {
         }
     }
 
+    /**
+     * 创建菜单
+     */
     public function _createMenu() {
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . $this->_getAccesstoken();
         $result = $this->_request($url, TRUE, 'post', $menu);
@@ -305,6 +325,11 @@ class WeChat {
         }
     }
 
+    /**
+     * 获得用户列表
+     * 返回一个一位数组
+     * @return type
+     */
     public function _getUserList() {
         $url = 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=' . $this->_getAccesstoken() . '&next_openid=';
         $content = $this->_request($url);
@@ -313,6 +338,10 @@ class WeChat {
         return $user;
     }
 
+    /**
+     * 群发消息
+     * @param type $content
+     */
     public function _sendAll($content) {
         $tpl = '{
             "touser":[
@@ -337,6 +366,11 @@ class WeChat {
         }
     }
 
+    /**
+     * 添加素材
+     * @param type $type
+     * @param type $file
+     */
     public function _addMedia($type,$file) {
         $url = 'https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' . $this->_getAccesstoken() . '&type=' . $type;
         $data['type'] = $type;
